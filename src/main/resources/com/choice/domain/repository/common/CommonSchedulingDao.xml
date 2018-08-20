@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.choice.domain.repository.common.CommonSchedulingDao">
+    <resultMap id="BaseResultMap" type="com.choice.domain.entity.common.CommonScheduling">
+        <id column="liushuihao" property="liushuihao" jdbcType="BIGINT"/>
+        <result column="jigoubh" property="jigoubh" jdbcType="VARCHAR"/>
+        <result column="yingyongbh" property="yingyongbh" jdbcType="BIGINT"/>
+        <result column="yuanneipbid" property="yuanneipbid" jdbcType="VARCHAR"/>
+        <result column="keshibh" property="keshibh" jdbcType="VARCHAR"/>
+        <result column="keshimc" property="keshimc" jdbcType="VARCHAR"/>
+        <result column="yishengbh" property="yishengbh" jdbcType="VARCHAR"/>
+        <result column="yishengxm" property="yishengxm" jdbcType="VARCHAR"/>
+        <result column="zuozhenrq" property="zuozhenrq" jdbcType="VARCHAR"/>
+        <result column="guahaolx" property="guahaolx" jdbcType="VARCHAR"/>
+        <result column="guahaofei" property="guahaofei" jdbcType="REAL"/>
+        <result column="menzhensdbm" property="menzhensdbm" jdbcType="VARCHAR"/>
+        <result column="kaishisj" property="kaishisj" jdbcType="INTEGER"/>
+        <result column="jieshusj" property="jieshusj" jdbcType="INTEGER"/>
+        <result column="menzhenwz" property="menzhenwz" jdbcType="VARCHAR"/>
+        <result column="haoyuanzsl" property="haoyuanzsl" jdbcType="REAL"/>
+        <result column="haoyuanlb" property="haoyuanlb" jdbcType="VARCHAR"/>
+        <result column="guahaozsl" property="guahaozsl" jdbcType="REAL"/>
+        <result column="guahaolb" property="guahaolb" jdbcType="VARCHAR"/>
+        <result column="tingzhenbz" property="tingzhenbz" jdbcType="VARCHAR"/>
+        <result column="beizhusm" property="beizhusm" jdbcType="VARCHAR"/>
+        <result column="shanchubz" property="shanchubz" jdbcType="VARCHAR"/>
+        <result column="zhuanjiapbbz" property="zhuanjiapbbz" jdbcType="VARCHAR"/>
+        <result column="shangchuanbz" property="shangchuanbz" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    liushuihao, jigoubh, yingyongbh, yuanneipbid, keshibh, keshimc, yishengbh, yishengxm, 
+    zuozhenrq, guahaolx, guahaofei, menzhensdbm, kaishisj, jieshusj, menzhenwz, haoyuanzsl, 
+    haoyuanlb, guahaozsl, guahaolb, tingzhenbz, beizhusm, shanchubz, zhuanjiapbbz, shangchuanbz
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from common_scheduling
+        where liushuihao = #{liushuihao,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from common_scheduling
+    where liushuihao = #{liushuihao,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.choice.domain.entity.common.CommonScheduling">
+    insert into common_scheduling (liushuihao, jigoubh, yingyongbh, 
+      yuanneipbid, keshibh, keshimc, 
+      yishengbh, yishengxm, zuozhenrq, 
+      guahaolx, guahaofei, menzhensdbm, 
+      kaishisj, jieshusj, menzhenwz, 
+      haoyuanzsl, haoyuanlb, guahaozsl, 
+      guahaolb, tingzhenbz, beizhusm, 
+      shanchubz, zhuanjiapbbz, shangchuanbz
+      )
+    values (#{liushuihao,jdbcType=BIGINT}, #{jigoubh,jdbcType=VARCHAR}, #{yingyongbh,jdbcType=BIGINT}, 
+      #{yuanneipbid,jdbcType=VARCHAR}, #{keshibh,jdbcType=VARCHAR}, #{keshimc,jdbcType=VARCHAR}, 
+      #{yishengbh,jdbcType=VARCHAR}, #{yishengxm,jdbcType=VARCHAR}, #{zuozhenrq,jdbcType=VARCHAR}, 
+      #{guahaolx,jdbcType=VARCHAR}, #{guahaofei,jdbcType=REAL}, #{menzhensdbm,jdbcType=VARCHAR}, 
+      #{kaishisj,jdbcType=INTEGER}, #{jieshusj,jdbcType=INTEGER}, #{menzhenwz,jdbcType=VARCHAR}, 
+      #{haoyuanzsl,jdbcType=REAL}, #{haoyuanlb,jdbcType=VARCHAR}, #{guahaozsl,jdbcType=REAL}, 
+      #{guahaolb,jdbcType=VARCHAR}, #{tingzhenbz,jdbcType=VARCHAR}, #{beizhusm,jdbcType=VARCHAR}, 
+      #{shanchubz,jdbcType=VARCHAR}, #{zhuanjiapbbz,jdbcType=VARCHAR}, #{shangchuanbz,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.choice.domain.entity.common.CommonScheduling">
+        insert into common_scheduling
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="liushuihao != null">
+                liushuihao,
+            </if>
+            <if test="jigoubh != null">
+                jigoubh,
+            </if>
+            <if test="yingyongbh != null">
+                yingyongbh,
+            </if>
+            <if test="yuanneipbid != null">
+                yuanneipbid,
+            </if>
+            <if test="keshibh != null">
+                keshibh,
+            </if>
+            <if test="keshimc != null">
+                keshimc,
+            </if>
+            <if test="yishengbh != null">
+                yishengbh,
+            </if>
+            <if test="yishengxm != null">
+                yishengxm,
+            </if>
+            <if test="zuozhenrq != null">
+                zuozhenrq,
+            </if>
+            <if test="guahaolx != null">
+                guahaolx,
+            </if>
+            <if test="guahaofei != null">
+                guahaofei,
+            </if>
+            <if test="menzhensdbm != null">
+                menzhensdbm,
+            </if>
+            <if test="kaishisj != null">
+                kaishisj,
+            </if>
+            <if test="jieshusj != null">
+                jieshusj,
+            </if>
+            <if test="menzhenwz != null">
+                menzhenwz,
+            </if>
+            <if test="haoyuanzsl != null">
+                haoyuanzsl,
+            </if>
+            <if test="haoyuanlb != null">
+                haoyuanlb,
+            </if>
+            <if test="guahaozsl != null">
+                guahaozsl,
+            </if>
+            <if test="guahaolb != null">
+                guahaolb,
+            </if>
+            <if test="tingzhenbz != null">
+                tingzhenbz,
+            </if>
+            <if test="beizhusm != null">
+                beizhusm,
+            </if>
+            <if test="shanchubz != null">
+                shanchubz,
+            </if>
+            <if test="zhuanjiapbbz != null">
+                zhuanjiapbbz,
+            </if>
+            <if test="shangchuanbz != null">
+                shangchuanbz,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="liushuihao != null">
+                #{liushuihao,jdbcType=BIGINT},
+            </if>
+            <if test="jigoubh != null">
+                #{jigoubh,jdbcType=VARCHAR},
+            </if>
+            <if test="yingyongbh != null">
+                #{yingyongbh,jdbcType=BIGINT},
+            </if>
+            <if test="yuanneipbid != null">
+                #{yuanneipbid,jdbcType=VARCHAR},
+            </if>
+            <if test="keshibh != null">
+                #{keshibh,jdbcType=VARCHAR},
+            </if>
+            <if test="keshimc != null">
+                #{keshimc,jdbcType=VARCHAR},
+            </if>
+            <if test="yishengbh != null">
+                #{yishengbh,jdbcType=VARCHAR},
+            </if>
+            <if test="yishengxm != null">
+                #{yishengxm,jdbcType=VARCHAR},
+            </if>
+            <if test="zuozhenrq != null">
+                #{zuozhenrq,jdbcType=VARCHAR},
+            </if>
+            <if test="guahaolx != null">
+                #{guahaolx,jdbcType=VARCHAR},
+            </if>
+            <if test="guahaofei != null">
+                #{guahaofei,jdbcType=REAL},
+            </if>
+            <if test="menzhensdbm != null">
+                #{menzhensdbm,jdbcType=VARCHAR},
+            </if>
+            <if test="kaishisj != null">
+                #{kaishisj,jdbcType=INTEGER},
+            </if>
+            <if test="jieshusj != null">
+                #{jieshusj,jdbcType=INTEGER},
+            </if>
+            <if test="menzhenwz != null">
+                #{menzhenwz,jdbcType=VARCHAR},
+            </if>
+            <if test="haoyuanzsl != null">
+                #{haoyuanzsl,jdbcType=REAL},
+            </if>
+            <if test="haoyuanlb != null">
+                #{haoyuanlb,jdbcType=VARCHAR},
+            </if>
+            <if test="guahaozsl != null">
+                #{guahaozsl,jdbcType=REAL},
+            </if>
+            <if test="guahaolb != null">
+                #{guahaolb,jdbcType=VARCHAR},
+            </if>
+            <if test="tingzhenbz != null">
+                #{tingzhenbz,jdbcType=VARCHAR},
+            </if>
+            <if test="beizhusm != null">
+                #{beizhusm,jdbcType=VARCHAR},
+            </if>
+            <if test="shanchubz != null">
+                #{shanchubz,jdbcType=VARCHAR},
+            </if>
+            <if test="zhuanjiapbbz != null">
+                #{zhuanjiapbbz,jdbcType=VARCHAR},
+            </if>
+            <if test="shangchuanbz != null">
+                #{shangchuanbz,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.choice.domain.entity.common.CommonScheduling">
+        update common_scheduling
+        <set>
+            <if test="jigoubh != null">
+                jigoubh = #{jigoubh,jdbcType=VARCHAR},
+            </if>
+            <if test="yingyongbh != null">
+                yingyongbh = #{yingyongbh,jdbcType=BIGINT},
+            </if>
+            <if test="yuanneipbid != null">
+                yuanneipbid = #{yuanneipbid,jdbcType=VARCHAR},
+            </if>
+            <if test="keshibh != null">
+                keshibh = #{keshibh,jdbcType=VARCHAR},
+            </if>
+            <if test="keshimc != null">
+                keshimc = #{keshimc,jdbcType=VARCHAR},
+            </if>
+            <if test="yishengbh != null">
+                yishengbh = #{yishengbh,jdbcType=VARCHAR},
+            </if>
+            <if test="yishengxm != null">
+                yishengxm = #{yishengxm,jdbcType=VARCHAR},
+            </if>
+            <if test="zuozhenrq != null">
+                zuozhenrq = #{zuozhenrq,jdbcType=VARCHAR},
+            </if>
+            <if test="guahaolx != null">
+                guahaolx = #{guahaolx,jdbcType=VARCHAR},
+            </if>
+            <if test="guahaofei != null">
+                guahaofei = #{guahaofei,jdbcType=REAL},
+            </if>
+            <if test="menzhensdbm != null">
+                menzhensdbm = #{menzhensdbm,jdbcType=VARCHAR},
+            </if>
+            <if test="kaishisj != null">
+                kaishisj = #{kaishisj,jdbcType=INTEGER},
+            </if>
+            <if test="jieshusj != null">
+                jieshusj = #{jieshusj,jdbcType=INTEGER},
+            </if>
+            <if test="menzhenwz != null">
+                menzhenwz = #{menzhenwz,jdbcType=VARCHAR},
+            </if>
+            <if test="haoyuanzsl != null">
+                haoyuanzsl = #{haoyuanzsl,jdbcType=REAL},
+            </if>
+            <if test="haoyuanlb != null">
+                haoyuanlb = #{haoyuanlb,jdbcType=VARCHAR},
+            </if>
+            <if test="guahaozsl != null">
+                guahaozsl = #{guahaozsl,jdbcType=REAL},
+            </if>
+            <if test="guahaolb != null">
+                guahaolb = #{guahaolb,jdbcType=VARCHAR},
+            </if>
+            <if test="tingzhenbz != null">
+                tingzhenbz = #{tingzhenbz,jdbcType=VARCHAR},
+            </if>
+            <if test="beizhusm != null">
+                beizhusm = #{beizhusm,jdbcType=VARCHAR},
+            </if>
+            <if test="shanchubz != null">
+                shanchubz = #{shanchubz,jdbcType=VARCHAR},
+            </if>
+            <if test="zhuanjiapbbz != null">
+                zhuanjiapbbz = #{zhuanjiapbbz,jdbcType=VARCHAR},
+            </if>
+            <if test="shangchuanbz != null">
+                shangchuanbz = #{shangchuanbz,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where liushuihao = #{liushuihao,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.choice.domain.entity.common.CommonScheduling">
+    update common_scheduling
+    set jigoubh = #{jigoubh,jdbcType=VARCHAR},
+      yingyongbh = #{yingyongbh,jdbcType=BIGINT},
+      yuanneipbid = #{yuanneipbid,jdbcType=VARCHAR},
+      keshibh = #{keshibh,jdbcType=VARCHAR},
+      keshimc = #{keshimc,jdbcType=VARCHAR},
+      yishengbh = #{yishengbh,jdbcType=VARCHAR},
+      yishengxm = #{yishengxm,jdbcType=VARCHAR},
+      zuozhenrq = #{zuozhenrq,jdbcType=VARCHAR},
+      guahaolx = #{guahaolx,jdbcType=VARCHAR},
+      guahaofei = #{guahaofei,jdbcType=REAL},
+      menzhensdbm = #{menzhensdbm,jdbcType=VARCHAR},
+      kaishisj = #{kaishisj,jdbcType=INTEGER},
+      jieshusj = #{jieshusj,jdbcType=INTEGER},
+      menzhenwz = #{menzhenwz,jdbcType=VARCHAR},
+      haoyuanzsl = #{haoyuanzsl,jdbcType=REAL},
+      haoyuanlb = #{haoyuanlb,jdbcType=VARCHAR},
+      guahaozsl = #{guahaozsl,jdbcType=REAL},
+      guahaolb = #{guahaolb,jdbcType=VARCHAR},
+      tingzhenbz = #{tingzhenbz,jdbcType=VARCHAR},
+      beizhusm = #{beizhusm,jdbcType=VARCHAR},
+      shanchubz = #{shanchubz,jdbcType=VARCHAR},
+      zhuanjiapbbz = #{zhuanjiapbbz,jdbcType=VARCHAR},
+      shangchuanbz = #{shangchuanbz,jdbcType=VARCHAR}
+    where liushuihao = #{liushuihao,jdbcType=BIGINT}
+  </update>
+
+    <select id="countScheduling" resultType="java.lang.Integer"
+            parameterType="com.choice.domain.entity.common.CommonScheduling">
+    select count(*)
+    from
+    common_scheduling
+    where JIGOUBH=#{jigoubh,jdbcType=VARCHAR}
+    and YUANNEIPBID
+    = #{yuanneipbid,jdbcType=VARCHAR}
+  </select>
+
+    <select id="getPaiBan" resultType="com.choice.domain.entity.common.CommonScheduling" parameterType="com.choice.domain.entity.common.CommonScheduling">
+        SELECT
+        <include refid="Base_Column_List"></include>
+              from  common_scheduling
+                  where  keshibh = #{keshibh} AND zuozhenrq = #{zuozhenrq} AND jigoubh=#{jigoubh} AND menzhensdbm=#{menzhensdbm}
+    </select>
+    <!-- 得到几天后的所有排班 -->
+    <resultMap id="paiBanByDay" type="com.choice.domain.vo.PaiBanVo1">
+        <result column="yishengbh" property="yishengbh"/>
+        <result column="yishengxm" property="yishengxm"/>
+        <result column="keshimc" property="keshimc"/>
+        <collection property="list" ofType="com.choice.domain.vo.PaiBanVo1">
+            <result column="zuozhenrq" property="zuozhenrq"/>
+            <result column="menzhensdbm" property="menzhensdbm"/>
+            <result column="yuanneipbid" property="yuanneipbid"/>
+        </collection>
+    </resultMap>
+    <select id="getPaiBanByAfterDay" resultType="com.choice.domain.entity.common.CommonScheduling" resultMap="paiBanByDay">
+        SELECT a.keshimc, a.yishengbh,a.yishengxm,b.zuozhenrq,b.menzhensdbm,b.yuanneipbid
+            FROM
+            (SELECT DISTINCT  keshimc, yishengbh ,yishengxm FROM common_scheduling WHERE keshibh = #{keshibh}
+            ) a,
+            (SELECT zuozhenrq,menzhensdbm ,yuanneipbid ,yishengbh  FROM common_scheduling WHERE keshibh = #{keshibh} AND zuozhenrq IN (${zuozhenrq})
+            )b
+                WHERE a.yishengbh = b.yishengbh
+    </select>
+
+    <!-- 根据排班id 和 机构编号封装数据 -->
+    <select id="getPaiBanById" parameterType="com.choice.domain.entity.common.CommonScheduling" resultType="com.choice.domain.entity.common.CommonScheduling">
+        SELECT 	`liushuihao`,
+            `jigoubh`,
+            `yingyongbh`,
+            `yuanneipbid`,
+            `keshibh`,
+            `keshimc`,
+            `yishengbh`,
+            `yishengxm`,
+            `zuozhenrq`,
+            `guahaolx`,
+            `guahaofei`,
+            `menzhensdbm`,
+            `kaishisj`,
+            `jieshusj`,
+            `menzhenwz`,
+            `haoyuanzsl`,
+            `haoyuanlb`,
+            `guahaozsl`,
+            `guahaolb`,
+            `tingzhenbz`,
+            `beizhusm`,
+            `shanchubz`,
+            `zhuanjiapbbz`,
+            `shangchuanbz`
+                FROM
+                `common_scheduling`
+                    WHERE yuanneipbid = #{yuanneipbid} AND jigoubh = #{jigoubh}
+    </select>
+</mapper>

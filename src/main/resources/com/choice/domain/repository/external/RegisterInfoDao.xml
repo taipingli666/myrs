@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choice.domain.repository.external.RegisterInfoDao">
+  <resultMap id="BaseResultMap" type="com.choice.domain.entity.external.RegisterInfo" >
+  	<id column="id" property="id" jdbcType="VARCHAR" />
+	<result column="hos_code" property="hosCode" jdbcType="VARCHAR" />
+	<result column="hos_name" property="hosName" jdbcType="VARCHAR" />
+	<result column="dept_code" property="deptCode" jdbcType="VARCHAR" />
+	<result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+	<result column="doctor_code" property="doctorCode" jdbcType="VARCHAR" />
+	<result column="doctor_name" property="doctorName" jdbcType="VARCHAR" />
+	<result column="work_date" property="workDate" jdbcType="VARCHAR" />
+	<result column="work_period" property="workPeriod" jdbcType="VARCHAR" />
+	<result column="work_time_start" property="workTimeStart" jdbcType="VARCHAR" />
+	<result column="work_time_end" property="workTimeEnd" jdbcType="VARCHAR" />
+	<result column="register_type" property="registerType" jdbcType="VARCHAR" />
+	<result column="register_cost" property="registerCost" jdbcType="VARCHAR" />
+	<result column="schedule_code" property="scheduleCode" jdbcType="VARCHAR" />
+	<result column="sequence_number" property="sequenceNumber" jdbcType="VARCHAR" />
+	<result column="visit_start" property="visitStart" jdbcType="VARCHAR" />
+	<result column="visit_end" property="visitEnd" jdbcType="VARCHAR" />
+	<result column="patient_code" property="patientCode" jdbcType="VARCHAR" />
+	<result column="patient_name" property="patientName" jdbcType="VARCHAR" />
+	<result column="patient_medium_type" property="patientMediumType" jdbcType="VARCHAR" />
+	<result column="patient_medium_code" property="patientMediumCode" jdbcType="VARCHAR" />
+	<result column="patient_gender" property="patientGender" jdbcType="VARCHAR" />
+	<result column="patient_age" property="patientAge" jdbcType="VARCHAR" />
+	<result column="patient_birthday" property="patientBirthday" jdbcType="VARCHAR" />
+	<result column="patient_id_card" property="patientIdCard" jdbcType="VARCHAR" />
+	<result column="patient_phone" property="patientPhone" jdbcType="VARCHAR" />
+	<result column="icd10_code" property="icd10Code" jdbcType="VARCHAR" />
+	<result column="icd10_name" property="icd10Name" jdbcType="VARCHAR" />
+	<result column="transaction_code" property="transactionCode" jdbcType="VARCHAR" />
+	<result column="register_time" property="registerTime" jdbcType="TIMESTAMP" />
+	<result column="visit_date" property="visitDate" jdbcType="TIMESTAMP" />
+	<result column="cancel_transaction_code" property="cancelTransactionCode" jdbcType="VARCHAR" />
+	<result column="cancel_time" property="cancelTime" jdbcType="TIMESTAMP" />
+	<result column="register_status" property="registerStatus" jdbcType="CHAR" />
+	<result column="operator" property="operator" jdbcType="VARCHAR" />
+	<result column="oper_hos_code" property="operHosCode" jdbcType="VARCHAR" />
+	<result column="feedback" property="feedback" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id,hos_code,dept_code,dept_name,doctor_code,doctor_name,work_date,work_period,work_time_start,work_time_end,
+    register_type,register_cost,schedule_code,sequence_number,visit_start,visit_end,patient_code,patient_name,patient_medium_type,
+    patient_medium_code,patient_gender,patient_age,patient_birthday,patient_id_card,patient_phone,icd10_code,icd10_name,transaction_code,
+    register_time,visit_date,cancel_transaction_code,cancel_time,register_status,operator,oper_hos_code,feedback
+  </sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap">
+		select 
+		 <include refid="Base_Column_List" />,
+		(select common_hospital.hos_name from common_hospital where common_hospital.hos_id = register_info.hos_code)hos_name
+		from register_info
+		where id = #{id}
+	</select>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.choice.domain.entity.external.RegisterInfo" >
+	   update register_info
+	   <set >
+			<if test="hosCode  != null and hosCode  != ''" >  hos_code = #{hosCode ,jdbcType=VARCHAR}, </if>
+			<if test="deptCode  != null and deptCode  != ''" >  dept_code = #{deptCode ,jdbcType=VARCHAR}, </if>
+			<if test="deptName  != null and deptName  != ''" >  dept_name = #{deptName ,jdbcType=VARCHAR}, </if>
+			<if test="doctorCode != null and doctorCode != ''" >  doctor_code = #{doctorCode,jdbcType=VARCHAR}, </if>
+			<if test="doctorName != null and doctorName != ''" >  doctor_name = #{doctorName,jdbcType=VARCHAR}, </if>
+			<if test="workDate != null and workDate != ''" >  work_date = #{workDate,jdbcType=TIMESTAMP}, </if>
+			<if test="workPeriod  != null and workPeriod  != ''" >  work_period = #{workPeriod ,jdbcType=VARCHAR}, </if>
+			<if test="workTimeStart != null and workTimeStart != ''" >  work_time_start = #{workTimeStart,jdbcType=VARCHAR}, </if>
+			<if test="workTimeEnd  != null and workTimeEnd  != ''" >  work_time_end = #{workTimeEnd ,jdbcType=VARCHAR}, </if>
+			<if test="registerType  != null and registerType  != ''" >  register_type = #{registerType ,jdbcType=VARCHAR}, </if>
+			<if test="registerCost  != null and registerCost  != ''" >  register_cost = #{registerCost ,jdbcType=VARCHAR}, </if>
+			<if test="scheduleCode != null and scheduleCode != ''" >  schedule_code = #{scheduleCode,jdbcType=VARCHAR}, </if>
+			<if test="sequenceNumber != null and sequenceNumber != ''" >  sequence_number = #{sequenceNumber,jdbcType=VARCHAR}, </if>
+			<if test="visitStart != null and visitStart != ''" >  visit_start = #{visitStart,jdbcType=VARCHAR}, </if>
+			<if test="visitEnd  != null and visitEnd  != ''" >  visit_end = #{visitEnd ,jdbcType=VARCHAR}, </if>
+			<if test="patientCode  != null and patientCode  != ''" >  patient_code = #{patientCode ,jdbcType=VARCHAR}, </if>
+			<if test="patientName  != null and patientName  != ''" >  patient_name = #{patientName ,jdbcType=VARCHAR}, </if>
+			<if test="patientMediumType  != null and patientMediumType  != ''" >  patient_medium_type = #{patientMediumType ,jdbcType=VARCHAR}, </if>
+			<if test="patientMediumCode  != null and patientMediumCode  != ''" >  patient_medium_code = #{patientMediumCode ,jdbcType=VARCHAR}, </if>
+			<if test="patientGender  != null and patientGender  != ''" >  patient_gender = #{patientGender ,jdbcType=VARCHAR}, </if>
+			<if test="patientAge  != null and patientAge  != ''" >  patient_age = #{patientAge ,jdbcType=VARCHAR}, </if>
+			<if test="patientBirthday != null and patientBirthday != ''" >  patient_birthday = #{patientBirthday,jdbcType=VARCHAR}, </if>
+			<if test="patientIdCard != null and patientIdCard != ''" >  patient_id_card = #{patientIdCard,jdbcType=VARCHAR}, </if>
+			<if test="patientPhone  != null and patientPhone  != ''" >  patient_phone = #{patientPhone ,jdbcType=VARCHAR}, </if>
+		    <if test="icd10Code  != null and icd10Code  != ''" >  icd10_code = #{icd10Code ,jdbcType=VARCHAR}, </if>
+		    <if test="icd10Name  != null and icd10Name  != ''" >  icd10_name = #{icd10Name ,jdbcType=VARCHAR}, </if>
+			<if test="transactionCode  != null and transactionCode  != ''" >  transaction_code = #{transactionCode ,jdbcType=VARCHAR}, </if>
+			<if test="registerTime  != null and registerTime  != ''" >  register_time = #{registerTime ,jdbcType=INTEGER}, </if>
+			<if test="visitDate  != null and visitDate  != ''" >  visit_date = #{visitDate ,jdbcType=TIMESTAMP}, </if>
+			<if test="cancelTransactionCode  != null and cancelTransactionCode  != ''" >  cancel_transaction_code = #{cancelTransactionCode ,jdbcType=VARCHAR}, </if>
+			<if test="cancelTime  != null and cancelTime  != ''" >  cancel_time = #{cancelTime ,jdbcType=TIMESTAMP}, </if>
+		    <if test="registerStatus  != null and registerStatus  != ''" >  register_status = #{registerStatus ,jdbcType=VARCHAR}, </if>
+		    <if test="operator  != null and operator  != ''" >  operator = #{operator ,jdbcType=VARCHAR}, </if>
+		    <if test="operHosCode  != null and operHosCode  != ''" >  oper_hos_code = #{operHosCode ,jdbcType=VARCHAR}, </if>
+		    <if test="feedback  != null and feedback  != ''" >  feedback = #{feedback ,jdbcType=VARCHAR}, </if>
+	   </set>		
+	  where id = #{id,jdbcType=VARCHAR}
+	 </update>
+
+	<insert id="insertSelective" parameterType="com.choice.domain.entity.external.RegisterInfo">
+		insert into register_info
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="id != null" >
+				id,
+			</if>
+			<if test="hosCode != null" >
+				hos_code,
+			</if>
+			<if test="deptCode != null" >
+				dept_code,
+			</if>
+			<if test="deptName != null" >
+				dept_name,
+			</if>
+			<if test="doctorCode != null" >
+				doctor_code,
+			</if>
+			<if test="doctorName != null" >
+				doctor_name,
+			</if>
+			<if test="workDate != null" >
+				work_date,
+			</if>
+			<if test="workPeriod != null" >
+				work_period,
+			</if>
+			<if test="workTimeStart != null" >
+				work_time_start,
+			</if>
+			<if test="workTimeEnd != null" >
+				work_time_end,
+			</if>
+			<if test="registerType != null" >
+				register_type,
+			</if>
+			<if test="registerCost != null" >
+				register_cost,
+			</if>
+			<if test="scheduleCode != null" >
+				schedule_code,
+			</if>
+			<if test="sequenceNumber != null" >
+				sequence_number,
+			</if>
+			<if test="visitStart != null" >
+				visit_start,
+			</if>
+			<if test="visitEnd != null" >
+				visit_end,
+			</if>
+			<if test="patientCode != null" >
+				patient_code,
+			</if>
+			<if test="patientName != null" >
+				patient_name,
+			</if>
+			<if test="patientMediumType != null" >
+				patient_medium_type,
+			</if>
+			<if test="patientMediumCode != null" >
+				patient_medium_code,
+			</if>
+			<if test="patientGender != null" >
+				patient_gender,
+			</if>
+			<if test="patientAge != null" >
+				patient_age,
+			</if>
+			<if test="patientBirthday != null" >
+				patient_birthday,
+			</if>
+			<if test="patientIdCard != null" >
+				patient_id_card,
+			</if>
+			<if test="patientPhone != null" >
+				patient_phone,
+			</if>
+			<if test="icd10Code != null" >
+				icd10_code,
+			</if>
+			<if test="icd10Name != null" >
+				icd10_name,
+			</if>
+			<if test="transactionCode != null" >
+				transaction_code,
+			</if>
+			<if test="registerTime != null" >
+				register_time,
+			</if>
+			<if test="visitDate != null" >
+				visit_date,
+			</if>
+			<if test="cancelTransactionCode != null" >
+				cancel_transaction_code,
+			</if>
+			<if test="cancelTime != null" >
+				cancel_time,
+			</if>
+			<if test="registerStatus != null" >
+				register_status,
+			</if>
+			<if test="operator != null" >
+				operator,
+			</if>
+			<if test="operHosCode != null" >
+				oper_hos_code,
+			</if>
+			<if test="feedback != null" >
+				feedback,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="id != null" >
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="hosCode != null" >
+				#{hosCode,jdbcType=VARCHAR},
+			</if>
+			<if test="deptCode != null" >
+				#{deptCode,jdbcType=DOUBLE},
+			</if>
+			<if test="deptName != null" >
+				#{deptName,jdbcType=VARCHAR},
+			</if>
+			<if test="doctorCode != null" >
+				#{doctorCode,jdbcType=VARCHAR},
+			</if>
+			<if test="doctorName != null" >
+				#{doctorName,jdbcType=VARCHAR},
+			</if>
+			<if test="workDate != null" >
+				#{workDate,jdbcType=VARCHAR},
+			</if>
+			<if test="workPeriod != null" >
+				#{workPeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="workTimeStart != null" >
+				#{workTimeStart,jdbcType=VARCHAR},
+			</if>
+			<if test="workTimeEnd != null" >
+				#{workTimeEnd,jdbcType=VARCHAR},
+			</if>
+			<if test="registerType != null" >
+				#{registerType,jdbcType=VARCHAR},
+			</if>
+			<if test="registerCost != null" >
+				#{registerCost,jdbcType=VARCHAR},
+			</if>
+			<if test="scheduleCode != null" >
+				#{scheduleCode,jdbcType=VARCHAR},
+			</if>
+			<if test="sequenceNumber != null" >
+				#{sequenceNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="visitStart != null" >
+				#{visitStart,jdbcType=VARCHAR},
+			</if>
+			<if test="visitEnd != null" >
+				#{visitEnd,jdbcType=VARCHAR},
+			</if>
+			<if test="patientCode != null" >
+				#{patientCode,jdbcType=VARCHAR},
+			</if>
+			<if test="patientName != null" >
+				#{patientName,jdbcType=VARCHAR},
+			</if>
+			<if test="patientMediumType != null" >
+				#{patientMediumType,jdbcType=VARCHAR},
+			</if>
+			<if test="patientMediumCode != null" >
+				#{patientMediumCode,jdbcType=VARCHAR},
+			</if>
+			<if test="patientGender != null" >
+				#{patientGender,jdbcType=VARCHAR},
+			</if>
+			<if test="patientAge != null" >
+				#{patientAge,jdbcType=VARCHAR},
+			</if>
+			<if test="patientBirthday != null" >
+				#{patientBirthday,jdbcType=VARCHAR},
+			</if>
+			<if test="patientIdCard != null" >
+				#{patientIdCard,jdbcType=VARCHAR},
+			</if>
+			<if test="patientPhone != null" >
+				#{patientPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="icd10Code != null" >
+				#{icd10Code,jdbcType=VARCHAR},
+			</if>
+			<if test="icd10Name != null" >
+				#{icd10Name,jdbcType=VARCHAR},
+			</if>
+			<if test="transactionCode != null" >
+				#{transactionCode,jdbcType=VARCHAR},
+			</if>
+			<if test="registerTime != null" >
+				#{registerTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="visitDate != null" >
+				#{visitDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="cancelTransactionCode != null" >
+				#{cancelTransactionCode,jdbcType=VARCHAR},
+			</if>
+			<if test="cancelTime != null" >
+				#{cancelTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="registerStatus != null" >
+				#{registerStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="operator != null" >
+				#{operator,jdbcType=VARCHAR},
+			</if>
+			<if test="operHosCode != null" >
+				#{operHosCode,jdbcType=VARCHAR},
+			</if>
+			<if test="feedback != null" >
+				#{feedback,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<select id="getRegisterInfoList" resultMap="BaseResultMap">
+		select
+		id,hos_code,
+		(select common_hospital.hos_name from common_hospital where common_hospital.hos_id = register_info.hos_code)hos_name,
+		dept_code,dept_name,doctor_code,doctor_name,work_date,work_period,work_time_start,work_time_end,
+		register_type,register_cost,schedule_code,sequence_number,visit_start,visit_end,patient_code,patient_name,patient_medium_type,
+		patient_medium_code,patient_gender,patient_age,patient_birthday,patient_id_card,patient_phone,icd10_code,icd10_name,transaction_code,
+		register_time,visit_date,cancel_transaction_code,cancel_time,register_status,operator,oper_hos_code,feedback
+		from register_info
+		<where>
+			1=1
+			<if test='refType == "" or refType == null'>
+				AND (oper_hos_code = #{registerInfo.operHosCode,jdbcType=VARCHAR} or hos_code =  #{registerInfo.operHosCode,jdbcType=VARCHAR})
+			</if>
+			/*转出*/
+			<if test='refType == "1"'>
+				AND oper_hos_code = #{registerInfo.operHosCode,jdbcType=VARCHAR}
+			</if>
+			/*转入*/
+			<if test='refType == "2"'>
+				AND hos_code =  #{registerInfo.operHosCode,jdbcType=VARCHAR}
+			</if>
+			<if test="registerInfo.patientName != null and registerInfo.patientName != ''">
+				AND patient_name like CONCAT(CONCAT('%',#{registerInfo.patientName,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="registerInfo.patientIdCard != null and registerInfo.patientIdCard != ''">
+				AND patient_id_card like CONCAT(CONCAT('%',#{registerInfo.patientIdCard,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="registerInfo.patientPhone != null and registerInfo.patientPhone != ''">
+				AND patient_phone like CONCAT(CONCAT('%',#{registerInfo.patientPhone,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="startDate != null and startDate != ''">
+				AND DATE_FORMAT(register_time,'%Y-%m-%d') &gt;=  DATE_FORMAT(#{startDate,jdbcType=TIMESTAMP},'%Y-%m-%d')
+			</if>
+			<if test="endDate != null and endDate != ''">
+				AND  DATE_FORMAT(register_time,'%Y-%m-%d') &lt;=  DATE_FORMAT(#{endDate,jdbcType=TIMESTAMP},'%Y-%m-%d')
+			</if>
+		</where>
+		order by change_time desc
+	</select>
+
+	<select id="getUsingSchedule" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from register_info
+		where  schedule_code in
+		<foreach collection="array" index="index" item="item"
+				 open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<update id="closeUsingSchedule">
+		UPDATE register_info
+		SET register_status = '8'
+		WHERE schedule_code in
+		<foreach collection="array" index="index" item="item"
+				 open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+</mapper>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choice.domain.repository.external.RegisterSourceInfoDao">
+  <resultMap id="BaseResultMap" type="com.choice.domain.entity.external.RegisterSourceInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="schedule_code" jdbcType="BIGINT" property="scheduleCode" />
+    <result column="sequence_number" jdbcType="INTEGER" property="sequenceNumber" />
+    <result column="visit_start" jdbcType="VARCHAR" property="visitStart" />
+    <result column="visit_end" jdbcType="VARCHAR" property="visitEnd" />
+    <result column="source_status" jdbcType="CHAR" property="sourceStatus" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, schedule_code, sequence_number, visit_start, visit_end, source_status
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from register_source_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from register_source_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <delete id="deleteByScheduleCode" parameterType="java.lang.Long">
+    delete from register_source_info
+    where schedule_code = #{scheduleCode,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insert" parameterType="com.choice.domain.entity.external.RegisterSourceInfo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into register_source_info (schedule_code, sequence_number, visit_start,
+    visit_end, source_status)
+    values (#{scheduleCode,jdbcType=BIGINT}, #{sequenceNumber,jdbcType=INTEGER}, #{visitStart,jdbcType=VARCHAR},
+    #{visitEnd,jdbcType=VARCHAR}, #{sourceStatus,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.choice.domain.entity.external.RegisterSourceInfo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into register_source_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="scheduleCode != null">
+        schedule_code,
+      </if>
+      <if test="sequenceNumber != null">
+        sequence_number,
+      </if>
+      <if test="visitStart != null">
+        visit_start,
+      </if>
+      <if test="visitEnd != null">
+        visit_end,
+      </if>
+      <if test="sourceStatus != null">
+        source_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="scheduleCode != null">
+        #{scheduleCode,jdbcType=BIGINT},
+      </if>
+      <if test="sequenceNumber != null">
+        #{sequenceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="visitStart != null">
+        #{visitStart,jdbcType=VARCHAR},
+      </if>
+      <if test="visitEnd != null">
+        #{visitEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceStatus != null">
+        #{sourceStatus,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.choice.domain.entity.external.RegisterSourceInfo">
+    update register_source_info
+    <set>
+      <if test="scheduleCode != null">
+        schedule_code = #{scheduleCode,jdbcType=BIGINT},
+      </if>
+      <if test="sequenceNumber != null">
+        sequence_number = #{sequenceNumber,jdbcType=INTEGER},
+      </if>
+      <if test="visitStart != null">
+        visit_start = #{visitStart,jdbcType=VARCHAR},
+      </if>
+      <if test="visitEnd != null">
+        visit_end = #{visitEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceStatus != null">
+        source_status = #{sourceStatus,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.choice.domain.entity.external.RegisterSourceInfo">
+    update register_source_info
+    set schedule_code = #{scheduleCode,jdbcType=BIGINT},
+      sequence_number = #{sequenceNumber,jdbcType=INTEGER},
+      visit_start = #{visitStart,jdbcType=VARCHAR},
+      visit_end = #{visitEnd,jdbcType=VARCHAR},
+      source_status = #{sourceStatus,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="useHaoYuan"  parameterType="long">
+    update register_source_info set source_status = '1' where id = #{id} and source_status = '0'
+  </update>
+  <update id="releaseSource"  parameterType="com.choice.domain.entity.external.RegisterSourceInfo">
+    update register_source_info set source_status = '0'
+    where
+    schedule_code = #{scheduleCode,jdbcType=BIGINT} and
+    sequence_number = #{sequenceNumber,jdbcType=INTEGER} and source_status = '1'
+  </update>
+</mapper>

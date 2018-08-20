@@ -1,0 +1,74 @@
+@font-face {
+  font-family: 'bsicofont';
+  src:  url('fonts/bsicofont.eot?jjbj7h');
+  src:  url('fonts/bsicofont.eot?jjbj7h#iefix') format('embedded-opentype'),
+    url('fonts/bsicofont.ttf?jjbj7h') format('truetype'),
+    url('fonts/bsicofont.woff?jjbj7h') format('woff'),
+    url('fonts/bsicofont.svg?jjbj7h#bsicofont') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="bsicofont-"], [class*=" bsicofont-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'bsicofont' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bsicofont-add:before {
+  content: "\e913";
+}
+.bsicofont-add2:before {
+  content: "\e900";
+}
+.bsicofont-back:before {
+  content: "\e90b";
+}
+.bsicofont-close:before {
+  content: "\e905";
+}
+.bsicofont-close2:before {
+  content: "\e904";
+}
+.bsicofont-del:before {
+  content: "\e901";
+}
+.bsicofont-eye-off:before {
+  content: "\e908";
+}
+.bsicofont-eye-on:before {
+  content: "\e90a";
+}
+.bsicofont-fail:before {
+  content: "\e906";
+}
+.bsicofont-luck_01:before {
+  content: "\e903";
+}
+.bsicofont-minus:before {
+  content: "\e914";
+}
+.bsicofont-radio-off:before {
+  content: "\e909";
+}
+.bsicofont-radio-on:before {
+  content: "\e902";
+}
+.bsicofont-set:before {
+  content: "\e90c";
+}
+.bsicofont-subtract:before {
+  content: "\e917";
+}
+.bsicofont-user_01:before {
+  content: "\e907";
+}

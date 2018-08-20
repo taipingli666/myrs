@@ -1,0 +1,83 @@
+﻿/*#region 重置元素*/
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li,pre, form, fieldset, legend, button, input, textarea, th, td{
+    padding: 0;
+    margin:0;
+}
+body,button, input, select, textarea,h1, h2, h3, h4, h5, h6{
+    font: 12px/1.3 "微软雅黑 Light";
+}
+address, cite, dfn, em, var {
+    font-style:normal;
+}
+code, kbd, pre, samp {
+     font-family: courier new, courier, monospace;
+}
+small {
+    font-size: 12px;
+}
+ul, ol {
+    list-style: none;
+    margin:0;
+}
+body,legend,a {
+    color:#666;
+}
+a,a:hover  {
+    color:inherit;
+    text-decoration: none;
+}
+sup {
+    vertical-align: text-top;
+}
+sub {
+    vertical-align: text-bottom;
+}
+
+fieldset, img {
+    border: 0;
+}
+button, input, select, textarea {
+    font-size: 12px;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width:100%;
+    word-break: break-all;
+}
+table th {
+    font-weight:normal;
+}
+table th,table td {
+    font-weight:normal;
+    text-align:center;
+}
+article, aside, details, figcaption, figure, footer,header, hgroup, menu, nav, section,summary, time, mark, audio, video {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+img{
+	vertical-align:middle;
+}
+a:focus{outline:0}
+::-moz-placeholder { color:#aaa; }
+input:-webkit-input-placeholder { color:#aaa; }
+input:-moz-placeholder { color:#aaa; }
+/*#endregion*/
+/*#region 清除浮动*/
+.clearfix:after{
+	content: '\20';
+    display: block;
+    height: 0;
+    clear: both;
+}
+.clearfix {
+	*zoom:1;
+}
+/*#endregion */
+button:disabled,
+.disabled{
+    opacity:0.5;
+    cursor:default;
+}

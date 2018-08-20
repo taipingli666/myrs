@@ -1,0 +1,32 @@
+﻿input[type="checkbox"] {
+ display: none;
+}
+.checkbox label{
+  display: inline-block;
+  padding-left: 30px;
+  background: url(img/box-n.png) no-repeat;
+  height: 20px;
+}
+label.checked{
+  background: url(img/box-y.png) no-repeat;
+}
+#checkbox1 .select-other{
+	cursor:pointer
+	padding:3px;
+	margin:5px 0 0 5px;
+}
+#checkbox1 .select-other div{
+	cursor:pointer;
+	 display: inline-block;
+	 width:80px;height:20px;
+	 text-align :center;
+	 border-radius: 5px;
+	 background:#9BCD9B;
+	 margin-left: 15px;
+	 color:#EDEDED;
+}
+#checkbox1>div:not(.select-other){
+	 float: left;
+     display: inline-block;
+	 padding:5px;
+}

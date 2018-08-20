@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.choice.domain.repository.reportform.ContractReportDao" >
+  <resultMap id="BaseResultMap" type="com.choice.domain.entity.reportform.ContractReport" >
+   	<id column="area_id" property="areaId" jdbcType="INTEGER" />
+	<result column="area_name" property="areaName" jdbcType="VARCHAR" />
+	<result column="parent_code" property="parentCode" jdbcType="VARCHAR" />
+	<result column="area_code" property="areaCode" jdbcType="VARCHAR" />
+	<result column="people_number" property="peopleNumber" jdbcType="INTEGER" />
+	<result column="level" property="level" jdbcType="INTEGER" />
+	<result column="year" property="year" jdbcType="VARCHAR" />
+	<result column="signing_num" property="signingNum" jdbcType="INTEGER" />
+	<result column="signature_rate" property="signatureRate" jdbcType="FLOAT" />
+	<result column="renew_num" property="renewNum" jdbcType="INTEGER" />
+	<result column="renew_rate" property="renewRate" jdbcType="FLOAT" />
+	<result column="focus_groups_num" property="focusGroupsNum" jdbcType="INTEGER" />
+	<result column="focus_groups_rate" property="focusGroupsRate" jdbcType="FLOAT" />
+	<result column="edit_time" property="editTime" jdbcType="VARCHAR" />
+	<result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+  </resultMap>		
+  <sql id="Base_Column_List" >
+     area_id,area_name,parent_code,area_code,people_number,level,year,signing_num,signature_rate,renew_num,renew_rate,focus_groups_num,focus_groups_rate,edit_time,is_delete
+  </sql>
+  
+  <!--展示list信息 -->
+  <select id="getListBySearchValue" parameterType="com.choice.domain.entity.reportform.ContractReport" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from contract_report
+    <where>
+    	<if test="areaCode != null and areaCode != ''">
+    		and (parent_code = #{areaCode,jdbcType=VARCHAR} or area_code = #{areaCode,jdbcType=VARCHAR})
+		</if>
+    	<if test="areaName != null and areaName != ''">
+    		and area_name LIKE CONCAT(CONCAT('%',#{areaName}),'%')
+    	</if>
+    	<if test="year != null and year != ''">
+    		and year = #{year,jdbcType=VARCHAR}
+    	</if>
+    </where>
+	  ORDER BY year
+  </select>
+  
+  	 <!--  签约 -->
+	<select id="signingInfo" resultType="com.choice.domain.entity.reportform.ContractReport">
+		SELECT rs.*,rs.signingNum/rs.peopleNumber AS signatureRate 
+		FROM (SELECT a.area_name areaName, a.parent_code parentCode,h.area_code areaCode,
+		p.p_number peopleNumber,a.level,sign_year 'year',COUNT(1) signingNum 
+		FROM business_contract b 
+		LEFT JOIN  common_hospital h
+		ON h.hos_id = b.hos_id	
+		LEFT JOIN common_population p
+		ON p.area_code = h.area_code
+		LEFT JOIN common_area a
+		ON a.code = h.area_code
+		WHERE b.hos_id = #{hosId}
+		AND b.is_renew = 0
+		AND b.is_key = 0
+		GROUP BY sign_year) rs
+	</select> 
+	
+	<!-- 续约 -->
+	<select id="renewInfo" resultType="com.choice.domain.entity.reportform.ContractReport">
+		SELECT rs.*,rs.renewNum/rs.peopleNumber AS renewRate 
+		FROM (SELECT a.area_name areaName, a.parent_code parentCode,
+		h.area_code areaCode,p.p_number peopleNumber,a.level,sign_year 'year',COUNT(1) renewNum
+		FROM business_contract b 
+		LEFT JOIN  common_hospital h
+		ON h.hos_id = b.hos_id	
+		LEFT JOIN common_population p
+		ON p.area_code = h.area_code
+		LEFT JOIN common_area a
+		ON a.code = h.area_code
+		WHERE b.hos_id = #{hosId} 
+		AND b.is_renew = 1
+		GROUP BY sign_year) rs  
+	</select>
+
+	<!-- 重点人群签约 -->
+	<select id="focusGroupsInfo" resultType="com.choice.domain.entity.reportform.ContractReport">
+		SELECT rs.*,rs.focusGroupsNum/rs.peopleNumber AS focusGroupsRate 
+		FROM (SELECT a.area_name areaName, a.parent_code parentCode,h.area_code areaCode,
+		p.p_number peopleNumber,a.level,sign_year 'year',COUNT(1) focusGroupsNum
+		FROM business_contract b 
+		LEFT JOIN  common_hospital h
+		ON h.hos_id = b.hos_id	
+		LEFT JOIN common_population p
+		ON p.area_code = h.area_code
+		LEFT JOIN common_area a
+		ON a.code = h.area_code
+		WHERE b.hos_id = #{hosId} 
+		AND b.is_renew = 0 
+		AND b.is_key = 1 
+		GROUP BY sign_year) rs
+	</select> 
+	
+	<!-- 通过年份和区号查对象 -->
+	<select id="contractReportInfoByYear" resultMap="BaseResultMap">
+		SELECT * FROM contract_report 
+		WHERE area_code = #{areaCode}
+		AND YEAR = #{year}
+	</select>
+	
+	<insert id="insert" parameterType="com.choice.domain.entity.reportform.ContractReport" useGeneratedKeys="true" keyProperty="areaId" keyColumn="area_id">
+		INSERT INTO contract_report 
+		(area_name,parent_code,area_code,people_number,LEVEL,YEAR,signing_num,
+		signature_rate,renew_num,renew_rate,focus_groups_num,focus_groups_rate,
+		edit_time,is_delete) 
+		VALUES
+		(#{areaName},#{parentCode},#{areaCode},#{peopleNumber},#{level},#{year},
+		#{signingNum},#{signatureRate},#{renewNum},#{renewRate},#{focusGroupsNum},
+		#{focusGroupsRate},#{editTime},#{isDelete})
+	</insert>
+	
+	<!-- 更新 -->
+	<update id="update" parameterType="com.choice.domain.entity.reportform.ContractReport">
+		UPDATE contract_report 
+		<set>
+		    <if test="areaName != null">
+		      area_name = #{areaName,jdbcType=VARCHAR},
+		    </if>
+		    <if test="parentCode != null">
+		      parent_code = #{parentCode,jdbcType=VARCHAR},
+		    </if>
+		    <if test="areaCode != null">
+		      area_code = #{areaCode,jdbcType=VARCHAR},
+		    </if>
+		    <if test="peopleNumber != null">
+		      people_number = #{peopleNumber,jdbcType=INTEGER},
+		    </if>
+		    <if test="level != null">
+		      LEVEL = #{level,jdbcType=INTEGER},
+		    </if>
+		    <if test="year != null">
+		      YEAR = #{year,jdbcType=INTEGER},
+		    </if>
+		    <if test="signingNum != null">
+		      signing_num = #{signingNum,jdbcType=INTEGER},
+		    </if>
+		    <if test="signatureRate != null">
+		      signature_rate = #{signatureRate,jdbcType=FLOAT},
+		    </if>
+		    <if test="renewNum != null">
+		      renew_num = #{renewNum,jdbcType=INTEGER},
+		    </if>
+		    <if test="renewRate != null">
+		      renew_rate = #{renewRate,jdbcType=FLOAT},
+		    </if>
+		    <if test="focusGroupsNum != null">
+		      focus_groups_num = #{focusGroupsNum,jdbcType=INTEGER},
+		    </if>
+		    <if test="focusGroupsRate != null">
+		      focus_groups_rate = #{focusGroupsRate,jdbcType=FLOAT},
+		    </if>
+		    <if test="editTime != null">
+		      edit_time = #{editTime,jdbcType=VARCHAR},
+		    </if>
+		    <if test="isDelete != null">
+		      is_delete = #{isDelete,jdbcType=INTEGER},
+		    </if>
+		</set>
+		where year = #{year} 
+		and area_code = #{areaCode}
+	</update>
+
+	<delete id="delete">
+		DELETE from contract_report
+	</delete>
+
+	<!--签约统计有数据的年份-->
+	<select id="distinctYear" resultType="string">
+		SELECT sign_year FROM business_contract GROUP BY sign_year
+	</select>
+</mapper>

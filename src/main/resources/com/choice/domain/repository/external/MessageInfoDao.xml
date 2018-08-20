@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choice.domain.repository.external.MessageInfoDao">
+
+  <insert id="insert" parameterType="com.choice.domain.entity.external.MessageInfo">
+    INSERT into message_info
+    (msgid, tel, msgcontent, msg_key, external_id, external_type, UPDATE_time)
+    VALUES
+    (#{msgId}, #{tel}, #{msgContent}, #{msgKey} , #{externalId}, #{externalType}, #{updateTime})
+  </insert>
+
+
+  <update id="update" parameterType="com.choice.domain.entity.external.MessageInfo">
+      UPDATE message_info
+      SET status = #{status},
+      UPDATE_time = #{updateTime}
+      WHERE msgid = #{msgId}
+  </update>
+
+
+
+</mapper>

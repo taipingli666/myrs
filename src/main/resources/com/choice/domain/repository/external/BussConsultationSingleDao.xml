@@ -1,0 +1,1005 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.choice.domain.repository.external.BussConsultationSingleDao" >
+  <resultMap id="BaseResultMap" type="com.choice.domain.entity.external.BussConsultationSingle" >
+    <id column="liushuihao" property="liushuihao" jdbcType="BIGINT" />
+    <result column="shenqingyyid" property="shenqingyyid" jdbcType="VARCHAR" />
+    <result column="shenqingksid" property="shenqingksid" jdbcType="VARCHAR" />
+    <result column="shenqingysid" property="shenqingysid" jdbcType="VARCHAR" />
+    <result column="bingrenid" property="bingrenid" jdbcType="VARCHAR" />
+    <result column="bingqingms" property="bingqingms" jdbcType="VARCHAR" />
+    <result column="binglixx" property="binglixx" jdbcType="VARCHAR" />
+    <result column="huizhenpbid" property="huizhenpbid" jdbcType="VARCHAR" />
+    <result column="huizhenzt" property="huizhenzt" jdbcType="CHAR" />
+    <result column="huizhenyyid" property="huizhenyyid" jdbcType="VARCHAR" />
+    <result column="huizhenksid" property="huizhenksid" jdbcType="VARCHAR" />
+    <result column="huizhenysid" property="huizhenysid" jdbcType="VARCHAR" />
+    <result column="yuyuelx" property="yuyuelx" jdbcType="VARCHAR" />
+    <result column="yuyuerq" property="yuyuerq" jdbcType="TIMESTAMP" />
+    <result column="yuyuesj" property="yuyuesj" jdbcType="VARCHAR" />
+    <result column="yuyuexh" property="yuyuexh" jdbcType="VARCHAR" />
+    <result column="huizhenfy" property="huizhenfy" jdbcType="VARCHAR" />
+    <result column="shenqingsj" property="shenqingsj" jdbcType="TIMESTAMP" />
+    <result column="shenqingzt" property="shenqingzt" jdbcType="VARCHAR" />
+    <result column="zhifubz" property="zhifubz" jdbcType="CHAR" />
+    <result column="zhifulsh" property="zhifulsh" jdbcType="VARCHAR" />
+    <result column="zhifusj" property="zhifusj" jdbcType="TIMESTAMP" />
+    <result column="quxiaosj" property="quxiaosj" jdbcType="VARCHAR" />
+    <result column="jvjueyy" property="jvjueyy" jdbcType="VARCHAR" />
+    <result column="shenqingfangzt" property="shenqingfangzt" jdbcType="CHAR" />
+    <result column="shenqingfangkssj" property="shenqingfangkssj" jdbcType="TIMESTAMP" />
+    <result column="shenqingfangjssj" property="shenqingfangjssj" jdbcType="TIMESTAMP" />
+    <result column="shenqingfangtxgh" property="shenqingfangtxgh" jdbcType="VARCHAR" />
+    <result column="huizhenfangzt" property="huizhenfangzt" jdbcType="CHAR" />
+    <result column="huizhenfangkssj" property="huizhenfangkssj" jdbcType="TIMESTAMP" />
+    <result column="huizhenfangjssj" property="huizhenfangjssj" jdbcType="TIMESTAMP" />
+    <result column="huizhenfangtxgh" property="huizhenfangtxgh" jdbcType="VARCHAR" />
+    <result column="zhenduanbg" property="zhenduanbg" jdbcType="VARCHAR" />
+    <result column="shenqingyymc" property="shenqingyymc" jdbcType="VARCHAR" />
+    <result column="shenqingksmc" property="shenqingksmc" jdbcType="VARCHAR" />
+    <result column="shenqingysmc" property="shenqingysmc" jdbcType="VARCHAR" />
+    <result column="huizhenyymc" property="huizhenyymc" jdbcType="VARCHAR" />
+    <result column="huizhenksmc" property="huizhenksmc" jdbcType="VARCHAR" />
+    <result column="huizhenysmc" property="huizhenysmc" jdbcType="VARCHAR" />
+    <result column="shangxiawbz" property="shangxiawbz" jdbcType="VARCHAR" />
+    <result column="yingxiangbh" property="yingxiangbh" jdbcType="VARCHAR" />
+    <result column="shoujihm" property="shoujihm" jdbcType="VARCHAR" />
+    <result column="xingming" property="xingming" jdbcType="VARCHAR" />
+    <result column="xingbie" property="xingbie" jdbcType="VARCHAR" />
+    <result column="chushengrq" property="chushengrq" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    liushuihao, shenqingyyid, shenqingksid, shenqingysid, bingrenid, bingqingms, binglixx, 
+    huizhenpbid, huizhenzt, huizhenyyid, huizhenksid, huizhenysid, yuyuelx, yuyuerq, 
+    yuyuesj, yuyuexh, huizhenfy, shenqingsj, shenqingzt, zhifubz, zhifulsh, zhifusj, 
+    quxiaosj, jvjueyy, shenqingfangzt, shenqingfangkssj, shenqingfangjssj, shenqingfangtxgh, 
+    huizhenfangzt, huizhenfangkssj, huizhenfangjssj, huizhenfangtxgh, zhenduanbg, shenqingyymc, 
+    shenqingksmc, shenqingysmc, huizhenyymc, huizhenksmc, huizhenysmc,yingxiangbh,shoujihm,xingming,xingbie,chushengrq
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from buss_consultation_single
+    where liushuihao = #{liushuihao,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from buss_consultation_single
+    where liushuihao = #{liushuihao,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert"  parameterType="com.choice.domain.entity.external.BussConsultationSingle" >
+    insert into buss_consultation_single (liushuihao, shenqingyyid, shenqingksid,
+      shenqingysid, bingrenid, bingqingms, 
+      binglixx, huizhenpbid, huizhenzt, 
+      huizhenyyid, huizhenksid, huizhenysid, 
+      yuyuelx, yuyuerq, yuyuesj, 
+      yuyuexh, huizhenfy, shenqingsj, 
+      shenqingzt, zhifubz, zhifulsh, 
+      zhifusj, quxiaosj, jvjueyy, 
+      shenqingfangzt, shenqingfangkssj, shenqingfangjssj, 
+      shenqingfangtxgh, huizhenfangzt, huizhenfangkssj, 
+      huizhenfangjssj, huizhenfangtxgh, zhenduanbg, 
+      shenqingyymc, shenqingksmc, shenqingysmc, 
+      huizhenyymc, huizhenksmc, huizhenysmc,shangxiawbz,yingxiangbh,shoujihm,xingming,xingbie,chushengrq
+      )
+    values (#{liushuihao,jdbcType=BIGINT}, #{shenqingyyid,jdbcType=VARCHAR}, #{shenqingksid,jdbcType=VARCHAR}, 
+      #{shenqingysid,jdbcType=VARCHAR}, #{bingrenid,jdbcType=VARCHAR}, #{bingqingms,jdbcType=VARCHAR}, 
+      #{binglixx,jdbcType=VARCHAR}, #{huizhenpbid,jdbcType=VARCHAR}, #{huizhenzt,jdbcType=CHAR}, 
+      #{huizhenyyid,jdbcType=VARCHAR}, #{huizhenksid,jdbcType=VARCHAR}, #{huizhenysid,jdbcType=VARCHAR}, 
+      #{yuyuelx,jdbcType=VARCHAR}, #{yuyuerq,jdbcType=TIMESTAMP}, #{yuyuesj,jdbcType=VARCHAR}, 
+      #{yuyuexh,jdbcType=VARCHAR}, #{huizhenfy,jdbcType=VARCHAR}, #{shenqingsj,jdbcType=TIMESTAMP}, 
+      #{shenqingzt,jdbcType=VARCHAR}, #{zhifubz,jdbcType=CHAR}, #{zhifulsh,jdbcType=VARCHAR}, 
+      #{zhifusj,jdbcType=TIMESTAMP}, #{quxiaosj,jdbcType=VARCHAR}, #{jvjueyy,jdbcType=VARCHAR}, 
+      #{shenqingfangzt,jdbcType=CHAR}, #{shenqingfangkssj,jdbcType=TIMESTAMP}, #{shenqingfangjssj,jdbcType=TIMESTAMP}, 
+      #{shenqingfangtxgh,jdbcType=VARCHAR}, #{huizhenfangzt,jdbcType=CHAR}, #{huizhenfangkssj,jdbcType=TIMESTAMP}, 
+      #{huizhenfangjssj,jdbcType=TIMESTAMP}, #{huizhenfangtxgh,jdbcType=VARCHAR}, #{zhenduanbg,jdbcType=VARCHAR}, 
+      #{shenqingyymc,jdbcType=VARCHAR}, #{shenqingksmc,jdbcType=VARCHAR}, #{shenqingysmc,jdbcType=VARCHAR}, 
+      #{huizhenyymc,jdbcType=VARCHAR}, #{huizhenksmc,jdbcType=VARCHAR}, #{huizhenysmc,jdbcType=VARCHAR},
+      #{shangxiawbz,jdbcType=VARCHAR},#{yingxiangbh,jdbcType=VARCHAR},
+      #{shoujihm,jdbcType=VARCHAR},
+      #{xingming,jdbcType=VARCHAR},#{xingbie,jdbcType=VARCHAR},#{chushengrq,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.choice.domain.entity.external.BussConsultationSingle" >
+    insert into buss_consultation_single
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="liushuihao != null" >
+        liushuihao,
+      </if>
+      <if test="shenqingyyid != null" >
+        shenqingyyid,
+      </if>
+      <if test="shenqingksid != null" >
+        shenqingksid,
+      </if>
+      <if test="shenqingysid != null" >
+        shenqingysid,
+      </if>
+      <if test="bingrenid != null" >
+        bingrenid,
+      </if>
+      <if test="bingqingms != null" >
+        bingqingms,
+      </if>
+      <if test="binglixx != null" >
+        binglixx,
+      </if>
+      <if test="huizhenpbid != null" >
+        huizhenpbid,
+      </if>
+      <if test="huizhenzt != null" >
+        huizhenzt,
+      </if>
+      <if test="huizhenyyid != null" >
+        huizhenyyid,
+      </if>
+      <if test="huizhenksid != null" >
+        huizhenksid,
+      </if>
+      <if test="huizhenysid != null" >
+        huizhenysid,
+      </if>
+      <if test="yuyuelx != null" >
+        yuyuelx,
+      </if>
+      <if test="yuyuerq != null" >
+        yuyuerq,
+      </if>
+      <if test="yuyuesj != null" >
+        yuyuesj,
+      </if>
+      <if test="yuyuexh != null" >
+        yuyuexh,
+      </if>
+      <if test="huizhenfy != null" >
+        huizhenfy,
+      </if>
+      <if test="shenqingsj != null" >
+        shenqingsj,
+      </if>
+      <if test="shenqingzt != null" >
+        shenqingzt,
+      </if>
+      <if test="zhifubz != null" >
+        zhifubz,
+      </if>
+      <if test="zhifulsh != null" >
+        zhifulsh,
+      </if>
+      <if test="zhifusj != null" >
+        zhifusj,
+      </if>
+      <if test="quxiaosj != null" >
+        quxiaosj,
+      </if>
+      <if test="jvjueyy != null" >
+        jvjueyy,
+      </if>
+      <if test="shenqingfangzt != null" >
+        shenqingfangzt,
+      </if>
+      <if test="shenqingfangkssj != null" >
+        shenqingfangkssj,
+      </if>
+      <if test="shenqingfangjssj != null" >
+        shenqingfangjssj,
+      </if>
+      <if test="shenqingfangtxgh != null" >
+        shenqingfangtxgh,
+      </if>
+      <if test="huizhenfangzt != null" >
+        huizhenfangzt,
+      </if>
+      <if test="huizhenfangkssj != null" >
+        huizhenfangkssj,
+      </if>
+      <if test="huizhenfangjssj != null" >
+        huizhenfangjssj,
+      </if>
+      <if test="huizhenfangtxgh != null" >
+        huizhenfangtxgh,
+      </if>
+      <if test="zhenduanbg != null" >
+        zhenduanbg,
+      </if>
+      <if test="shenqingyymc != null" >
+        shenqingyymc,
+      </if>
+      <if test="shenqingksmc != null" >
+        shenqingksmc,
+      </if>
+      <if test="shenqingysmc != null" >
+        shenqingysmc,
+      </if>
+      <if test="huizhenyymc != null" >
+        huizhenyymc,
+      </if>
+      <if test="huizhenksmc != null" >
+        huizhenksmc,
+      </if>
+      <if test="huizhenysmc != null" >
+        huizhenysmc,
+      </if>
+      <if test="shangxiawbz != null" >
+        shangxiawbz,
+      </if>
+      <if test="yingxiangbh != null" >
+        yingxiangbh,
+      </if>
+      <if test="shoujihm != null" >
+        shoujihm,
+      </if>
+      <if test="xingming != null" >
+        xingming,
+      </if>
+      <if test="xingbie != null" >
+        xingbie,
+      </if>
+      <if test="chushengrq != null" >
+        chushengrq,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="liushuihao != null" >
+        #{liushuihao,jdbcType=BIGINT},
+      </if>
+      <if test="shenqingyyid != null" >
+        #{shenqingyyid,jdbcType=VARCHAR},
+      </if>
+      <if test="shenqingksid != null" >
+        #{shenqingksid,jdbcType=VARCHAR},
+      </if>
+      <if test="shenqingysid != null" >
+        #{shenqingysid,jdbcType=VARCHAR},
+      </if>
+      <if test="bingrenid != null" >
+        #{bingrenid,jdbcType=VARCHAR},
+      </if>
+      <if test="bingqingms != null" >
+        #{bingqingms,jdbcType=VARCHAR},
+      </if>
+      <if test="binglixx != null" >
+        #{binglixx,jdbcType=VARCHAR},
+      </if>
+      <if test="huizhenpbid != null" >
+        #{huizhenpbid,jdbcType=VARCHAR},
+      </if>
+      <if test="huizhenzt != null" >
+        #{huizhenzt,jdbcType=CHAR},
+      </if>
+      <if test="huizhenyyid != null" >
+        #{huizhenyyid,jdbcType=VARCHAR},
+      </if>
+      <if test="huizhenksid != null" >
+        #{huizhenksid,jdbcType=VARCHAR},
+      </if>
+      <if test="huizhenysid != null" >
+        #{huizhenysid,jdbcType=VARCHAR},
+      </if>
+      <if test="yuyuelx != null" >
+        #{yuyuelx,jdbcType=VARCHAR},
+      </if>
+      <if test="yuyuerq != null" >
+        #{yuyuerq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yuyuesj != null" >
+        #{yuyuesj,jdbcType=VARCHAR},
+      </if>
+      <if test="yuyuexh != null" >
+        #{yuyuexh,jdbcType=VARCHAR},
+      </if>
+      <if test="huizhenfy != null" >
+        #{huizhenfy,jdbcType=VARCHAR},
+      </if>
+      <if test="shenqingsj != null" >
+        #{shenqingsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shenqingzt != null" >
+        #{shenqingzt,jdbcType=VARCHAR},
+      </if>
+      <if test="zhifubz != null" >
+        #{zhifubz,jdbcType=CHAR},
+      </if>
+      <if test="zhifulsh != null" >
+        #{zhifulsh,jdbcType=VARCHAR},
+      </if>
+      <if test="zhifusj != null" >
+        #{zhifusj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="quxiaosj != null" >
+        #{quxiaosj,jdbcType=VARCHAR},
+      </if>
+      <if test="jvjueyy != null" >
+        #{jvjueyy,jdbcType=VARCHAR},
+      </if>
+      <if test="shenqingfangzt != null" >
+        #{shenqingfangzt,jdbcType=CHAR},
+      </if>
+      <if test="shenqingfangkssj != null" >
+        #{shenqingfangkssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shenqingfangjssj != null" >
+        #{shenqingfangjssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shenqingfangtxgh != null" >
+        #{shenqingfangtxgh,jdbcType=VARCHAR},
+      </if>
+      <if test="huizhenfangzt != null" >
+        #{huizhenfangzt,jdbcType=CHAR},
+      </if>
+      <if test="huizhenfangkssj != null" >
+        #{huizhenfangkssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="huizhenfangjssj != null" >
+        #{huizhenfangjssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="huizhenfangtxgh != null" >
+        #{huizhenfangtxgh,jdbcType=VARCHAR},
+      </if>
+      <if test="zhenduanbg != null" >
+        #{zhenduanbg,jdbcType=VARCHAR},
+      </if>
+      <if test="shenqingyymc != null" >
+        #{shenqingyymc,jdbcType=VARCHAR},
+      </if>
+      <if test="shenqingksmc != null" >
+        #{shenqingksmc,jdbcType=VARCHAR},
+      </if>
+      <if test="shenqingysmc != null" >
+        #{shenqingysmc,jdbcType=VARCHAR},
+      </if>
+      <if test="huizhenyymc != null" >
+        #{huizhenyymc,jdbcType=VARCHAR},
+      </if>
+      <if test="huizhenksmc != null" >
+        #{huizhenksmc,jdbcType=VARCHAR},
+      </if>
+      <if test="huizhenysmc != null" >
+        #{huizhenysmc,jdbcType=VARCHAR},
+      </if>
+      <if test="shangxiawbz != null" >
+        #{shangxiawbz,jdbcType=VARCHAR},
+      </if>
+      <if test="yingxiangbh != null" >
+        #{yingxiangbh,jdbcType=VARCHAR},
+      </if>
+      <if test="shoujihm != null" >
+        #{shoujihm,jdbcType=VARCHAR},
+      </if>
+      <if test="xingming != null" >
+        #{xingming,jdbcType=VARCHAR},
+      </if>
+      <if test="xingbie != null" >
+        #{xingbie,jdbcType=VARCHAR},
+      </if>
+      <if test="chushengrq != null" >
+        #{chushengrq,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByExampleSelective" parameterType="map" >
+    update buss_consultation_single
+    <set >
+      <if test="record.liushuihao != null" >
+        liushuihao = #{record.liushuihao,jdbcType=BIGINT},
+      </if>
+      <if test="record.shenqingyyid != null" >
+        shenqingyyid = #{record.shenqingyyid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shenqingksid != null" >
+        shenqingksid = #{record.shenqingksid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shenqingysid != null" >
+        shenqingysid = #{record.shenqingysid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bingrenid != null" >
+        bingrenid = #{record.bingrenid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bingqingms != null" >
+        bingqingms = #{record.bingqingms,jdbcType=VARCHAR},
+      </if>
+      <if test="record.binglixx != null" >
+        binglixx = #{record.binglixx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.huizhenpbid != null" >
+        huizhenpbid = #{record.huizhenpbid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.huizhenzt != null" >
+        huizhenzt = #{record.huizhenzt,jdbcType=CHAR},
+      </if>
+      <if test="record.huizhenyyid != null" >
+        huizhenyyid = #{record.huizhenyyid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.huizhenksid != null" >
+        huizhenksid = #{record.huizhenksid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.huizhenysid != null" >
+        huizhenysid = #{record.huizhenysid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuyuelx != null" >
+        yuyuelx = #{record.yuyuelx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuyuerq != null" >
+        yuyuerq = #{record.yuyuerq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.yuyuesj != null" >
+        yuyuesj = #{record.yuyuesj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yuyuexh != null" >
+        yuyuexh = #{record.yuyuexh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.huizhenfy != null" >
+        huizhenfy = #{record.huizhenfy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shenqingsj != null" >
+        shenqingsj = #{record.shenqingsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shenqingzt != null" >
+        shenqingzt = #{record.shenqingzt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhifubz != null" >
+        zhifubz = #{record.zhifubz,jdbcType=CHAR},
+      </if>
+      <if test="record.zhifulsh != null" >
+        zhifulsh = #{record.zhifulsh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhifusj != null" >
+        zhifusj = #{record.zhifusj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.quxiaosj != null" >
+        quxiaosj = #{record.quxiaosj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jvjueyy != null" >
+        jvjueyy = #{record.jvjueyy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shenqingfangzt != null" >
+        shenqingfangzt = #{record.shenqingfangzt,jdbcType=CHAR},
+      </if>
+      <if test="record.shenqingfangkssj != null" >
+        shenqingfangkssj = #{record.shenqingfangkssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shenqingfangjssj != null" >
+        shenqingfangjssj = #{record.shenqingfangjssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shenqingfangtxgh != null" >
+        shenqingfangtxgh = #{record.shenqingfangtxgh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.huizhenfangzt != null" >
+        huizhenfangzt = #{record.huizhenfangzt,jdbcType=CHAR},
+      </if>
+      <if test="record.huizhenfangkssj != null" >
+        huizhenfangkssj = #{record.huizhenfangkssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.huizhenfangjssj != null" >
+        huizhenfangjssj = #{record.huizhenfangjssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.huizhenfangtxgh != null" >
+        huizhenfangtxgh = #{record.huizhenfangtxgh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zhenduanbg != null" >
+        zhenduanbg = #{record.zhenduanbg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shenqingyymc != null" >
+        shenqingyymc = #{record.shenqingyymc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shenqingksmc != null" >
+        shenqingksmc = #{record.shenqingksmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shenqingysmc != null" >
+        shenqingysmc = #{record.shenqingysmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.huizhenyymc != null" >
+        huizhenyymc = #{record.huizhenyymc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.huizhenksmc != null" >
+        huizhenksmc = #{record.huizhenksmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.huizhenysmc != null" >
+        huizhenysmc = #{record.huizhenysmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shoujihm != null" >
+        shoujihm = #{record.shoujihm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xingming != null" >
+        xingming = #{record.xingming,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xingbie != null" >
+        xingbie = #{record.xingbie,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chushengrq != null" >
+        chushengrq = #{record.chushengrq,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update buss_consultation_single
+    set liushuihao = #{record.liushuihao,jdbcType=BIGINT},
+      shenqingyyid = #{record.shenqingyyid,jdbcType=VARCHAR},
+      shenqingksid = #{record.shenqingksid,jdbcType=VARCHAR},
+      shenqingysid = #{record.shenqingysid,jdbcType=VARCHAR},
+      bingrenid = #{record.bingrenid,jdbcType=VARCHAR},
+      bingqingms = #{record.bingqingms,jdbcType=VARCHAR},
+      binglixx = #{record.binglixx,jdbcType=VARCHAR},
+      huizhenpbid = #{record.huizhenpbid,jdbcType=VARCHAR},
+      huizhenzt = #{record.huizhenzt,jdbcType=CHAR},
+      huizhenyyid = #{record.huizhenyyid,jdbcType=VARCHAR},
+      huizhenksid = #{record.huizhenksid,jdbcType=VARCHAR},
+      huizhenysid = #{record.huizhenysid,jdbcType=VARCHAR},
+      yuyuelx = #{record.yuyuelx,jdbcType=VARCHAR},
+      yuyuerq = #{record.yuyuerq,jdbcType=TIMESTAMP},
+      yuyuesj = #{record.yuyuesj,jdbcType=VARCHAR},
+      yuyuexh = #{record.yuyuexh,jdbcType=VARCHAR},
+      huizhenfy = #{record.huizhenfy,jdbcType=VARCHAR},
+      shenqingsj = #{record.shenqingsj,jdbcType=TIMESTAMP},
+      shenqingzt = #{record.shenqingzt,jdbcType=VARCHAR},
+      zhifubz = #{record.zhifubz,jdbcType=CHAR},
+      zhifulsh = #{record.zhifulsh,jdbcType=VARCHAR},
+      zhifusj = #{record.zhifusj,jdbcType=TIMESTAMP},
+      quxiaosj = #{record.quxiaosj,jdbcType=VARCHAR},
+      jvjueyy = #{record.jvjueyy,jdbcType=VARCHAR},
+      shenqingfangzt = #{record.shenqingfangzt,jdbcType=CHAR},
+      shenqingfangkssj = #{record.shenqingfangkssj,jdbcType=TIMESTAMP},
+      shenqingfangjssj = #{record.shenqingfangjssj,jdbcType=TIMESTAMP},
+      shenqingfangtxgh = #{record.shenqingfangtxgh,jdbcType=VARCHAR},
+      huizhenfangzt = #{record.huizhenfangzt,jdbcType=CHAR},
+      huizhenfangkssj = #{record.huizhenfangkssj,jdbcType=TIMESTAMP},
+      huizhenfangjssj = #{record.huizhenfangjssj,jdbcType=TIMESTAMP},
+      huizhenfangtxgh = #{record.huizhenfangtxgh,jdbcType=VARCHAR},
+      zhenduanbg = #{record.zhenduanbg,jdbcType=VARCHAR},
+      shenqingyymc = #{record.shenqingyymc,jdbcType=VARCHAR},
+      shenqingksmc = #{record.shenqingksmc,jdbcType=VARCHAR},
+      shenqingysmc = #{record.shenqingysmc,jdbcType=VARCHAR},
+      huizhenyymc = #{record.huizhenyymc,jdbcType=VARCHAR},
+      huizhenksmc = #{record.huizhenksmc,jdbcType=VARCHAR},
+      shoujihm = #{record.shoujihm,jdbcType=VARCHAR},
+      xingming = #{record.xingming,jdbcType=VARCHAR},
+      xingbie = #{record.xingbie,jdbcType=VARCHAR},
+      chushengrq = #{record.chushengrq,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.choice.domain.entity.external.BussConsultationSingle" >
+    update buss_consultation_single
+    <set >
+      <if test="shenqingyyid != null and shenqingyyid != ''" >
+        shenqingyyid = #{shenqingyyid,jdbcType=VARCHAR},
+      </if>
+      <if test="shenqingksid != null and shenqingksid != ''" >
+        shenqingksid = #{shenqingksid,jdbcType=VARCHAR},
+      </if>
+      <if test="shenqingysid != null and shenqingysid != ''" >
+        shenqingysid = #{shenqingysid,jdbcType=VARCHAR},
+      </if>
+      <if test="bingrenid != null and bingrenid != ''" >
+        bingrenid = #{bingrenid,jdbcType=VARCHAR},
+      </if>
+      <if test="bingqingms != null and bingqingms != ''" >
+        bingqingms = #{bingqingms,jdbcType=VARCHAR},
+      </if>
+      <if test="binglixx != null and binglixx != ''" >
+        binglixx = #{binglixx,jdbcType=VARCHAR},
+      </if>
+      <if test="huizhenpbid != null and huizhenpbid != ''" >
+        huizhenpbid = #{huizhenpbid,jdbcType=VARCHAR},
+      </if>
+      <if test="huizhenzt != null and huizhenzt != ''" >
+        huizhenzt = #{huizhenzt,jdbcType=CHAR},
+      </if>
+      <if test="huizhenyyid != null and huizhenyyid != ''" >
+        huizhenyyid = #{huizhenyyid,jdbcType=VARCHAR},
+      </if>
+      <if test="huizhenksid != null and  huizhenksid != ''" >
+        huizhenksid = #{huizhenksid,jdbcType=VARCHAR},
+      </if>
+      <if test="huizhenysid != null and huizhenysid != ''" >
+        huizhenysid = #{huizhenysid,jdbcType=VARCHAR},
+      </if>
+      <if test="yuyuelx != null and yuyuelx != ''" >
+        yuyuelx = #{yuyuelx,jdbcType=VARCHAR},
+      </if>
+      <if test="yuyuerq != null" >
+        yuyuerq = #{yuyuerq,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yuyuesj != null and yuyuesj != ''" >
+        yuyuesj = #{yuyuesj,jdbcType=VARCHAR},
+      </if>
+      <if test="yuyuexh != null and yuyuexh != ''" >
+        yuyuexh = #{yuyuexh,jdbcType=VARCHAR},
+      </if>
+      <if test="huizhenfy != null and huizhenfy!= ''" >
+        huizhenfy = #{huizhenfy,jdbcType=VARCHAR},
+      </if>
+      <if test="shenqingsj != null" >
+        shenqingsj = #{shenqingsj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shenqingzt != null and shenqingzt!= ''" >
+        shenqingzt = #{shenqingzt,jdbcType=VARCHAR},
+      </if>
+      <if test="zhifubz != null and zhifubz !=''" >
+        zhifubz = #{zhifubz,jdbcType=CHAR},
+      </if>
+      <if test="zhifulsh != null and zhifulsh != ''" >
+        zhifulsh = #{zhifulsh,jdbcType=VARCHAR},
+      </if>
+      <if test="zhifusj != null" >
+        zhifusj = #{zhifusj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="quxiaosj != null and quxiaosj != ''" >
+        quxiaosj = #{quxiaosj,jdbcType=VARCHAR},
+      </if>
+      <if test="jvjueyy != null and jvjueyy != ''" >
+        jvjueyy = #{jvjueyy,jdbcType=VARCHAR},
+      </if>
+      <if test="shenqingfangzt != null and shenqingfangzt != ''" >
+        shenqingfangzt = #{shenqingfangzt,jdbcType=CHAR},
+      </if>
+      <if test="shenqingfangkssj != null" >
+        shenqingfangkssj = #{shenqingfangkssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shenqingfangjssj != null" >
+        shenqingfangjssj = #{shenqingfangjssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shenqingfangtxgh != null and shenqingfangtxgh != ''" >
+        shenqingfangtxgh = #{shenqingfangtxgh,jdbcType=VARCHAR},
+      </if>
+      <if test="huizhenfangzt != null and huizhenfangzt != ''" >
+        huizhenfangzt = #{huizhenfangzt,jdbcType=CHAR},
+      </if>
+      <if test="huizhenfangkssj != null" >
+        huizhenfangkssj = #{huizhenfangkssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="huizhenfangjssj != null" >
+        huizhenfangjssj = #{huizhenfangjssj,jdbcType=TIMESTAMP},
+      </if>
+      <if test="huizhenfangtxgh != null and huizhenfangtxgh != ''" >
+        huizhenfangtxgh = #{huizhenfangtxgh,jdbcType=VARCHAR},
+      </if>
+      <if test="zhenduanbg != null and zhenduanbg != ''" >
+        zhenduanbg = #{zhenduanbg,jdbcType=VARCHAR},
+      </if>
+      <if test="shenqingyymc != null and shenqingyymc != ''" >
+        shenqingyymc = #{shenqingyymc,jdbcType=VARCHAR},
+      </if>
+      <if test="shenqingksmc != null and shenqingksmc != ''" >
+        shenqingksmc = #{shenqingksmc,jdbcType=VARCHAR},
+      </if>
+      <if test="shenqingysmc != null and shenqingysmc !=''" >
+        shenqingysmc = #{shenqingysmc,jdbcType=VARCHAR},
+      </if>
+      <if test="huizhenyymc != null and huizhenyymc != ''" >
+        huizhenyymc = #{huizhenyymc,jdbcType=VARCHAR},
+      </if>
+      <if test="huizhenksmc != null and huizhenksmc != ''" >
+        huizhenksmc = #{huizhenksmc,jdbcType=VARCHAR},
+      </if>
+      <if test="huizhenysmc != null and huizhenysmc != ''" >
+        huizhenysmc = #{huizhenysmc,jdbcType=VARCHAR},
+      </if>
+      <if test="yingxiangbh != null and huizhenysmc != ''" >
+        yingxiangbh = #{yingxiangbh,jdbcType=VARCHAR},
+      </if>
+      <if test="shoujihm != null and shoujihm != ''" >
+        shoujihm = #{shoujihm,jdbcType=VARCHAR},
+      </if>
+      <if test="xingming != null and xingming != ''" >
+        xingming = #{xingming,jdbcType=VARCHAR},
+      </if>
+      <if test="xingbie != null and xingbie != ''" >
+        xingbie = #{xingbie,jdbcType=VARCHAR},
+      </if>
+      <if test="chushengrq != null and chushengrq != ''" >
+        chushengrq = #{chushengrq,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null and age != ''" >
+        age = #{age,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where liushuihao = #{liushuihao,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.choice.domain.entity.external.BussConsultationSingle" >
+    update buss_consultation_single
+    set shenqingyyid = #{shenqingyyid,jdbcType=VARCHAR},
+      shenqingksid = #{shenqingksid,jdbcType=VARCHAR},
+      shenqingysid = #{shenqingysid,jdbcType=VARCHAR},
+      bingrenid = #{bingrenid,jdbcType=VARCHAR},
+      bingqingms = #{bingqingms,jdbcType=VARCHAR},
+      binglixx = #{binglixx,jdbcType=VARCHAR},
+      huizhenpbid = #{huizhenpbid,jdbcType=VARCHAR},
+      huizhenzt = #{huizhenzt,jdbcType=CHAR},
+      huizhenyyid = #{huizhenyyid,jdbcType=VARCHAR},
+      huizhenksid = #{huizhenksid,jdbcType=VARCHAR},
+      huizhenysid = #{huizhenysid,jdbcType=VARCHAR},
+      yuyuelx = #{yuyuelx,jdbcType=VARCHAR},
+      yuyuerq = #{yuyuerq,jdbcType=TIMESTAMP},
+      yuyuesj = #{yuyuesj,jdbcType=VARCHAR},
+      yuyuexh = #{yuyuexh,jdbcType=VARCHAR},
+      huizhenfy = #{huizhenfy,jdbcType=VARCHAR},
+      shenqingsj = #{shenqingsj,jdbcType=TIMESTAMP},
+      shenqingzt = #{shenqingzt,jdbcType=VARCHAR},
+      zhifubz = #{zhifubz,jdbcType=CHAR},
+      zhifulsh = #{zhifulsh,jdbcType=VARCHAR},
+      zhifusj = #{zhifusj,jdbcType=TIMESTAMP},
+      quxiaosj = #{quxiaosj,jdbcType=VARCHAR},
+      jvjueyy = #{jvjueyy,jdbcType=VARCHAR},
+      shenqingfangzt = #{shenqingfangzt,jdbcType=CHAR},
+      shenqingfangkssj = #{shenqingfangkssj,jdbcType=TIMESTAMP},
+      shenqingfangjssj = #{shenqingfangjssj,jdbcType=TIMESTAMP},
+      shenqingfangtxgh = #{shenqingfangtxgh,jdbcType=VARCHAR},
+      huizhenfangzt = #{huizhenfangzt,jdbcType=CHAR},
+      huizhenfangkssj = #{huizhenfangkssj,jdbcType=TIMESTAMP},
+      huizhenfangjssj = #{huizhenfangjssj,jdbcType=TIMESTAMP},
+      huizhenfangtxgh = #{huizhenfangtxgh,jdbcType=VARCHAR},
+      zhenduanbg = #{zhenduanbg,jdbcType=VARCHAR},
+      shenqingyymc = #{shenqingyymc,jdbcType=VARCHAR},
+      shenqingksmc = #{shenqingksmc,jdbcType=VARCHAR},
+      shenqingysmc = #{shenqingysmc,jdbcType=VARCHAR},
+      huizhenyymc = #{huizhenyymc,jdbcType=VARCHAR},
+      huizhenksmc = #{huizhenksmc,jdbcType=VARCHAR},
+      huizhenysmc = #{huizhenysmc,jdbcType=VARCHAR},
+      yingxiangbh = #{yingxiangbh,jdbcType=VARCHAR},
+      shoujihm = #{shoujihm,jdbcType=VARCHAR},
+      xingming = #{xingming,jdbcType=VARCHAR},
+      xingbie = #{xingbie,jdbcType=VARCHAR},
+      chushengrq = #{chushengrq,jdbcType=VARCHAR}
+      
+    where liushuihao = #{liushuihao,jdbcType=BIGINT}
+  </update>
+  <select id="getLiuShuiHao" parameterType="string" resultType="string">
+      SELECT liushuihao FROM buss_consultation_single WHERE bingqingms = #{liushuihao}
+  </select>
+
+  <update id="cancelConsultationSingle" parameterType="com.choice.domain.entity.external.BussConsultationSingle">
+    UPDATE buss_consultation_single SET shenqingzt = '8',quxiaosj = #{quxiaosj} WHERE liushuihao = #{liushuihao} AND shenqingzt = '3'
+  </update>
+
+  
+  <delete id="delSingle" parameterType="com.choice.domain.entity.external.BussConsultationSingle">
+      delete from buss_consultation_single where liushuihao = #{liushuihao} and shenqingzt = '1'
+  </delete>
+  <select id="perfectSingle" parameterType="com.choice.domain.entity.external.BussConsultationSingle" resultType="com.choice.domain.entity.external.BussConsultationSingle">
+      SELECT liushuihao,yuyuerq,huizhenpbid,huizhenksmc,huizhenysmc,huizhenfy
+            FROM buss_consultation_single WHERE liushuihao = #{liushuihao} AND shenqingysid = #{shenqingysid} and shenqingzt = '1'
+  </select>
+  <update id="consultationSingleUpdate" parameterType="com.choice.domain.entity.external.BussConsultationSingle">
+      UPDATE `buss_consultation_single`
+        <set>
+          <if test="huizhenfangkssj != null">
+            huizhenfangkssj = #{huizhenfangkssj},
+          </if>
+          <if test="shenqingfangkssj != null">
+            shenqingfangkssj = #{shenqingfangkssj},
+          </if>
+          <if test="huizhenfangjssj != null">
+            huizhenfangjssj = #{huizhenfangjssj},
+          </if>
+          <if test="shenqingfangjssj != null">
+            shenqingfangjssj = #{shenqingfangjssj},
+          </if>
+          <if test="zhenduanbg != null and zhenduanbg != ''">
+            zhenduanbg = #{zhenduanbg},
+          </if>
+          <if test="shenqingzt != null and shenqingzt != ''">
+            shenqingzt = #{shenqingzt},
+          </if>
+          <if test="jvjueyy != null and jvjueyy != ''">
+            jvjueyy = #{jvjueyy},
+          </if>
+          <if test="huizhenzt != null and huizhenzt != ''">
+            huizhenzt = #{huizhenzt},
+          </if>
+        </set>
+        WHERE
+        `liushuihao` = #{liushuihao}
+        <if test="huizhenfangkssj != null">
+            and shenqingzt = '3'
+        </if>
+        <if test="huizhenfangjssj != null">
+            and shenqingzt = '3'
+        </if>
+  </update>
+  
+  <resultMap id="WaitQueueMap" type="hashMap">
+      <result column="waitcount" property="waitcount" javaType="String"></result>
+      <result column="huizhenysmc" property="huizhenysmc" javaType="String"></result>
+      <result column="huizhenysid" property="huizhenysid" javaType="String"></result>
+      <result column="total" property="total" javaType="String"></result>
+  </resultMap>
+  <select id="lookConsultationWaitQueue" parameterType="long" resultMap="WaitQueueMap">
+    SELECT  COUNT(1) waitcount,a.huizhenysmc,a.huizhenysid,b.haoyuansys total
+	FROM buss_consultation_single a RIGHT JOIN buss_consultation_scheduling b
+		ON a.huizhenpbid = b.liushuihao WHERE b.liushuihao = #{id} AND a.yuyuerq =  DATE_FORMAT(NOW(),'%y-%m-%d') AND a.shenqingzt = '3'
+  </select>
+  <select id="getTodayConsultationList" parameterType="com.choice.domain.entity.external.ConsultationSingleVo" resultType="com.choice.domain.entity.external.ConsultationSingleVo">
+      SELECT a.liushuihao,a.shenqingysmc,a.shenqingysid,a.huizhenysid,a.huizhenysmc,a.huizhenyymc,a.shenqingyymc,a.huizhenzt,a.yuyuexh,a.yuyuesj,a.shenqingzt,a.shangxiawbz,a.xingming FROM
+	        buss_consultation_single a WHERE 1=1 
+	         <if test="huizhenysid != null and huizhenysid != ''">
+                AND a.huizhenysid = #{huizhenysid}  AND a.shenqingzt IN('3','4','5')
+            </if>
+            <if test="shenqingysid != null and shenqingysid != ''">
+                AND a.shenqingysid = #{shenqingysid}  AND a.shenqingzt IN('3','4','5')
+            </if> 
+             AND a.yuyuerq = CURDATE()
+              ORDER BY a.yuyuexh
+  </select>
+  <!-- 获取预约的人 -->
+  <select id="getRegisters" parameterType="long" resultType="map">
+    SELECT  shenqingysid,shenqingysmc FROM buss_consultation_single WHERE huizhenpbid = #{liushuihao}
+     and shenqingzt = '3';
+  </select>
+  <select id="getConWaitQueue" parameterType="long" resultType="map">
+      SELECT shenqingzt,yuyuexh,yuyuesj ,huizhenzt FROM buss_consultation_single WHERE
+      huizhenysid = #{id} AND (shenqingzt = '3' OR shenqingzt = '4') AND yuyuerq = CURDATE()
+      ORDER  BY  yuyuexh asc
+  </select>
+  <!--  -->
+  <select id="getSingleAndChtInformation" parameterType="com.choice.domain.entity.external.BussConsultationSingle" resultType="com.choice.domain.entity.external.ConsultationSingleVo">
+    SELECT
+      a.liushuihao,a.shenqingzt,a.huizhenzt,a.huizhenfy,a.bingrenid shenfenzh,a.shoujihm,a.xingming,a.xingbie,a.chushengrq
+      <if test="huizhenysid != null or shenqingysid != ''">
+          ,a.`shenqingyymc`,a.`shenqingksmc`,a.`shenqingysid`,a.`huizhenysid`,a.`shenqingysmc`,a.`huizhenyymc`,a.`huizhenksmc`,a.`huizhenysmc`,
+          a.`yuyuerq`,a.`yuyuesj`,a.`yuyuexh`,a.`huizhenfy`,a.`huizhenfangkssj`,a.`huizhenfangjssj`,a.zhenduanbg,
+          a.bingqingms,a.binglixx,a.shangxiawbz,a.yingxiangbh,a.age
+      </if>
+    FROM
+    buss_consultation_single a  where a.liushuihao = #{liushuihao}
+  </select>
+  <select id="getSingleAndChtInformationList" parameterType="com.choice.domain.entity.external.BussConsultationSingle" resultType="com.choice.domain.entity.external.ConsultationSingleVo">
+    SELECT
+    a.`liushuihao`,a.`shenqingyyid`,a.`shenqingksid`,a.`shenqingysid`,a.`huizhenysid`,a.`bingrenid`,a.`huizhenpbid`,a.`huizhenzt`,
+	a.`yuyuerq`,a.`yuyuesj`,a.`yuyuexh`,a.`huizhenfy`,a.`shenqingsj`,a.`shenqingzt`,a.`zhifubz`,a.`zhifulsh`,a.`zhifusj`,
+	a.`quxiaosj`,a.`shenqingyymc`,a.`shenqingksmc`,a.`shenqingysmc`,a.`huizhenyymc`,a.`huizhenksmc`,a.`huizhenysmc`,
+    a.bingrenid shenfenzh,a.shoujihm,a.xingming,a.xingbie,a.chushengrq,a.jvjueyy,a.`huizhenfangkssj`,a.`huizhenfangjssj`,a.shangxiawbz
+    FROM
+    buss_consultation_single a 
+    <where>
+      <if test="shenqingysid != null and shenqingysid != ''">
+        AND a.shenqingysid = #{shenqingysid}
+      </if>
+      <if test="huizhenysid != null and huizhenysid != ''">
+        AND a.huizhenysid = #{huizhenysid}
+      </if>
+      <if test="shenqingzt != null and shenqingzt != ''">
+        AND a.shenqingzt = #{shenqingzt}
+      </if>
+      <if test="huizhenzt != null and huizhenzt != ''">
+        AND a.huizhenzt = #{huizhenzt}
+      </if>
+      <if test="huizhenfangzt != null and huizhenfangzt != ''">
+        AND a.huizhenzt != '1'
+      </if>
+      <if test="yuyuerq != null">
+        AND a.yuyuerq = #{yuyuerq}
+      </if>
+
+      <if test="huizhenfangkssj != null">
+        AND a.yuyuerq &gt;= #{huizhenfangkssj}
+      </if>
+      <if test="huizhenfangjssj != null">
+        AND a.yuyuerq  	&lt;= #{huizhenfangjssj}
+      </if>
+      <if test="bingrenid != null and bingrenid != ''">
+        AND a.xingming like concat('%',#{bingrenid},'%')
+      </if>
+      <if test="shangxiawbz != null and shangxiawbz != ''">
+        AND a.shangxiawbz = #{shangxiawbz}
+      </if>
+    </where>
+    <if test="yuyuerq == null">
+      order by yuyuerq desc
+    </if>
+    <if test="yuyuerq != null">
+      order by yuyuexh asc
+    </if>
+
+  </select>
+  
+  <!-- 会诊统计 -->
+  <select id="consultationStatistics" parameterType="map" resultType="com.choice.domain.entity.referral.InOUtChtCount">
+      SELECT COUNT(1) num , DATE_FORMAT(huizhenfangjssj,'%m') MONTH,SUM(huizhenfy) total
+        FROM buss_consultation_single where 1=1 
+        <!-- <if test="type != null and type == 1">
+          huizhenysid = #{id}
+        </if>
+        <if test="type != null and type == 2">
+          shenqingysid = #{id}
+        </if> -->
+         AND YEAR(huizhenfangjssj) = #{year}
+        and shenqingzt = #{state}
+        GROUP BY MONTH
+  </select>
+  
+  <!-- 查看报告临时 -->
+  <select id="getBg" parameterType="com.choice.domain.entity.external.BussConsultationSingle" resultType="com.choice.domain.entity.external.ConsultationSingleVo">
+    SELECT
+    a.liushuihao,a.shenqingzt,a.huizhenzt,a.huizhenfy,a.bingrenid,a.shoujihm,a.xingming,a.xingbie,a.chushengrq
+    <if test="huizhenysid != null or shenqingysid != ''">
+      ,a.`shenqingyymc`,a.`shenqingksmc`,a.`shenqingysid`,a.`huizhenysid`,a.`shenqingysmc`,a.`huizhenyymc`,a.`huizhenksmc`,a.`huizhenysmc`,
+      a.`yuyuerq`,a.`yuyuesj`,a.`yuyuexh`,a.`huizhenfy`,a.`huizhenfangkssj`,a.`huizhenfangjssj`,a.zhenduanbg,
+      a.bingqingms,a.binglixx,a.shangxiawbz,a.yingxiangbh
+    </if>
+    FROM
+    buss_consultation_single a   where a.liushuihao = #{liushuihao} 
+    <if test="huizhenysid != null and huizhenysid != ''">
+      AND a.huizhenysid = #{huizhenysid}
+    </if>
+    <if test="shenqingysid != null and shenqingysid != ''">
+      AND a.shenqingysid = #{shenqingysid}
+    </if>
+    <if test="shenqingzt != null and shenqingzt != ''">
+      AND a.shenqingzt IN('3','4','5');
+    </if>
+
+  </select>
+  
+  <select id="getConsultationImgById" parameterType="com.choice.domain.entity.external.BussConsultationFiles" resultMap="BaseResultMap">
+    SELECT
+      <include refid="Base_Column_List"></include>
+      FROM buss_consultation_files
+      WHERE single_liushuihao = #{singleLiushuihao}
+      <if test="fileName != null and fileName != ''">
+        AND id NOT IN (${fileName})
+      </if>
+  </select>
+</mapper>

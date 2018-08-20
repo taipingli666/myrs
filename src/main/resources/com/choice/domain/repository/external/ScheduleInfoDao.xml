@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choice.domain.repository.external.ScheduleInfoDao">
+  <resultMap id="BaseResultMap" type="com.choice.domain.entity.external.ScheduleInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="schedule_type" jdbcType="CHAR" property="scheduleType" />
+    <result column="hos_code" jdbcType="VARCHAR" property="hosCode" />
+    <result column="hos_name" jdbcType="VARCHAR" property="hosName" />
+    <result column="dept_code" jdbcType="VARCHAR" property="deptCode" />
+    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+    <result column="doctor_code" jdbcType="VARCHAR" property="doctorCode" />
+    <result column="doctor_name" jdbcType="VARCHAR" property="doctorName" />
+    <result column="work_date" jdbcType="DATE" property="workDate" />
+    <result column="work_period" jdbcType="VARCHAR" property="workPeriod" />
+    <result column="work_time_start" jdbcType="VARCHAR" property="workTimeStart" />
+    <result column="work_time_end" jdbcType="VARCHAR" property="workTimeEnd" />
+    <result column="register_type" jdbcType="VARCHAR" property="registerType" />
+    <result column="register_cost" jdbcType="DECIMAL" property="registerCost" />
+    <result column="register_quantity" jdbcType="INTEGER" property="registerQuantity" />
+    <result column="remainder_quantity" jdbcType="INTEGER" property="remainderQuantity" />
+    <result column="create_oper" jdbcType="VARCHAR" property="createOper" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="change_oper" jdbcType="VARCHAR" property="changeOper" />
+    <result column="change_time" jdbcType="TIMESTAMP" property="changeTime" />
+    <result column="delete_flag" jdbcType="VARCHAR" property="deleteFlag" />
+    <result column="introduce" jdbcType="VARCHAR" property="introduce" />
+  </resultMap>
+  
+  <!-- 一对多关系,拿排班对应的号源 -->
+  <resultMap type="com.choice.domain.entity.external.ScheduleInfo" id="haoyuans">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="schedule_type" jdbcType="CHAR" property="scheduleType" />
+    <result column="hos_code" jdbcType="VARCHAR" property="hosCode" />
+    <result column="hos_name" jdbcType="VARCHAR" property="hosName" />
+    <result column="dept_code" jdbcType="VARCHAR" property="deptCode" />
+    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+    <result column="doctor_code" jdbcType="VARCHAR" property="doctorCode" />
+    <result column="doctor_name" jdbcType="VARCHAR" property="doctorName" />
+    <result column="work_date" jdbcType="DATE" property="workDate" />
+    <result column="work_period" jdbcType="VARCHAR" property="workPeriod" />
+    <result column="work_time_start" jdbcType="VARCHAR" property="workTimeStart" />
+    <result column="work_time_end" jdbcType="VARCHAR" property="workTimeEnd" />
+    <result column="register_type" jdbcType="VARCHAR" property="registerType" />
+    <result column="register_cost" jdbcType="DECIMAL" property="registerCost" />
+    <result column="register_quantity" jdbcType="INTEGER" property="registerQuantity" />
+    <!-- 一对多的关系 -->
+
+    <!-- property: 指的是集合属性的值, ofType：指的是集合中元素的类型 -->
+    <collection property="list" ofType="com.choice.domain.entity.external.RegisterSourceInfo">
+      <result column="xuhao" property="id"/>
+      <result column="schedule_code" property="scheduleCode"/>
+      <result column="sequence_number" property="sequenceNumber"/>
+      <result column="visit_start" property="visitStart"/>
+      <result column="visit_end" property="visitEnd"/>
+    </collection>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, schedule_type, hos_code, hos_name, dept_code, dept_name, doctor_code, doctor_name, work_date,
+    work_period, work_time_start, work_time_end, register_type, register_cost, register_quantity,remainder_quantity,
+    create_oper,create_time,change_oper,change_time,delete_flag
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from schedule_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from schedule_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insert" parameterType="com.choice.domain.entity.external.ScheduleInfo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into schedule_info (schedule_type, hos_code, hos_name,
+    dept_code, dept_name, doctor_code,
+    doctor_name, work_date, work_period,
+    work_time_start, work_time_end, register_type,
+    register_cost, register_quantity, remainder_quantity,
+    create_oper, create_time, change_oper,
+    change_time, delete_flag)
+    values (#{scheduleType,jdbcType=CHAR}, #{hosCode,jdbcType=VARCHAR}, #{hosName,jdbcType=VARCHAR},
+    #{deptCode,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, #{doctorCode,jdbcType=VARCHAR},
+    #{doctorName,jdbcType=VARCHAR}, #{workDate,jdbcType=DATE}, #{workPeriod,jdbcType=VARCHAR},
+    #{workTimeStart,jdbcType=VARCHAR}, #{workTimeEnd,jdbcType=VARCHAR}, #{registerType,jdbcType=VARCHAR},
+    #{registerCost,jdbcType=DECIMAL}, #{registerQuantity,jdbcType=INTEGER}, #{remainderQuantity,jdbcType=INTEGER},
+    #{createOper,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{changeOper,jdbcType=VARCHAR},
+    #{changeTime,jdbcType=TIMESTAMP}, #{deleteFlag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.choice.domain.entity.external.ScheduleInfo">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into schedule_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="scheduleType != null">
+        schedule_type,
+      </if>
+      <if test="hosCode != null">
+        hos_code,
+      </if>
+      <if test="hosName != null">
+        hos_name,
+      </if>
+      <if test="deptCode != null">
+        dept_code,
+      </if>
+      <if test="deptName != null">
+        dept_name,
+      </if>
+      <if test="doctorCode != null">
+        doctor_code,
+      </if>
+      <if test="doctorName != null">
+        doctor_name,
+      </if>
+      <if test="workDate != null">
+        work_date,
+      </if>
+      <if test="workPeriod != null">
+        work_period,
+      </if>
+      <if test="workTimeStart != null">
+        work_time_start,
+      </if>
+      <if test="workTimeEnd != null">
+        work_time_end,
+      </if>
+      <if test="registerType != null">
+        register_type,
+      </if>
+      <if test="registerCost != null">
+        register_cost,
+      </if>
+      <if test="registerQuantity != null">
+        register_quantity,
+      </if>
+      <if test="remainderQuantity != null">
+        remainder_quantity,
+      </if>
+      <if test="createOper != null">
+        create_oper,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="changeOper != null">
+        change_oper,
+      </if>
+      <if test="changeTime != null">
+        change_time,
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="scheduleType != null">
+        #{scheduleType,jdbcType=CHAR},
+      </if>
+      <if test="hosCode != null">
+        #{hosCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hosName != null">
+        #{hosName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null">
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null">
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorCode != null">
+        #{doctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null">
+        #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="workDate != null">
+        #{workDate,jdbcType=DATE},
+      </if>
+      <if test="workPeriod != null">
+        #{workPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="workTimeStart != null">
+        #{workTimeStart,jdbcType=VARCHAR},
+      </if>
+      <if test="workTimeEnd != null">
+        #{workTimeEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="registerType != null">
+        #{registerType,jdbcType=VARCHAR},
+      </if>
+      <if test="registerCost != null">
+        #{registerCost,jdbcType=DECIMAL},
+      </if>
+      <if test="registerQuantity != null">
+        #{registerQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="remainderQuantity != null">
+        #{remainderQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="createOper != null">
+        #{createOper,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeOper != null">
+        #{changeOper,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null">
+        #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null">
+        #{deleteFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.choice.domain.entity.external.ScheduleInfo">
+    update schedule_info
+    <set>
+      <if test="scheduleType != null">
+        schedule_type = #{scheduleType,jdbcType=CHAR},
+      </if>
+      <if test="hosCode != null">
+        hos_code = #{hosCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hosName != null">
+        hos_name = #{hosName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null">
+        dept_code = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null">
+        dept_name = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorCode != null">
+        doctor_code = #{doctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null">
+        doctor_name = #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="workDate != null">
+        work_date = #{workDate,jdbcType=DATE},
+      </if>
+      <if test="workPeriod != null">
+        work_period = #{workPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="workTimeStart != null">
+        work_time_start = #{workTimeStart,jdbcType=VARCHAR},
+      </if>
+      <if test="workTimeEnd != null">
+        work_time_end = #{workTimeEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="registerType != null">
+        register_type = #{registerType,jdbcType=VARCHAR},
+      </if>
+      <if test="registerCost != null">
+        register_cost = #{registerCost,jdbcType=DECIMAL},
+      </if>
+      <if test="registerQuantity != null">
+        register_quantity = #{registerQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="remainderQuantity != null">
+        remainder_quantity = #{remainderQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="createOper != null">
+        create_oper = #{createOper,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeOper != null">
+        change_oper = #{changeOper,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null">
+        change_time = #{changeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag = #{deleteFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.choice.domain.entity.external.ScheduleInfo">
+    update schedule_info
+    set schedule_type = #{scheduleType,jdbcType=CHAR},
+      hos_code = #{hosCode,jdbcType=VARCHAR},
+      hos_name = #{hosName,jdbcType=VARCHAR},
+      dept_code = #{deptCode,jdbcType=VARCHAR},
+      dept_name = #{deptName,jdbcType=VARCHAR},
+      doctor_code = #{doctorCode,jdbcType=VARCHAR},
+      doctor_name = #{doctorName,jdbcType=VARCHAR},
+      work_date = #{workDate,jdbcType=DATE},
+      work_period = #{workPeriod,jdbcType=VARCHAR},
+      work_time_start = #{workTimeStart,jdbcType=VARCHAR},
+      work_time_end = #{workTimeEnd,jdbcType=VARCHAR},
+      register_type = #{registerType,jdbcType=VARCHAR},
+      register_cost = #{registerCost,jdbcType=DECIMAL},
+      register_quantity = #{registerQuantity,jdbcType=INTEGER},
+      remainder_quantity = #{remainderQuantity,jdbcType=INTEGER},
+      create_oper = #{createOper,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      change_oper = #{changeOper,jdbcType=VARCHAR},
+      change_time = #{changeTime,jdbcType=TIMESTAMP},
+      delete_flag = #{deleteFlag,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getScheduleInfoList" resultMap="BaseResultMap">
+    select b.introduce,a.id, a.schedule_type, a.hos_code, a.hos_name, a.dept_code, a.dept_name, a.doctor_code, a.doctor_name, a.work_date,
+    a.work_period, a.work_time_start, a.work_time_end, a.register_type, a.register_cost, a.register_quantity, a.remainder_quantity
+    from schedule_info a, channel_user b
+    <where>
+      delete_flag='0' and a.doctor_code=b.user_id AND TO_DAYS(work_date)>=TO_DAYS(NOW())
+      <if test="scheduleInfo.scheduleType != null and scheduleInfo.scheduleType != ''">
+        AND a.schedule_type = #{scheduleInfo.scheduleType,jdbcType=VARCHAR}
+      </if>
+      <if test="scheduleInfo.hosCode != null and scheduleInfo.hosCode != ''">
+        AND a.hos_code = #{scheduleInfo.hosCode,jdbcType=VARCHAR}
+      </if>
+      <if test="scheduleInfo.hosName != null and scheduleInfo.hosName != ''">
+        AND a.hos_name like CONCAT(CONCAT('%',#{scheduleInfo.hosName,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="scheduleInfo.deptCode != null and scheduleInfo.deptCode != ''">
+        AND a.dept_code = #{scheduleInfo.deptCode,jdbcType=VARCHAR}
+      </if>
+      <if test="scheduleInfo.deptName != null and scheduleInfo.deptName != ''">
+        AND a.dept_name like CONCAT(CONCAT('%',#{scheduleInfo.deptName,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="scheduleInfo.doctorName != null and scheduleInfo.doctorName != ''">
+        AND a.doctor_name like CONCAT(CONCAT('%',#{scheduleInfo.doctorName,jdbcType=VARCHAR}),'%')
+      </if>
+      <if test="startDate != null and startDate != ''">
+        AND DATE_FORMAT(a.work_date,'%Y-%m-%d') &gt;=  DATE_FORMAT(#{startDate,jdbcType=TIMESTAMP},'%Y-%m-%d')
+      </if>
+      <if test="endDate != null and endDate != ''">
+        AND  DATE_FORMAT(a.work_date,'%Y-%m-%d') &lt;=  DATE_FORMAT(#{endDate,jdbcType=TIMESTAMP},'%Y-%m-%d')
+      </if>
+      <if test="scheduleInfo.workDate != null and scheduleInfo.workDate != ''">
+        AND DATE_FORMAT(a.work_date,'%Y-%m-%d') =  DATE_FORMAT(#{scheduleInfo.workDate,jdbcType=TIMESTAMP},'%Y-%m-%d')
+      </if>
+      <if test="scheduleInfo.workPeriod != null and scheduleInfo.workPeriod != ''">
+        AND a.work_period = #{scheduleInfo.workPeriod,jdbcType=VARCHAR}
+      </if>
+      order by a.work_date desc
+    </where>
+  </select>
+  
+  <select id="getSchedulingSource" resultMap="haoyuans" parameterType="com.choice.domain.entity.external.ScheduleInfo">
+      SELECT
+      a.id, a.schedule_type, a.hos_code, a.hos_name, a.dept_code, a.dept_name, a.doctor_code, a.doctor_name, a.work_date,
+    a.work_period, a.work_time_start, a.work_time_end, a.register_type, a.register_cost, a.register_quantity,
+          b.visit_start,
+          b.visit_end ,
+          b.id xuhao,
+          b.schedule_code,
+          b.sequence_number
+          FROM
+          schedule_info a ,register_source_info b
+		WHERE delete_flag='0' AND a.id = b.schedule_code AND   b.source_status = '0' AND a.id = #{id}
+  </select>
+
+  <!-- 挂号成功,剩余号源数要减1 -->
+  <update id="useHaoYuan" parameterType="long">
+      UPDATE schedule_info
+          SET remainder_quantity = remainder_quantity - 1
+              WHERE id = #{id}
+  </update>
+
+  <!-- 放出号源 -->
+  <update id="releaseSource" parameterType="long">
+    UPDATE schedule_info
+    SET remainder_quantity = remainder_quantity + 1
+    WHERE id = #{id}
+  </update>
+
+
+  <delete id="deleteSchedule" >
+    update	schedule_info SET  delete_flag = '1' where id in
+    <foreach collection="array" index="index" item="item"
+             open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+
+  <select id="getList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from schedule_info
+    where  schedule_type = #{scheduleType,jdbcType=CHAR} AND
+    hos_code = #{hosCode,jdbcType=VARCHAR}AND
+    hos_name = #{hosName,jdbcType=VARCHAR}AND
+    dept_code = #{deptCode,jdbcType=VARCHAR}AND
+    dept_name = #{deptName,jdbcType=VARCHAR}AND
+    doctor_code = #{doctorCode,jdbcType=VARCHAR}AND
+    doctor_name = #{doctorName,jdbcType=VARCHAR}AND
+    work_date = #{workDate,jdbcType=DATE}AND
+    work_period = #{workPeriod,jdbcType=VARCHAR}
+  </select>
+</mapper>

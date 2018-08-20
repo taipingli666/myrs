@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="choice-cbsign:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="choice-hssign.war">
+      <element id="artifact" artifact-name="choice-cbsign:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,112 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+  <mapper namespace="com.choice.domain.repository.common.CommonIcd10Dao">
+    <resultMap id="BaseResultMap" type="com.choice.domain.entity.common.CommonIcd10" >
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="zhen_duanicd" property="zhenDuanicd" jdbcType="VARCHAR" />
+      <result column="zhen_duan_name" property="zhenDuanName" jdbcType="VARCHAR" />
+      <result column="zhen_duan_pin_yin" property="zhenDuanPinYin" jdbcType="VARCHAR" />
+      <result column="zhen_duan_type" property="zhenDuanType" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+      id, zhen_duanicd, zhen_duan_name, zhen_duan_pin_yin, zhen_duan_type
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+      select
+      <include refid="Base_Column_List" />
+      from common_icd10
+      where id = #{id,jdbcType=INTEGER}
+    </select>
+	
+  <select id="selectBySelect" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from common_icd10
+    where 1=1
+    <if test="searchValue != null" >
+      AND ( zhen_duan_name like CONCAT('%', #{searchValue}, '%')   or zhen_duan_pin_yin  like upper(CONCAT('%', #{searchValue}, '%')))
+    </if>
+    limit #{pageIndex}, #{pageSize}
+  </select>
+
+<select id="countIcd10" resultType="int">
+    select count(1)
+    from common_icd10
+    where 1=1
+    <if test="searchValue != null" >
+      AND ( zhen_duan_name like CONCAT('%', #{searchValue}, '%')   or zhen_duan_pin_yin  like upper(CONCAT('%', #{searchValue}, '%')))
+    </if>
+  </select>
+  
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+      delete from common_icd10
+      where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.choice.domain.entity.common.CommonIcd10" >
+      insert into common_icd10 (id, zhen_duanicd, zhen_duan_name,
+      zhen_duan_pin_yin, zhen_duan_type)
+      values (#{id,jdbcType=INTEGER}, #{zhenDuanicd,jdbcType=VARCHAR}, #{zhenDuanName,jdbcType=VARCHAR},
+      #{zhenDuanPinYin,jdbcType=VARCHAR}, #{zhenDuanType,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.choice.domain.entity.common.CommonIcd10" >
+      insert into common_icd10
+      <trim prefix="(" suffix=")" suffixOverrides="," >
+        <if test="id != null" >
+          id,
+        </if>
+        <if test="zhenDuanicd != null" >
+          zhen_duanicd,
+        </if>
+        <if test="zhenDuanName != null" >
+          zhen_duan_name,
+        </if>
+        <if test="zhenDuanPinYin != null" >
+          zhen_duan_pin_yin,
+        </if>
+        <if test="zhenDuanType != null" >
+          zhen_duan_type,
+        </if>
+      </trim>
+      <trim prefix="values (" suffix=")" suffixOverrides="," >
+        <if test="id != null" >
+          #{id,jdbcType=INTEGER},
+        </if>
+        <if test="zhenDuanicd != null" >
+          #{zhenDuanicd,jdbcType=VARCHAR},
+        </if>
+        <if test="zhenDuanName != null" >
+          #{zhenDuanName,jdbcType=VARCHAR},
+        </if>
+        <if test="zhenDuanPinYin != null" >
+          #{zhenDuanPinYin,jdbcType=VARCHAR},
+        </if>
+        <if test="zhenDuanType != null" >
+          #{zhenDuanType,jdbcType=VARCHAR},
+        </if>
+      </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.choice.domain.entity.common.CommonIcd10" >
+      update common_icd10
+      <set >
+        <if test="zhenDuanicd != null" >
+          zhen_duanicd = #{zhenDuanicd,jdbcType=VARCHAR},
+        </if>
+        <if test="zhenDuanName != null" >
+          zhen_duan_name = #{zhenDuanName,jdbcType=VARCHAR},
+        </if>
+        <if test="zhenDuanPinYin != null" >
+          zhen_duan_pin_yin = #{zhenDuanPinYin,jdbcType=VARCHAR},
+        </if>
+        <if test="zhenDuanType != null" >
+          zhen_duan_type = #{zhenDuanType,jdbcType=VARCHAR},
+        </if>
+      </set>
+      where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.choice.domain.entity.common.CommonIcd10" >
+      update common_icd10
+      set zhen_duanicd = #{zhenDuanicd,jdbcType=VARCHAR},
+      zhen_duan_name = #{zhenDuanName,jdbcType=VARCHAR},
+      zhen_duan_pin_yin = #{zhenDuanPinYin,jdbcType=VARCHAR},
+      zhen_duan_type = #{zhenDuanType,jdbcType=VARCHAR}
+      where id = #{id,jdbcType=INTEGER}
+    </update>
+  </mapper>

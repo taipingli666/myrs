@@ -1,0 +1,1551 @@
+body{
+    background: #fff;
+    padding: 20px;
+}
+html,body{
+    height: 100%;
+}
+.hasLeftNav{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    position: relative;
+}
+a{
+    color:inherit;
+    text-decoration: none;
+}
+a:hover  {
+    color:#4aa0e3;
+    text-decoration: none;
+}
+a:active{
+    color:inherit;
+    text-decoration:none !important;
+}
+a:focus,input[type=button],button[type=button],input[type=submit] {
+    outline:none !important;
+    -moz-outline:none !important;
+}
+.row-right{
+    margin-right: 0;
+}
+/*#region button*/
+.btn-blue{
+    /*display:block;*/
+    border:none;
+    background-color:#00adee;
+    border-radius:7px;
+    color:#fff;
+    font-size:14px;
+    font-family:"\5FAE\8F6F\96C5\9ED1";
+    text-align:center;
+    width:100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    padding:11px 20px;
+    cursor:pointer;
+}
+a.btn-blue:hover{
+    color:#fff;
+}
+.btn-yellow{
+    display:block;
+    border:none;
+    background-color: rgba(255,144,25,1);
+    border-radius:7px;
+    color:#fff;
+    font-size:14px;
+    font-family:"\5FAE\8F6F\96C5\9ED1";
+    text-align:center;
+    width:100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    padding:11px 20px;
+    cursor:pointer;
+}
+a.btn-yellow:hover{
+    color:#fff;
+}
+.btn-plum{
+    display:block;
+    border:none;
+    background-color:#f69;
+    border-radius:7px;
+    color:#fff;
+    font-size:14px;
+    font-family:"\5FAE\8F6F\96C5\9ED1";
+    text-align:center;
+    width:100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    padding:11px 10px;
+    cursor:pointer;
+}
+a.btn-plum:hover{
+    color:#fff;
+}
+/*#endregion*/
+/*#region 清除浮动*/
+.clearfix:after{
+    content: '\20';
+    display: block;
+    height: 0;
+    clear: both;
+}
+.clearfix {
+    *zoom:1;
+}
+/*#endregion */
+/*#region 个人信息*/
+.titleHd{
+     background: url(/dist/img/titleBG.png) no-repeat center center;
+     background-size: contain;
+     display: inline-block;
+     width: 180px;
+     height: 40px;
+     line-height: 40px;
+     color: #fff;
+     font-weight: bold;
+     padding-left: 20px;
+     font-size: 18px;
+     margin-left: -20px;
+     margin-bottom: 20px;
+ }
+.titleHd2{
+    background: url(/dist/img/titleBG.png) no-repeat center center;
+    background-size: contain;
+    display: inline-block;
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    padding-left: 20px;
+    margin-left: -20px;
+    margin-bottom: 20px;
+}
+.titleRlogo {
+    display: inline-block;
+    float: right;
+    height:40px;
+}
+.popupEdit{
+    padding: 20px;
+}
+.popupEdit form{
+    width: 790px;
+    margin: 0 auto;
+}
+.popupEdit li {
+    padding: 10px 10px 10px 76px;
+    position: relative;
+    margin: .5em 1em 1em;
+    font-size: 1em;
+    min-height: 2em;
+    width: 34%;
+    float: left;
+}
+.popupEdit li.textareaW{
+    width: 83.6%;
+}
+.popupEdit li label {
+    left: 0;
+    top: 50%;
+    margin-top: -.5em;
+    line-height: 1em;
+    position: absolute;
+}
+.popupEdit li .disable1 {
+    background: #eeeeb6 !important;
+}
+.popupEdit li .input-text {
+    background: transparent;
+    border: 1px solid #ccc;
+    border-radius: 0.4em;
+    font-size: 0.875em;
+    height: 2em;
+    padding-left: 1em;
+    width: 96%;
+}
+.popupEdit .personImg {
+    height: 65px;
+    padding: 15px 0 0 100px;
+    position: relative;
+}
+.popupEdit .personImg img {
+    height: 80px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 80px;
+}
+.input-file {
+    cursor: pointer;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0;
+    position: relative;
+    width: 100px;
+    overflow: hidden;
+}
+.input-file input{
+    position:absolute;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    opacity:0;
+    filter:alpha(opacity:0);
+    cursor:pointer;
+}
+.popupEdit li .personImg-tips {
+    padding-top: 5px;
+    font-size:.75em;
+}
+.memberPage input{
+    background-color:transparent;
+}
+.radioGroup .input-radio{
+    display:inline-block;
+    *display:inline;
+    *zoom:1;
+    position:relative;
+    width:150px;
+    height:30px;
+    text-align:center;
+    line-height:30px;
+    cursor:pointer;
+    margin-right:15px;
+}
+.radioGroup .radio-on{
+    color:#00adee;
+}
+.radioGroup .input-radio input{
+    position:absolute;
+    visibility:hidden;
+}
+.popupEdit li .inputRemoveB{
+    border: none;
+    font-size: 15px;
+    padding-left: 0;
+}
+.popupEdit li .input-checkbox{
+    width: 50px;
+    position: relative;
+    vertical-align: top;
+    display: inline-block;
+    margin: 10px 0;
+    line-height: 18px;
+    height: 18px;
+    padding: 3px 0 3px 22px;
+    cursor: pointer;
+}
+.popupEdit li .costBox{
+    width: 76%;
+    padding-right: 14px;
+    text-align: center;
+}
+.popupEdit li .input-checkbox .icon{
+    position: absolute;
+    font-size: 18px;
+    left: 0;
+}
+.popupEdit li .input-checkbox .icon.icon-checkon{
+    color: #00adee;
+}
+.popupEdit li .input-checkbox input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.popupEdit li .textinfo{
+    width: 96.7%;
+    max-width: 96.7%;
+    height: 10em;
+    max-height: 10em;
+    font-size: 14px;
+    padding: 10px;
+}
+.cost-icon{
+    vertical-align: middle;
+    color: #ff9f27;
+    font-size: 1.8125em;
+}
+.popupEdit .submitBtn{
+    width: 50%;
+    margin:0 auto 0;
+}
+.popupEditBox{
+    width: 400px;
+    margin: 2em auto 0;
+}
+.popupEditBox .submitBtn{
+    width: 50%;
+    margin:44% auto 0;
+}
+.popupEditBox li{
+    width:63%;
+}
+/*#endregion*/
+/*#region 医生管理&排版设置*/
+.modal-body.popupBox{
+    padding:24px 40px;
+}
+.modal-body.popupBox select{
+    font-size: 14px;
+}
+.addWorkTable{
+    padding: 25px;
+}
+.addWorkTable label{
+    width: 82px;
+}
+.hasSearchSelect.bootstrap-select.form-control:not([class*="span"]) {
+    width: 238px;
+}
+.has-feedback .hasSearchSelect.form-control {
+     padding-right:0;
+}
+.addWorkTable .form-control{
+    width: 238px;
+}
+.simulate-select{
+    position: relative;
+    display: inline-grid;
+}
+.simulate-select .simulate-select-list{
+    display: none;
+    position: absolute;
+    background: #fff;
+    width: 233px;
+    z-index: 3;
+    top: 33px;
+    left: 2px;
+    box-shadow: 1px 1px 2px #333;
+    padding: 5px;
+    max-height: 200px;
+    border: 1px solid #eee;
+    background: #fff;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+.simulate-select .simulate-select-list li{
+    padding: 10px;
+    margin: 0;
+    min-height: 8px;
+    font-size: .875em;
+    cursor: pointer;
+}
+.simulate-select .simulate-select-list li:hover{
+    background: #00adee;
+    color: #fff;
+}
+.simulate-select .simulate-mask-box{
+    position: relative;
+    /*overflow: hidden;*/
+    display: inline-block;
+}
+.simulate-select .simulate-mask-box .simulate-mask{
+    position: absolute;
+    left: 0;
+    right:0;
+    top:0;
+    bottom:0;
+    cursor: pointer;
+    z-index: 2;
+}
+.simulate-select .simulate-mask-box .selectedText{
+    background: #fff ;
+    left: 5px;
+    position: absolute;
+    top: 6px;
+    z-index: 1;
+}
+.form-control-feedback{
+    position: absolute;
+    left: 333px;
+}
+.simulate-select .form-control-feedback{
+    left: 254px;
+}
+.setpaibanBox{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+.setpaibanBox .col-main {
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+.setpaibanBox .col-main .main-wrap {
+    margin: 20px 20px 20px 215px;
+}
+.setpaibanBox .col-sub {
+    background: #eee;
+    width: 195px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+}
+.uploadingBox .userImg{
+    width: 50%;
+    display:inline-block;
+}
+.uploadingBox .event{
+    width: 50%;
+    float: right;
+}
+.select-input2{
+    width: 70% !important;
+}
+.select-input3{
+    width: 45% !important;
+}
+.writeInfo .col-md-6{
+    position: relative;
+    padding-left: 80px;
+    padding-right: 0;
+}
+.writeInfo .col-md-6 label{
+    position: absolute;
+    left: 0;
+}
+.writeInfo .col-md-6 .form-control{
+
+}
+/*.setpaibanBox .col-sub .leftNav-title{*/
+    /*background: #fff;*/
+    /*margin: 0;*/
+    /*padding: 10px;*/
+/*}*/
+.leftNavList{
+     overflow: auto;
+     position: absolute;
+     left: 0;
+     bottom: 0;
+     right: 0;
+     top: 0;
+}
+.leftNavList li{
+    margin: 10px;
+    padding: 5px;
+}
+.leftNavList li a{
+    text-decoration:none;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.leftNavList li.active,.leftNavList li.active a,.leftNavList li a:hover,.leftNavList li:hover{
+    background: #16a0d3;
+    color:#fff;
+    border-radius: 3px;
+}
+.setpaibanBox .col-sub ul{
+    list-style: none;
+    padding: 0;
+}
+.conditionTimeRange{
+    display: inline-block;
+    margin-left: -20px;
+    margin-right: 5px;
+}
+.conditionTimeRange .reset-btn{
+    cursor: pointer;
+    padding: 5px;
+    line-height: 34px;
+}
+/*#endregion*/
+/*#region预约会诊*/
+.toprate{
+    position: relative;
+}
+.toprate .progress-list{
+    padding: 5px;
+    margin:34px 0;
+    position: relative;
+}
+.toprate .progress-list li{
+    float: left;
+    width: 33%;
+    text-align: center;
+    position: relative;
+}
+.toprate .progress-list .num{
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    margin: 0 auto;
+    line-height: 1.4em;
+    background: #fff;
+    border: 2px solid #999;
+    color: #999;
+    font-size: 23px;
+    font-weight: bold;
+    box-sizing: border-box;
+    padding:0;
+}
+.toprate .progress-list .title{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2em;
+    font-weight: bold;
+    color: #999;
+    font-size:.8125em;
+}
+.toprate .progress-list .title-top{
+    position: absolute;
+    font-size:.8125em;
+    left: 0;
+    right: 0;
+    top: -2em;
+    color: #999;
+    font-weight: bold;
+}
+.toprate .progress-list .pass .num{
+    background: #00adee;
+    border-color: #00adee;
+    color: #fff;
+}
+.toprate  .straight-line{
+    left: 18%;
+    top: 50%;
+    margin-top: -2px;
+    right: 18%;
+    height: 3px;
+    background: #999;
+    position: absolute;
+}
+.toprate  .straight-line .mask-line{
+    background: #00adee;
+    display: block;
+    height: 3px;
+    width: 20%;
+}
+.arrangeBox{
+    margin: 0 -20px;
+}
+.conditionBox{
+    padding: 20px;
+    border-top:10px solid #eee;
+    border-bottom:10px solid #eee;
+}
+.conditionBox .hospital{
+    position: relative;
+    padding-left: 6em;
+    min-height: 1em;
+}
+.conditionBox .condition-time{
+    padding-left: 10em;
+}
+.conditionBox .hospital .label{
+    position: absolute;
+    left: 0;
+    width: 4em;
+    font-size: .8125em;
+    border-right: 2px solid #999;
+    top:0;
+    background: #fff;
+    color: #666;
+}
+.conditionBox .condition-time .label{
+    width: 8em;
+}
+.conditionBox .hospital .hospital-list li{
+    float: left;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    display: inline-block;
+}
+.conditionBox .hospital .hospital-list li a{
+    padding: .4em 1em;
+    border-radius: 2em;
+    font-size:.8125em;
+}
+.conditionBox .hospital .hospital-list li a:hover{
+    background: #00adee;
+    color: #fff;
+}
+.conditionBox .hospital .hospital-list li a.active{
+    background: #00adee;
+    color: #fff;
+}
+.consultation-doctor .doctor-list .item{
+    float: left;
+    position: relative;
+    width: 10%;
+    box-sizing: border-box;
+    margin: 20px 5%;
+}
+.consultation-doctor .doctor-list .item .docimg{
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    background: url("/img/doctor.jpg") no-repeat center center;
+    background-size:contain;
+}
+.consultation-doctor .doctor-list .docname {
+    height: 20px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333;
+}
+.consultation-doctor .doctor-list .deptname {
+    height: 30px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 30px;
+    color: #666;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.consultation-doctor .docgoodin {
+    height: 40px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #999;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.consultation-doctor .orderdocbut {
+    width: 100px;
+    height: 26px;
+    border: 1px solid #3692e2;
+    border-radius: 5px;
+    margin: 10px auto;
+    margin-bottom: 0;
+    font-size: 14px;
+    color: #3692e2;
+    line-height: 26px;
+    text-align: center;
+    cursor: pointer;
+}
+.morefamdoc {
+    height: 66px;
+    text-align: center;
+    margin-top: 10px;
+}
+.morefamdoc span {
+    display: inline-block;
+    width: 190px;
+    height: 27px;
+    font-size: 14px;
+    color: #999;
+    line-height: 27px;
+    border-radius: 5px;
+    background: #f5f5f5;
+    cursor: pointer;
+}
+/*#endregion*/
+/*#region 填写问诊信息*/
+.writeInfoBox .subscribeInfo{
+    margin: 0 -20px;
+    border-top: 10px solid #eee;
+    border-bottom: 10px solid #eee;
+    padding: 0 30px 30px;
+}
+.writeInfoBox .subscribeInfo .item{
+    float: left;
+    width:33%;
+    margin: 1.5em 0 0;
+    padding-left: 110px;
+    position: relative;
+    box-sizing: border-box;
+}
+.writeInfoBox .subscribeInfo .item .title{
+    position: absolute;
+    left: 0;
+    width: 102px;
+    text-align: right;
+    line-height: 23px;
+}
+.videoZl .addText{
+    position: absolute;
+    top: -.5px;
+    right: -16px;
+    width: 42px;
+    bottom: -1px;
+}
+.videoZl .text-textarea2{
+    width: 100%;
+    max-width: 100%;
+    min-height: 100px;
+    padding: .2em;
+    padding-right: 0.2em;
+    font-size: 1em;
+}
+.videoZl .proName{
+    display: inline-block;
+    background: #1a9fe0;
+    position: relative;
+    border-radius: 5px;
+    padding: 3px 25px 3px 5px;
+    margin: 0 3px 3px 0;
+    color: #fff;
+}
+.videoZl .proName .event{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 25px;
+    bottom: 0;
+    cursor: pointer;
+}
+.videoZl .event:before {
+    position: absolute;
+    top: 18%;
+    left: 27%;
+}
+.videodownload{
+    font-size: 16px;
+    padding: 0 10px 0 0;
+}
+.writeInfoBox .subscribeInfo .item .text-input{
+    border-style:solid;
+    border-width:0 0 1px 0 ;
+    border-color: #ccc;
+    width:90%;
+    font-size: 14px;
+    height: 23px;
+}
+.writeInfoBox .subscribeInfo .item .text-select{
+    width: 90%;
+    font-size: 14px;
+    height: 23px;
+}
+.needwrite{
+    border-bottom: 10px solid #eee;
+    margin: 0 -20px;
+}
+.needwrite .subscribeInfo{
+    width: 34%;
+    float: left;
+}
+.writeInfoBox .needwrite .subscribeInfo {
+    border: none;
+    margin: 0;
+    box-sizing: border-box;
+}
+.writeInfoBox .needwrite .subscribeInfo .item{
+    float: none;
+    width: 96%;
+}
+.writeInfoBox .needwrite .subscribeInfo .text-input {
+    width:105%;
+}
+.writeInfoBox .needwrite .summarize-field{
+    float: right;
+    width: 65%;
+}
+.writeInfoBox .needwrite .summarize-field .item{
+    width: 45%;
+    float: left;
+    margin: 1.5em 2% 0 ;
+}
+.writeInfoBox .needwrite .summarize-field .item .title{
+    display: block;
+}
+.writeInfoBox .needwrite .summarize-field .item .text-textarea{
+    width: 100%;
+    max-width:100%;
+    height: 100px;
+    max-height: 100px;
+    padding: .2em;
+    font-size:1em;
+}
+.uploading-flie{
+    padding: 36px;
+}
+.writeInfoBox .subscribeInfo .item .simulate-select{
+    width:90%;
+}
+.writeInfoBox .subscribeInfo .item .simulate-select .simulate-mask-box,
+.writeInfoBox .subscribeInfo .item .simulate-select .simulate-mask-box .input-text{
+    width: 100%;
+}
+.writeInfoBox .subscribeInfo .item .simulate-select .simulate-mask-box .input-text{
+    border-width:0 0 1px 0 ;
+    border-color: #ccc;
+    border-style: solid;
+    height: 23px;
+}
+.writeInfoBox .subscribeInfo .simulate-select .simulate-mask-box .selectedText {
+    left: 0px;
+    top: 2px;
+    font-size: 14px;
+    color: #333;
+}
+.writeInfoBox .subscribeInfo .simulate-select .simulate-select-list {
+    width: 100%;
+    top: 26px;
+    left: 2px;
+}
+.subscribeHint{
+    width: 50%;
+    margin: 4% auto 0;
+    text-align: center;
+}
+.subscribeHint .title{
+    font-size: 2em;
+    line-height: 3em;
+}
+.subscribeHint .hintList{
+    text-align: left;
+    width: 44%;
+    font-size: 1.25em;
+    margin: 0 auto;
+}
+.subscribeHint .hintList .item{
+    line-height: 2em;
+}
+.subscribeHint .hintList .item span{
+    color: #999;
+}
+.subscribeHint .subscribeHint-event .btn{
+    display: inline-block;
+    width: 20%;
+    margin:2em 1em;
+}
+.uploadingBox{
+    padding: 1em 0;
+}
+.uploadingBox .uploadingBox-main{
+    display: inline-block;
+}
+.uploadingBox .title{
+    margin-bottom: 1em;
+}
+.uploadingBox .imgsList{
+    float: right;
+    width: 40%;
+    text-align: right;
+}
+.uploadingBox .imgsList .item{
+    position: relative;
+    padding-right: 2em;
+}
+.uploadingBox .imgsList .item a{
+    margin-right: 1em;
+}
+.uploadingBox .imgsList .item input[type="button"]{
+    display:inline-block;
+    position: absolute;
+    border:none;
+    background-color:#00adee;
+    border-radius:7px;
+    color:#fff;
+    font-size:12px;
+    font-family:"\5FAE\8F6F\96C5\9ED1";
+    text-align:center;
+    width: 3em;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    padding: 4px 3px;
+    cursor:pointer;
+}
+.writeInfoBox .event-btns{
+    margin: 1em 0;
+}
+.writeInfoBox .event-btns input[type="button"]{
+    width: 6em;
+    padding: 4px 11px;
+    margin-right: 1em;
+   /* float: left;*/
+}
+.simulate-select.hasBtn-refresh .simulate-mask-box .simulate-mask{
+    right: 15%;
+}
+.hasBtn-refresh .refresBtn{
+    position: absolute;
+    right: 0;
+    width: 12%;
+    cursor: pointer;
+}
+.writeInfoBox .help-block{
+    color:#a94442;
+}
+.mySubscribeList{
+    margin: 1em 0;
+}
+.mySubscribeList .hintNull {
+    font-size: 2.2em;
+    color: #999;
+    text-align: center;
+    margin: 4em auto;
+}
+.mySubscribeList .hintNull .icon{
+    color: #888;
+    vertical-align: middle;
+    margin-right: .5em;
+}
+.mySubscribeList-item .badge{
+    position: absolute;
+    right: 1.8em;
+    top: 1.8em;
+}
+.mySubscribeList-item .badge.hint2{
+    background: #269225;
+}
+.mySubscribeList-item .badge.hint3{
+    background: #ffdf5b;
+}
+.mySubscribeList-item{
+    padding: 2em;
+    margin-bottom: 1.5em;
+    border: 1px solid #ccc;
+    border-radius: .6em;
+    position: relative;
+}
+.contact-name{
+    font-size: .875em;
+    margin: 0  0 2em;
+}
+.contact-name li{
+    float: left;
+    font-size: 1.7em;
+    margin-right: 4em;
+    min-width: 288px;
+}
+.contact-main{
+    padding-right: 14em;
+    position: relative;
+}
+.contact-main .contact-name{
+    margin: 0;
+}
+.contact-main .contact-event{
+    display: inline-block;
+    *display:inline;
+    *zoom:1;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 16em;
+    text-align: right;
+}
+.contact-main .contact-event .contact-state{
+    float:left;
+    font-size: 1.2em;
+    line-height: 2;
+    color: #333;
+    font-weight: bold;
+}
+.contact-main .contact-event .btn-info{
+    margin-right: 1em;
+}
+.contact-main .contact-event .btn-info:last-child{
+    margin-right: 0;
+}
+.mySubscribeList-item  .name-hd{
+    font-weight: bold;
+    color: #555;
+    margin-right: .5em;
+}
+/*#endregion*/
+/*#region 会诊单详情*/
+.sheetInfo-hd{
+    font-size: 2em;
+    text-align: center;
+    line-height: 3em;
+    color: #ee9822;
+}
+.sheetInfo-hd .user-name{
+    color: #00adee;
+}
+.sheetInfo-main .item{
+    font-size: 1.4em;
+    line-height: 2em;
+}
+.sheetInfo-main .panel{
+    font-size: 1.4em;
+}
+.sheetInfo-main .panel-hd{
+    font-size: 1.4em;
+    line-height: 2em;
+}
+.sheetInfo-main .panel-hd2{
+    font-size: 1.4em;
+    line-height: 2em;
+    color: #666;
+}
+.sheetInfo-main .imgBox-list .imgShow-event{
+    width: 10em;
+    height: 10em;
+    border-radius: 5px;
+    float: left;
+    background: #fff;
+    position: relative;
+    margin-right:2.25em;
+    margin-bottom:.625em;
+    overflow: hidden;
+}
+.sheetInfo-main .imgBox-list .imgShow-event img{
+    height: 100%;
+    left: -1%;
+    position: absolute;
+    right: -1%;
+    width: 100%;
+    z-index: 1;
+}
+.sheetInfo-main .medicalLog .medicalLog-empty{
+    height: 10em;
+    margin: 1.5em 0;
+    text-align: center;
+    font-size: 2em;
+    padding: 4em 0 0;
+    border-radius:.2em !important;
+    box-shadow: 1px 1px 12px rgba(0,0,0,.25);
+    -moz-box-shadow: 1px 1px 12px rgba(0,0,0,.25);
+    -ms-box-shadow: 1px 1px 12px rgba(0,0,0,.25);
+    -o-box-shadow: 1px 1px 12px rgba(0,0,0,.25);
+    -webkit-box-shadow: 1px 1px 12px rgba(0,0,0,.25);
+}
+.imgHint-null{
+    text-align: center;
+    font-size: 18px;
+}
+.sheetInfo-main .medicalLog .medicalList li{
+    position: relative;
+    background: #f1f1f1 ;
+    margin-top: 2em;
+    border-radius: .5em !important;
+    box-shadow: 1px 1px 12px rgba(0,0,0,.25);
+    -moz-box-shadow: 1px 1px 12px rgba(0,0,0,.25);
+    -ms-box-shadow: 1px 1px 12px rgba(0,0,0,.25);
+    -o-box-shadow: 1px 1px 12px rgba(0,0,0,.25);
+    -webkit-box-shadow: 1px 1px 12px rgba(0,0,0,.25);
+}
+.sheetInfo-main .medicalLog .medicalList .logItem .logItem-title{
+    color: #777;
+    font-size: 1.4em;
+    padding: 1em 8em 1em 1em;
+    position: relative;
+}
+.sheetInfo-main .logItem .logItem-title .logItem-event{
+    border-radius: 0.2em !important;
+    font-size: 0.9em;
+    line-height: 1em;
+    margin-top: -1.1em;
+    padding: 0.6em;
+    position: absolute;
+    right: 1em;
+    color: #fff;
+    top: 50%;
+    width: 6em;
+    text-decoration:none;
+}
+.sheetInfo-main .logItem .logItem-other{
+    background: #fff;
+    border-radius: 0 0 .5em .5em !important;
+    padding: 1em;
+}
+.sheetInfo-main .logItem-other .info-title{
+    display: inline-block;
+    *display:inline;
+    *zoom: 1;
+    margin-bottom: 0;
+}
+.sheetInfo-main .logItem-other .logItem-otherInfo{
+    float: left;
+    padding-right: 1%;
+    width: 32%;
+    font-size: 1.4em;
+    margin-bottom: 0;
+}
+.mask{
+    background-color:#000;
+    opacity:0.2;
+    position:fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    z-index:1000;
+    display:none;
+}
+.sheetInfo-main .medicalInfo{
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: none;
+    box-sizing: border-box;
+    padding:20px 20px 30px;
+    display: none;
+    height: 490px;
+    position: fixed;
+    width: 800px;
+    z-index: 1111;
+}
+.sheetInfo-main .medicalInfo .medicalInfo-list{
+    height:450px;
+    overflow:auto;
+    display:block;
+}
+.sheetInfo-main .medicalInfo-item{
+    margin: 2em 0;
+    font-size: 1.2em;
+}
+.sheetInfo-main .medicalInfo-item .medicalInfo-title{
+    background: #f1f1f1;
+    color:#333;
+    font-weight: bold;
+    border-radius: 0.3em 0.3em 0 0 !important;
+    display: inline-block;
+    padding: 0.5em 0.5em 0.3em;
+    box-shadow: 1px 0px 1px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 1px 0px 1px rgba(0, 0, 0, 0.15);
+    -ms-box-shadow: 1px 0px 1px rgba(0, 0, 0, 0.15);
+    -o-box-shadow: 1px 0px 1px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 1px 0px 1px rgba(0, 0, 0, 0.15);
+}
+.sheetInfo-main .medicalInfo-item  .dataNo{
+    color: #666;
+    font-size: 1.2em;
+    border-radius: 0 .3em .3em;
+    border: 2px solid #f1f1f1;
+    text-align: center;
+    line-height: 3em;
+}
+.sheetInfo-main .medicalInfo .icon-remove-sign{
+    color: #f6b03b;
+    border-radius: 50%;
+    display: block;
+    font-size: 3em;
+    font-weight: bold;
+    position: absolute;
+    right: -8px;
+    text-align: center;
+    top: -9px;
+    cursor: pointer;
+}
+.sheetInfo-main .medicalInfo-item .recipeList .logItem-other,
+.sheetInfo-main .medicalInfo-item .reportList .logItem-other{
+    padding: .5em;
+    color: #555;
+    font-size: 1.1em;
+}
+.sheetInfo-main .medicalInfo-item  .logItem-other .logItem-otherInfo {
+    font-size: 1.1em;
+}
+.sheetInfo-main .medicalInfo-item  .logItem-other .logItem-otherInfo .info-title{
+    font-size: 1em;
+}
+.medicalInfo-item .recipeList li:nth-child(even) ,.medicalInfo-item .reportList li:nth-child(even){
+    background: #f9f9f9;
+}
+.medicalInfo-item .recipeList li:hover,
+.medicalInfo-item .reportList li:hover,
+.medicalInfo-item .recipeList li:hover p,
+.medicalInfo-item .reportList li:hover p{
+    background: #4a8bc2;
+    color: #fff;
+}
+.medicalInfo-item :focus {
+    outline:none;
+    -moz-outline:none;
+}
+/*#endregion*/
+/*#region webRTC*/
+.wait_list{
+    margin-right: 20%;
+}
+.waitRTC-Box{
+    border: 1px solid #ccc;
+    padding: 1em;
+    position: relative;
+    min-height: 32em;
+}
+.wait_list .item{
+    position: relative;
+    padding: 1em 1em 1em 13em;
+    height: 12em;
+    border-bottom: 1px solid #ccc;
+}
+.wait_list .item .item-img{
+    width: 8em;
+    height: 8em;
+    border-radius: 50%;
+    left: 1em;
+    top: 50%;
+    margin-top: -5em;
+    background: #00adee;
+    position: absolute;
+}
+.wait_list .item .state-1{
+    position: absolute;
+    left: 0;
+    bottom: .6em;
+    font-size: 1.3em;
+    width: 7.8em;
+    text-align: center;
+    color: #00a65a;
+    font-weight: bold;
+}
+.wait_list .item .state-2{
+    position: absolute;
+    right: 1em;
+    top: .6em;
+    font-size: 1.3em;
+    text-align: center;
+    color: #666;
+    font-weight: bold;
+}
+.wait_list .item .state-1.not-online{
+    color: #f9c450;
+}
+.wait_list .item .info-1,
+.wait_list .item .info-2{
+    font-size: 1.5em;
+    line-height: 2em;
+    margin-bottom: 1em;
+}
+.wait_list .item .info-1 .name{
+    font-size: 1.7em;
+}
+.wait_list .item .btn{
+    position: absolute;
+    right: 1em;
+    bottom: 2em;
+}
+.wait_list .item:hover,.wait_list .item.active{
+    background: #00adee;
+    color: #fff;
+    margin-left: -1em;
+    cursor: pointer;
+}
+.wait_list .item:hover .state-1,.wait_list .item:hover .state-2,
+.wait_list .item.active .state-1,.wait_list .item.active .state-2{
+    color: #fff;
+}
+.wait_list .wait_list_sum{
+    font-size: 1.4em;
+    line-height: 3em;
+}
+.wait_list .wait_list_sum .sum{
+    color: #00adee;
+    padding: 0 .5em;
+}
+.initiateBox{
+    width: 20%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right:0;
+}
+.initiateBox .initiateBox-event{
+    text-align: center;
+    padding: 2em;
+}
+.initiateBox .initiateBox-event .icon-facetime-video{
+    display: block;
+    font-size: 8em;
+    margin: .4em 0;
+    color: #00adee;
+    position: relative;
+}
+.initiateBox .initiateBox-event .icon-facetime-video em{
+    width: 0;
+    height: 0;
+    border-top: .2em solid transparent;
+    border-left: .3em solid #fff;
+    border-bottom: .2em solid transparent;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -.25em;
+    margin-top: -.2em;
+}
+.initiateBox-info{
+    padding: 1em;
+}
+.initiateBox-info p{
+    font-size: 1.7em;
+    line-height: 2;
+    font-weight: 700;
+    text-align: center;
+}
+.YearNull{
+    position: absolute;
+    font-size: 26px;
+    left:0;
+    right:0;
+    text-align: center;
+    color: #999;
+    top: 40%;
+}
+.YearNull .icon-bar-chart,.YearNull em{
+    padding-right: 1em;
+}
+.mySubscribeList .hintNull2 {
+    font-size: 1.8em;
+    color: #999;
+    text-align: center;
+    margin: 4em auto;
+}
+.ipnutSearchBox .btn {
+    padding: 6.5px 12px;
+}
+.btn-2{
+    padding-bottom: 7px;
+}
+/*#endregion*/
+.timeTab{
+    width: 20%;
+    font-size: 0;
+}
+.timeTab .item{
+    display: inline-block;
+    *display:inline;
+    *zoom: 1;
+    font-size: 14px;
+    width: 50%;
+    background: #fff;
+    border: 2px solid #1a9fe0;
+    padding: 6px;
+    color: #1a9fe0;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+.timeTab .item.active{
+    background:#1a9fe0;
+    color: #fff;
+}
+.xs-block{
+    display: none;
+}
+.formsSelect{
+    position: relative;
+}
+.formsSelect .col-md-2{
+    position: absolute;
+    right: -15px;
+}
+@media screen and (max-width:760px) {
+    html,body{
+        width: 100% !important;
+        box-sizing: border-box;
+        position: absolute;
+        top:0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    .hide-xs{
+        display: none!important;
+    }
+    .row-right{
+        margin: 0;
+    }
+    .row-right .pull-right{
+        float: none;
+        /*width: 100%;*/
+    }
+    .row-right .pull-right .dates,.row-right .pull-right span{
+        float: left;
+        margin-right: 1em;
+    }
+    .mySubscribeList {
+        width: 100%;
+    }
+    .serch-xs{
+        width: 281px !important;
+        padding-top: 1em;
+        position: relative;
+        padding-right: 68px;
+    }
+    .serch-xs input{
+        border-radius: 5px !important;
+    }
+    .serch-xs .input-group-btn{
+        position: absolute;
+        display: inline-block;
+        width: 52px;
+        right: 0;
+    }
+    .serch-xs .input-group-btn .btn{
+        border-radius: 5px;
+    }
+    .row-right .select-xs{
+        width: 213px !important;
+        margin-top: .6em;
+    }
+    .contact-name {
+        font-size: .8em;
+        margin: 0 0 .1em;
+    }
+    .contact-main {
+        padding-right: 0;
+        padding-bottom: 1.2em;
+        position: relative;
+    }
+    .contact-main .contact-event {
+        bottom: -13px;
+    }
+    .myconsultation .w1,.myconsultation .w2{
+        width: 200px;
+    }
+    .popupEdit{
+        padding: 0 0 20px 0;
+    }
+    .popupEdit form {
+        width: 100%;
+    }
+    .popupEdit li {
+        width: 100%;
+        margin: 0 0 1em;
+    }
+    .popupEdit li .input-text {
+        height: 3em;
+    }
+    .popupEdit li .costBox {
+        width: 96%;
+    }
+    .popupEdit li.textareaW {
+        width: 100%;
+    }
+    .popupEdit .submitBtn .btn-blue{
+        margin: 0 auto 2em;
+        display: block;
+    }
+    .clipImg{
+        width: 95% !important;
+    }
+    .toprate .progress-list {
+        padding: 30px 10px;
+    }
+    .toprate .progress-list .title {
+        bottom: -2.5em;
+        font-size: .75em;
+    }
+    .toprate .progress-list .title-top {
+        font-size: .75em;
+        top: -2.5em;
+    }
+    .toprate .progress-list .num {
+        line-height: 1.3em;
+    }
+    .conditionBox .hospital {
+        padding-left: 4.5em;
+    }
+    .conditionBox .hospital .hospital-list li {
+        margin-right: 1em;
+    }
+    .conditionBox .condition-time .label {
+        width: 5em;
+    }
+    .conditionBox .condition-time {
+        padding-left: 5em;
+    }
+    .conditionBox .hospital .label {
+        top: .35em;
+    }
+    .consultation-doctor .doctor-list .item {
+        float: none;
+        width: 100%;
+        padding: 0 16% 0 70px;
+        height: 80px;
+        margin: 0;
+    }
+    .consultation-doctor .doctor-list .item .docimg {
+        width: 55px;
+        height: 55px;
+        padding-bottom: 0;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+    }
+    .consultation-doctor .doctor-list .docname {
+        height: 20px;
+        text-align: left;
+        font-size: 12px;
+        padding-top: 10px;
+    }
+    .consultation-doctor .doctor-list .deptname {
+        height: 19px;
+        text-align: left;
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .consultation-doctor .docgoodin {
+        height: 19px;
+        font-size: 12px;
+        line-height: 20px;
+    }
+    .consultation-doctor .orderdocbut {
+        width: 57px;
+        height: 44px;
+        margin:-22px 0 0;
+        font-size: 14px;
+        color: #3692e2;
+        line-height: 21px;
+        text-align: center;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+    }
+    .xs-block{
+        display: block;
+    }
+    .writeInfoBox .subscribeInfo {
+        padding: 0 20px 30px;
+    }
+    .writeInfoBox .subscribeInfo .item .title {
+        width: 81px;
+    }
+    .writeInfoBox .subscribeInfo .item,.writeInfoBox .subscribeInfo .item .text-input,
+    .needwrite .subscribeInfo,.writeInfoBox .needwrite .summarize-field {
+        width: 100%;
+    }
+    .writeInfoBox .needwrite .summarize-field .item {
+        width: 100%;
+        padding: 0 20px 0 126px;
+        box-sizing: border-box;
+    }
+    .writeInfoBox .needwrite .summarize-field .item .title{
+        position: absolute;
+        left: 32px;
+    }
+    .summarize-xs{
+        margin: 0 20px;
+    }
+    .subscribeHint {
+        width: 93%;
+    }
+    .subscribeHint .hintList {
+        width: 72%;
+        font-size: .875em;
+    }
+    .subscribeHint .subscribeHint-event .btn {
+        width: 31%;
+        margin: 2em 1em;
+    }
+    
+     
+}

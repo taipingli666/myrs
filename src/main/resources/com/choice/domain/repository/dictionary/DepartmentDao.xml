@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choice.domain.repository.dictionary.DepartmentDao">
+	
+	<!-- 分页展示工作组信息 -->
+	<select id="getPageInfo" resultType="com.choice.domain.entity.dictionary.Department">
+		select department_id  AS 'departmentid',distance_flag AS 'distanceFlag',department_name AS 'departmentname',hos_num AS 'hosnum',hos_id AS 'hosid',remark
+		from common_department t where is_delete = '0'
+		<if test="hosid != null and hosid != '' ">
+			and t.hos_id = #{hosid}
+		</if>
+		<if test="contents != null and contents != '' ">
+			and t.department_name like CONCAT(CONCAT('%',#{contents}),'%')
+		</if>
+		LIMIT #{StartIndex},#{endIndex}
+	</select>
+	
+	<!-- 获取总信息条数 -->
+	<select id="getTotalNumber" resultType="int">
+		select count(1)
+		from common_department t  where is_delete = '0'
+		<if test="hosid!=null and hosid!=''">
+			and t.hos_id = #{hosid}
+		</if>
+		<if test="contents!=null and contents!=''">
+			and t.department_name like CONCAT(CONCAT('%',#{contents}),'%')
+		</if>
+	</select>
+	
+	<!-- 分页展示工作组信息 -->
+	<select id="getInfo" resultType="com.choice.domain.entity.dictionary.Department">
+		select department_id  AS 'departmentid',department_name AS 'departmentname',hos_num AS 'hosnum',hos_id AS 'hosid',is_delete AS 'isdelete',remark,
+		add_time AS 'addtime',add_person AS 'addperson',edit_time AS 'edittime',edit_person AS 'editperson',distance_flag AS distanceFlag
+		from common_department 
+		where department_id = #{id}
+	</select>
+	
+	<!-- 新增 -->
+	<insert id="insertDepartment" parameterType="com.choice.domain.entity.dictionary.Department">
+		insert into common_department(department_name,hos_num,hos_id,remark,add_time,add_person,is_delete,distance_flag)
+				values (#{department.departmentname,jdbcType=VARCHAR},#{department.hosnum,jdbcType=VARCHAR},#{department.hosid,jdbcType=DECIMAL},#{department.remark,jdbcType=VARCHAR},
+				#{department.addtime,jdbcType=DATE},#{department.addperson,jdbcType=DECIMAL},#{department.isdelete,jdbcType=DECIMAL},#{department.distanceFlag,jdbcType=VARCHAR})
+	</insert>
+		
+	<!-- 伪删除 -->	
+	<delete id="deleteDepartment" >
+	  	update	common_department SET  is_delete = 1 where department_id in
+	  	<foreach collection="array" index="index" item="item"
+	            open="(" separator="," close=")">
+	            #{item}
+	    </foreach>
+	  </delete>
+	
+	<!-- 修改 -->
+	<update id="updateDepartment" parameterType="com.choice.domain.entity.dictionary.Department" >
+		update	common_department SET department_name=#{department.departmentname,jdbcType=VARCHAR},hos_num=#{department.hosnum,jdbcType=VARCHAR},hos_id=#{department.hosid,jdbcType=DECIMAL},
+			remark=#{department.remark,jdbcType=VARCHAR},edit_person=#{department.editperson,jdbcType=DECIMAL},edit_time=#{department.edittime,jdbcType=DATE},distance_flag = #{department.distanceFlag,jdbcType=DECIMAL}
+		WHERE department_id=#{department.departmentid}
+	</update>
+
+	<select id="selectDepartment" resultType="com.choice.domain.entity.dictionary.Department">
+		select department_id  AS 'departmentid',department_code as 'departmentCode', department_name AS 'departmentname',hos_num AS 'hosnum',hos_id AS 'hosid',is_delete AS 'isdelete',remark,
+		add_time AS 'addtime',add_person AS 'addperson',edit_time AS 'edittime',edit_person AS 'editperson',distance_flag AS 'distanceFlag'
+		from common_department t where is_delete = '0'
+		<if test="department.hosid!=null and department.hosid!=''">
+			and t.hos_id = #{department.hosid,jdbcType=DECIMAL}
+		</if>
+		<if test="department.departmentname!=null and department.departmentname!=''">
+			and t.department_name like CONCAT(CONCAT('%',#{department.departmentname,jdbcType=VARCHAR}),'%')
+		</if>
+		<if test="department.distanceFlag!=null and department.distanceFlag!=''">
+			and t.distance_flag = #{department.distanceFlag,jdbcType=VARCHAR}
+		</if>
+
+	</select>
+
+	<!--检查是否已经存在此科室-->
+	<select id="checkDepartment" parameterType="com.choice.domain.entity.dictionary.Department" resultType="int">
+		select count(1) from common_department
+		where department_name = #{departmentname}
+		and hos_num = #{hosnum}
+		<if test="departmentid != null">
+			and department_id != #{departmentid}
+		</if>
+	</select>
+</mapper>

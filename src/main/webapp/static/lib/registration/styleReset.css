@@ -1,0 +1,1144 @@
+body{
+    /*font:1em/1.3 Helvetica Neue,Helvetica,Arial,sans-serif;*/
+}
+button, input, select, textarea,h1, h2, h3, h4, h5, h6{
+    font-size:1em;
+    line-height:1.3;
+}
+ul, ol {
+    list-style: none;
+    margin:0;
+    padding: 0;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+}
+/*#region 清除浮动*/
+.clearfix:after{
+    content: '\20';
+    display: block;
+    height: 0;
+    clear: both;
+}
+.clearfix {
+    *zoom:1;
+}
+/*#endregion */
+#header .logoImg{
+    padding-top: 0;
+    padding-bottom:0;
+    line-height:60px;
+}
+.tab-content .yiyuan_content_1{
+    padding-left:12.5em;
+    padding-right: 9em;
+    padding-top: 0;
+    position: relative;
+}
+.yiyuan_co_ddsp {
+    color: #f7b52c;
+    font-size: 12px;
+    padding: 0 2px;
+    padding-left: 20px;
+}
+.yiyuan_content_1 {
+    border-bottom: 1px solid #f4f6fa;
+    height: 165px;
+    padding-top: 10px;
+    /*width: 998px;*/
+}
+.yiyuan_content_1 .hospitalImg{
+    width: 12.5em;
+    height: 12.5em;
+    position: absolute;
+    left: 0;
+    top:0;
+}
+.yiyuan_co_titl,.hospitalInfo{
+    padding-left: 20px;
+}
+.yiyuan_content_1 .btnSubscribe{
+    display: inline-block;
+    *display:inline;
+    *zoom: 1;
+    margin: 0;
+    position: absolute;
+    right: 3em;
+    bottom: 8.125em;
+
+}
+.hospitalMain{
+    margin-top: 40px;
+}
+.hospitalMain .hospital-name{
+    font-size: 1.3em;
+}
+.yiyuan_content_1:hover{
+    background:#f4f9fd ;
+}
+.subscribeDoctor{
+    display:block;
+}
+.subscribeDoctor a{
+    margin-bottom: 0;
+}
+#_am a:hover,#_pm a:hover{
+    cursor: pointer;
+}
+.scheduleTable .active,.scheduleTable .active a{
+    background: #4a8bc2;
+    color: #fff !important;
+}
+#_yiyuanmc{
+    font-size: 1.25em !important;
+    color: #333;
+}
+/*#region button*/
+/*#region 手风琴插件*/
+.menu_list{
+    width:500px;
+}
+.menu_head{
+    height: 47px;
+    line-height: 47px;
+    padding-left: 38px;
+    font-size: 14px;
+    color: #525252;
+    cursor: pointer;
+    border-left: 1px solid #e1e1e1;
+    border-right: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+    border-top: 1px solid #f1f1f1;
+    position: relative;
+    margin: 0px;
+    font-weight: bold;
+    background: #f1f1f1;
+}
+.menu_list .menu_head:first-child{
+    border-top: 1px solid #e1e1e1;
+}
+.menu_list .current{
+    background:#f1f1f1;
+}
+.menu_body{
+    line-height: 38px;
+    border-left: 1px solid #e1e1e1;
+    backguound: #fff;
+    border-right: 1px solid #e1e1e1;
+}
+.menu_body a{
+    display:block;
+    height:38px;
+    line-height:38px;
+    padding-left:38px;
+    color:#777;
+    background:#fff;
+    text-decoration:none;
+    border-bottom:1px solid #e1e1e1;
+}
+.menu_body a:hover{
+    text-decoration:none;
+}
+/*#endragion*/
+.btn-blue{
+    display:block;
+    border:none;
+    background-color:#4aa0e3;
+    color:#fff;
+    font-size:0.875em;
+    font-family:"\5FAE\8F6F\96C5\9ED1";
+    text-align:center;
+    width:100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    padding:1em 1.25em;
+    cursor:pointer;
+}
+a.btn-blue:hover{
+    color:#fff;
+}
+.btn-w{
+    display:block;
+    border:none;
+    background-color:#fff;
+    color:#666;
+    font-size:0.875em;
+    font-family:"\5FAE\8F6F\96C5\9ED1";
+    text-align:center;
+    width:100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    padding:1em 1.25em;
+    cursor:pointer;
+    box-shadow: 1px 1px 12px rgba(0,0,0,.179);
+    -moz-box-shadow: 1px 1px 12px rgba(0,0,0,.179);
+    -ms-box-shadow: 1px 1px 12px rgba(0,0,0,.179);
+    -o-box-shadow: 1px 1px 12px rgba(0,0,0,.179);
+    -webkit-box-shadow: 1px 1px 12px rgba(0,0,0,.179);
+}
+a.btn-w:hover{
+    color:#fff;
+    background:#4aa0e3 ;
+}
+.btn-default.btnBack{
+    margin: 1em 0 0;
+}
+/*#endregion*/
+/*#region 科室班表*/
+.scheduleForms .col-main {
+    float:left;
+    width:100%;
+}
+.scheduleForms .col-main .main-wrap {
+    margin-left:2.4em;
+}
+.scheduleForms  .col-sub {
+    float: left;
+    margin-left: -100%;
+    width: 2.5em;
+}
+.scheduleTableLeft li{
+    font-size:.8125em;
+    color:#333;
+    text-align:center;
+    background-color:#f8fafc;
+    border:1px solid #e7e9ed;
+    padding: 10px 7px;
+    height:45px;
+    line-height:24px;
+}
+.scheduleTableLeft li:first-child{
+    border-bottom:none;
+}
+.scheduleTableBox{
+    z-index:1;
+    overflow-x: auto;
+    padding-left: 0.1rem;
+    width: 100%;
+}
+.scheduleTable,.tableLeft{
+    table-layout:fixed;
+}
+.scheduleTable td{
+    white-space:nowrap;
+    overflow:hidden;
+    word-break:keep-all;
+    text-overflow:ellipsis;
+    font-size:14px;
+    color:#333;
+    line-height: 27px;
+    text-align:center;
+    background-color:#fff;
+    border-right:1px solid #e7e9ed;
+    border-bottom:1px solid #e7e9ed;
+    padding:9px 7px;
+    width:100px;
+    height:20px;
+    border-left:none;
+}
+.doc .scheduleTable td{
+    line-height: 2.2em;
+    padding: 0;
+}
+.scheduleTable tr:first-child td{
+    border-top:1px solid #e7e9ed;
+}
+.scheduleTable tr:last-child td{
+    width: 45px;
+}
+.scheduleTable tr td:first-child{
+    border-left:1px solid #e7e9ed;
+}
+.doc{
+    width: 500px;
+}
+.doc .scheduleForms td{
+    height: 46px;
+    width: 70px;
+}
+.tableLeft td{
+    background-color: #f8fafc;
+    border: 1px solid #e7e9ed;
+    color: #333;
+    font-size: 0.8125em;
+    height: 45px;
+    line-height: 1.375em;
+    padding: 8px 7px;
+    text-align: center;
+}
+.doc .tableLeft td{
+    font-size: 11px;
+    padding: 0;
+    width: 3em;
+}
+.scheduleTable a{
+    line-height: 28px;
+}
+.doc .scheduleTable td a,.doc .scheduleTable td{
+    line-height: 30px;
+}
+/*#endregion*/
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width:100%;
+    word-break: break-all;
+}
+table th {
+    font-weight:normal;
+}
+table th,table td {
+    font-weight:normal;
+    text-align:center;
+}
+/*#region查询报告*/
+.queryReport{
+    position:relative;
+    max-width:60em;
+    margin: 4em auto;
+    background-color:#fff;
+    box-shadow: 0 .625em 1.6875em rgba(0,0,0,.179);
+    -webkit-box-shadow: 0 .625em 1.6875em rgba(0,0,0,.179);
+    -ms-box-shadow: 0 .625em 1.6875em rgba(0,0,0,.179);
+    -o-box-shadow: 0 .625em 1.6875em rgba(0,0,0,.179);
+}
+.queryReport .col-main {
+    float:left;
+    width:100%;
+}
+.queryReport .col-main .main-wrap {
+    margin-left:17.75em;
+    padding:0 1em;
+}
+.queryReport .col-sub {
+    float:left;
+    width:16.75em;
+    margin-left:-100%;
+}
+.queryReport .report-img{
+    display:block;
+    width:100%;
+}
+.queryReport .searchForm{
+    max-width:28.75em;
+    margin:0 auto;
+    padding-top:5em;
+    position: relative;
+}
+.queryReport .searchForm .hint{
+    bottom: 4em;
+    color: #af0000;
+    left: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+}
+.queryReport .searchForm  .input-text input{
+    border:none;
+    display: block;
+}
+.queryReport .searchForm .input-text-hasicon .icon{
+    font-size: 1.5em;
+    height: 1.25em;
+    left: 0;
+    line-height: 1.5em;
+    top: -4px;
+    width: 1.5em;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    position: absolute;
+}
+.queryReport .searchForm .input-text-hasicon .icon:before{
+    position: absolute;
+    left: 0;
+    right:0;
+    text-align: center;
+}
+.queryReport .searchForm .input-text-hasicon .icon.icon-lock{
+    font-size: 1.8em;
+}
+.queryReport .searchForm .input-text-hasicon .icon.icon-lock:before{
+    left: -.25em;
+}
+.queryReport .searchForm .input-text {
+    margin-top: 1.25em;
+    position: relative;
+    overflow: hidden;
+    height: 2.5em;
+    padding-left: 3em;
+    border-bottom:1px solid #d2d2d2;
+}
+.queryReport .searchForm button {
+    margin-top: 4em;
+}
+.userInfo .col-sub {
+    float: left;
+    margin-right: -100%;
+    width: 23%;
+}
+.userInfo .col-sub .personBox{
+    box-shadow: 1px 1px 12px rgba(0,0,0,.179);
+    -moz-box-shadow: 1px 1px 12px rgba(0,0,0,.179);
+    -ms-box-shadow: 1px 1px 12px rgba(0,0,0,.179);
+    -o-box-shadow: 1px 1px 12px rgba(0,0,0,.179);
+    -webkit-box-shadow: 1px 1px 12px rgba(0,0,0,.179);
+    margin-top: 3em;
+    padding: 8em 2em 2em;
+    position: relative;
+    border-radius:.5em !important;
+}
+.userInfo .col-sub .personBox .userBox-img{
+    border-radius: 50%;
+    height: 9em;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: -39px;
+    width: 9em;
+}
+.personData{
+    display: inline-block;
+    *display:inline;
+    *zoom: 1;
+    left: 50%;
+    margin-left: -4.9em;
+    position: relative;
+}
+.personData li {
+    font-size: 1.25em;
+    line-height: 1.875em;
+}
+.personData .personData-title{
+    display:inline-block;
+    *display:inline;
+    *zoom: 1;
+}
+.userInfo .col-main .medicalLog {
+    border-radius: 5px;
+    margin-left: 26%;
+}
+.userInfo .col-main {
+    float: left;
+    width: 100%;
+}
+.medicalLog .medicalList li{
+    position: relative;
+    background: #f1f1f1 ;
+    margin-top: 2em;
+    border-radius: .5em !important;
+    box-shadow: 1px 1px 12px rgba(0,0,0,.25);
+    -moz-box-shadow: 1px 1px 12px rgba(0,0,0,.25);
+    -ms-box-shadow: 1px 1px 12px rgba(0,0,0,.25);
+    -o-box-shadow: 1px 1px 12px rgba(0,0,0,.25);
+    -webkit-box-shadow: 1px 1px 12px rgba(0,0,0,.25);
+}
+.medicalLog .medicalList .logItem .logItem-title{
+    color: #777;
+    font-size: 1.1em;
+    padding: 1em 8em 1em 1em;
+    position: relative;
+}
+.logItem .logItem-title .logItem-event{
+    border-radius: 0.2em !important;
+    font-size: 0.9em;
+    line-height: 1em;
+    margin-top: -1.1em;
+    padding: 0.6em;
+    position: absolute;
+    right: 1em;
+    top: 50%;
+    width: 6em;
+    text-decoration:none;
+}
+.logItem .logItem-other{
+    background: #fff;
+    border-radius: 0 0 .5em .5em !important;
+    padding: 1em;
+}
+.logItem-other .info-title{
+    display: inline-block;
+    *display:inline;
+    *zoom: 1;
+    margin-bottom: 0;
+}
+.logItem-other .logItem-otherInfo{
+    float: left;
+    padding-right: 1%;
+    width: 32%;
+    margin-bottom: 0;
+}
+.userInfo .col-main .medicalLog .medicalLog-empty{
+    height: 10em;
+    margin: 1.5em 0;
+    text-align: center;
+    font-size: 2em;
+    padding: 4em 0 0;
+    border-radius:.2em !important;
+    box-shadow: 1px 1px 12px rgba(0,0,0,.25);
+    -moz-box-shadow: 1px 1px 12px rgba(0,0,0,.25);
+    -ms-box-shadow: 1px 1px 12px rgba(0,0,0,.25);
+    -o-box-shadow: 1px 1px 12px rgba(0,0,0,.25);
+    -webkit-box-shadow: 1px 1px 12px rgba(0,0,0,.25);
+}
+.logEmpty{
+    background: #fff;
+    height: 10em;
+    margin: 1.5em 0;
+    text-align: center;
+    font-size: 2em;
+    padding: 4em 0 0;
+    border-radius:.2em !important;
+}
+.logEmpty h1{
+    color: #999;
+}
+.medicalLog-empty .icon,.logEmpty .icon{
+    background: #eee !important;
+    display: block;
+    height: 3em;
+    width: 3em;
+    border-radius: 50%;
+    color: #fff;
+    position: relative;
+    margin: 0 auto 1em;
+}
+.medicalLog-empty .icon:before,.logEmpty .icon:before{
+    font-size: 1.5em;
+    left: 50%;
+    margin: -0.5em 0 0 -0.32em;
+    position: absolute;
+    top: 50%;
+}
+.medicalInfo-item{
+    margin-bottom: 2em;
+}
+.medicalInfo-item .medicalInfo-title{
+    background: #f1f1f1;
+    color:#333;
+    font-weight: bold;
+    border-radius: 0.3em 0.3em 0 0 !important;
+    display: inline-block;
+    padding: 0.5em 0.5em 0.3em;
+    box-shadow: 1px 0px 1px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 1px 0px 1px rgba(0, 0, 0, 0.15);
+    -ms-box-shadow: 1px 0px 1px rgba(0, 0, 0, 0.15);
+    -o-box-shadow: 1px 0px 1px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 1px 0px 1px rgba(0, 0, 0, 0.15);
+}
+.medicalInfo-item .recipeList,.medicalInfo-item .reportList{
+    border:2px solid #f1f1f1;
+    border-radius: 0 0.4em 0.4em !important;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
+    -ms-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
+    -o-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
+}
+.medicalInfo-item  .dataNo{
+    color: #666;
+    font-size: 0.875em;
+    font-weight: bold;
+    padding: 1em;
+    text-align: center;
+}
+.medicalInfo-item  .dataNo span{
+    display: inline-block;
+    *display:inline;
+    *zoom: 1;
+    padding-left: 2em;
+    position: relative;
+}
+.medicalInfo-item  .dataNo span:before{
+    content: "\f016";
+    font-family: 'FontAwesome';
+    color: #666;
+    font-size:2em;
+    position: absolute;
+    left:0;
+    top: 50%;
+    transform:translateY(-50%);
+    -webkit-transform:translateY(-50%);
+    -ms-transform:translateY(-50%);
+    -o-transform:translateY(-50%);
+}
+.medicalInfo-item .recipeList li:nth-child(even) ,.medicalInfo-item .reportList li:nth-child(even){
+    background: #f9f9f9;
+}
+.medicalInfo-item .recipeList li:hover,.medicalInfo-item .reportList li:hover{
+    background: #4a8bc2;
+}
+.medicalInfo-item  li.dataNo:hover{
+    background: #f9f9f9;
+}
+.medicalInfo-item .recipeList .logItem-other,.medicalInfo-item .reportList .logItem-other{
+    padding: .5em;
+    color: #555;
+    font-size: 1.1em;
+}
+.medicalInfo-item .recipeList .logItem-other .info-title,.medicalInfo-item .reportList .logItem-other .info-title{
+    color: #888;
+}
+.medicalInfo-item .recipeList li:hover .logItem-other,
+.medicalInfo-item .reportList li:hover .logItem-other,
+.medicalInfo-item .recipeList li:hover .logItem-other .info-title,
+.medicalInfo-item .reportList li:hover .logItem-other .info-title {
+    color: #fff;
+}
+.medicalInfo-item .reportList a,.medicalInfo-item .recipeList a{
+    text-decoration:none !important;
+}
+.appHeard{
+    position: relative;
+}
+.appHeard .btnback{
+    display: none;
+    background: #4aa0e3;
+    bottom: 0;
+    line-height: 2.6em;
+    padding: 0 1em;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.appHeard .btnback a{
+    text-decoration:none;
+    color: #fff;
+}
+.tableThird {
+    table-layout: fixed;
+    width: 100%;
+}
+.medicalReceipts{
+    background: #fff;
+    border-radius: 1em !important;
+    padding:0 2em .5em;
+    overflow: hidden;
+}
+.receiptsBox-hd h1{
+    background: #4aa0e3;
+    border-radius: 0.875em 0.875em 0 0;
+    color: #fff;
+    font-size: 1.25em;
+    font-weight: bold;
+    margin: 0 -1.6em 1em;
+    padding: 1em 2em;
+}
+.tableThird td{
+    text-align: center;
+    font-size: 1.1em;
+    padding: 1em;
+    border-bottom:1px dashed #ccc;
+}
+.tableThird tr td:first-child,.tableThird tr th:first-child{
+    text-align: left;
+}
+.tableThird tr td:last-child,.tableThird tr th:last-child{
+    text-align: right;
+}
+.tableThird .w1{
+    text-align: left;
+    width: 40%;
+}
+.tableThird .w2{
+    text-align: center;
+    width: 20%;
+}
+.tableThird .w3{
+    text-align: right;
+    width: 40%;
+}
+.receiptsBox .tableThird .w1,.receiptsBox .tableThird .w3{
+    width: 32%;
+}
+.receiptsBox .tableThird .w2{
+    width: 15%;
+}
+.receiptsBox .tableThird .w4{
+    width: 21%;
+}
+.whitePage2 {
+    background: #f1f1f1;
+    padding: 1em !important;
+}
+.medicalReceipts .logItem-other .logItem-otherInfo{
+    font-size: 1.2em;
+    margin: 1em 0;
+}
+.receiptsBox-hd .logItem-other .logItem-otherInfo{
+    font-size: 1.2em;
+    margin: 0 0 2em;
+}
+.tableThird th{
+    background: #eee;
+    padding: 1em;
+    font-size: 1.1em;
+}
+.text-red{
+    color:#e9322d;
+}
+.text-blue{
+    color: #00adee;
+}
+.text-violet{
+    color:#9055a2;
+}
+.hint2{
+    font-size: 1em;
+    color: #666;
+    line-height: 2em;
+    padding: 1em;
+}
+.userInfo .eventBox{
+    margin-top: 1.5em;
+    position: relative;
+}
+.userInfo .eventBox .btn_1{
+    border-radius: .3em !important;
+    text-decoration:none;
+    font-size: 1.2em;
+    padding: 0.6em;
+}
+.userInfo .eventBox .btn_2{
+    margin-bottom:1em ;
+}
+.userInfo .eventBox .btn_2 a{
+    width: 45%;
+    float: left;
+    border-radius: .3em !important;
+    font-size: 1em;
+    text-decoration:none;
+    padding: .6em .5em;
+}
+.userInfo .eventBox .btn_2 a:first-child{
+    margin-right: 10%;
+}
+.independent{
+    width:86em;
+    padding: 0 4em;
+    margin: 0 auto;
+    font-size: .75em;
+}
+.independent .appHeard{
+    height:2em;
+}
+.independent .appHeard .btnback{
+    height:2.6em;
+}
+.independent .userInfo .col-sub {
+    width: 31%;
+    margin-top: 12em;
+}
+.independent .userInfo .col-main .medicalLog {
+    margin-left: 32%;
+    border-radius: 0 !important;
+    margin-top: 2em;
+}
+.independent .userInfo .col-sub .personBox {
+    background: #fff url("../../img/u3.jpg") no-repeat top center;
+    background-size: contain;
+    margin-top: 0;
+    padding-bottom: 5em;
+    padding-top: 13.6em;
+}
+.independent .userInfo .col-main .medicalLog .medicalLog-empty {
+    background: #fff;
+    margin-top: 0;
+}
+.independent .userInfo .col-main .hdImg{
+    width: 100%;
+    height: 10em;
+}
+.independent .userInfo .col-sub .personBox .userBox-img {
+    top: -22px;
+}
+.subscribeDoctor .doctoritem{
+    max-width: 500px;
+    height: 100px;
+    border: solid 1px #E1E1E1;
+    background: #F1F1F1;
+}
+.documentInfo{
+    padding: 2.5em 0 0 8em;
+}
+.documentInfo a{
+    margin-left: 1em;
+}
+.doctorTimeBox{
+    width: 100%;
+}
+.wrapper-content {
+    padding: 1.25em;
+}
+.wrapper-content2 {
+    padding:2em;
+}
+/*#endregion*/
+@media (max-width: 760px){
+    body {
+        /*padding: 0 !important;*/
+        background: #fff;
+    }
+    .container-fluid{
+        padding: 0 !important;
+    }
+    .tab-content .yiyuan_content_1 {
+        padding: 0.5em 0 3em 7em;
+        height: 10em;
+    }
+    .yiyuan_content_1 .hospitalImg{
+        width: 6em;
+        height:6em;
+        top: 0.5em;
+    }
+    .yiyuan_co_dl,.hospitalMain{
+        margin-top: 0;
+    }
+    .yiyuan_co_dl{
+        margin: 0;
+    }
+    .yiyuan_co_titl, .hospitalInfo {
+        margin: 0;
+        padding-left: 0;
+        padding-top: 0;
+    }
+    .hospitalMain .hospital-name{
+        font-size:1.12em ;
+    }
+    .hospitalInfo p{
+        margin: 0;
+        font-size: 1em;
+    }
+    .yiyuan_content_1 .btnSubscribe{
+        bottom:.5em;
+        right: 0;
+    }
+    .yiyuan_content_1:hover{
+        background:#fff ;
+    }
+    .main-content{
+        margin: 0;
+    }
+    #header .logoImg{
+         line-height: 3.7em;
+         padding: 0 0 0 1em !important;
+         width: 6em !important;
+     }
+    #header .logoImg:last-child{
+        padding: 0 !important;
+        width: 6em !important;
+    }
+    #header.navbar-inverse .btn-navbar{
+        margin-top:1.3125em ;
+        margin-right: 1em;
+        border-radius: .3em !important;
+        /*background-color:#427dae;*/
+    }
+    .navbar-inverse .nav > li > a {
+        color: #333 !important;
+    }
+    .navbar-inverse .nav li.dropdown > .dropdown-toggle .caret {
+        border-bottom-color: #333 !important;
+        border-top-color: #333 !important;
+    }
+    #footer{
+        display: none;
+    }
+    .nav-tabs > li > a, .nav-pills > li > a {
+
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+    #_am a,#_pm a{
+        font-size:.75em !important;
+    }
+    .scheduleTable td span{
+        font-size:.75em !important;
+    }
+    .doc{
+        width: 100% !important;
+    }
+    .tableLeft td{
+        line-height: 1.5em;
+    }
+    /*#region 查询报告*/
+    .queryReport .col-main .main-wrap{
+        margin-left: 0;
+    }
+    .queryReport .col-sub{
+        display: none;
+    }
+    .queryReport {
+        margin: 1em;
+    }
+    .queryReport .searchForm {
+        padding-top: 1em;
+    }
+    .queryReport .col-main .main-wrap {
+        min-height: 23.5em;
+    }
+    .queryReport .searchForm button {
+        font-size: 1rem;
+        margin-top: 3em;
+        padding: 0.7em 1.25em;
+    }
+    .userInfo{
+        margin: 0 1em;
+    }
+    .userInfo .col-sub {
+        float: none;
+        margin-right: 0;
+        width: 100%;
+    }
+    .userInfo .col-main .medicalLog {
+        margin-left: 0;
+    }
+    .medicalLog .medicalList li {
+        background: #fff;
+    }
+    .medicalLog .medicalList .logItem .logItem-title {
+        padding: 1em;
+        border: 1px solid #eee;
+        color: #333;
+    }
+    .medicalLog .medicalList .logItem .logItem{
+        overflow: hidden;
+    }
+    .logItem .logItem-title .logItem-event{
+        background: transparent;
+        bottom: -5em;
+        left: 0;
+        right: 0;
+        top: 0;
+        width: 100%;
+        text-indent:-9999em ;
+        z-index: 109;
+    }
+    .logItem-other .logItem-otherInfo {
+        float: none;
+        margin-bottom: 0;
+        padding-left: 6em;
+        padding-right: 0;
+        position: relative;
+        width: 100%;
+        text-align: right;
+        box-sizing: border-box;
+        color: #333;
+    }
+    .logItem-other .info-title {
+        left: 0;
+        margin-bottom: 0;
+        position: absolute;
+        color: #999;
+    }
+    .userInfo .col-main .medicalLog .medicalLog-empty{
+        margin: 1.5em 0 0;
+    }
+    .medicalInfo{
+        margin: 0 -5px;
+    }
+    .medicalInfo-item .medicalInfo-title {
+        background: #fff;
+        border-radius: 0 !important;
+        box-shadow: none;
+        color: #333;
+        display: block;
+        font-weight: bold;
+        font-size:1.1em;
+        padding: 0.5em 0.5em 0.3em;
+        border-bottom: 1px solid #eee;
+    }
+    .medicalInfo-item .recipeList, .medicalInfo-item .reportList {
+        border:none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .medicalInfo-item .recipeList li:hover,.medicalInfo-item .reportList li:hover{
+        background: #fff;
+    }
+    .medicalInfo-item .recipeList li:hover .logItem-other,
+    .medicalInfo-item .reportList li:hover .logItem-other {
+        color: #333;
+    }
+    .medicalInfo-item .recipeList li:hover .logItem-other .info-title,
+    .medicalInfo-item .reportList li:hover .logItem-other .info-title {
+        color: #888;
+    }
+    .medicalInfo-item .logItem-other .logItem-otherInfo {
+        text-align: left;
+    }
+    .medicalInfo-item .recipeList li:nth-child(even) ,
+    .medicalInfo-item .reportList li:nth-child(even),
+    .medicalInfo-item .recipeList li:nth-child(odd) ,
+    .medicalInfo-item .reportList li:nth-child(odd)
+    {
+        background: #fff;
+    }
+    .medicalInfo-item li{
+        border-bottom:1px solid #eee ;
+    }
+    .medicalInfo-item li a{
+        padding-right: 2em;
+        position: relative;
+        display: block;
+    }
+    .medicalInfo-item li a:before{
+        content: "\f105";
+        font-family: 'FontAwesome';
+        color: #666;
+        font-size: 2.2em;
+        position: absolute;
+        right: 0.2em;
+        top: 50%;
+        transform:translateY(-50%);
+        -webkit-transform:translateY(-50%);
+        -ms-transform:translateY(-50%);
+        -o-transform:translateY(-50%);
+
+    }
+    .whitePage1{
+        background:#eee;
+    }
+    .whitePage1 #main-content{
+        background:#eee;
+    }
+    .whitePage1 .appheader-hide{
+        display: none;
+    }
+    .whitePage1 .appHeard {
+        background: #fff;
+        border-bottom: 1px solid #eee;
+        height: 3.5em;
+        left: 0;
+        padding: 0 4em;
+        position: fixed;
+        right: 0;
+        text-align: center;
+        top: 0;
+        z-index: 111;
+    }
+    .whitePage1 .appHeard li:first-child{
+        display: none;
+    }
+    .whitePage1 .appHeard li.active{
+        color: #333;
+        font-size: 1.3em;
+        line-height: 2.8em;
+    }
+    .whitePage1 .medicalInfo{
+        margin-top: .5em;
+    }
+    .whitePage1 .independent .medicalInfo{
+        margin-top: 2.5em;
+    }
+    .appHeard .btnback {
+        background: transparent;
+        bottom: 0;
+        display: none;
+        left: 0;
+        line-height: 2.6em;
+        padding: 0;
+        position: absolute;
+        width: 4em;
+        top: 0;
+    }
+    .appHeard .btnback a{
+        color: #555;
+        display: block;
+        height: 3.6em;
+        position: relative;
+        text-indent: -999em;
+    }
+    .appHeard .btnback a:before{
+        text-indent: 0;
+        content: "\f104";
+        font-family: 'FontAwesome';
+        color: #666;
+        font-size: 2.2em;
+        position: absolute;
+        left: 0.5em;
+        top: 50%;
+        transform:translateY(-50%);
+        -webkit-transform:translateY(-50%);
+        -ms-transform:translateY(-50%);
+        -o-transform:translateY(-50%);
+    }
+    .receiptsBox-hd .logItem-other .logItem-otherInfo {
+        font-size: 1em;
+        margin: 0 0 .6em;
+    }
+    .medicalReceipts {
+        padding: 0 1em 2em;
+    }
+    .receiptsBox-hd h1 {
+        padding: 1em 1.7em;
+    }
+    .tableThird th {
+        font-size: 0.875em;
+        padding: 0.875em;
+    }
+    .tableThird{
+        margin-top: 1em;
+    }
+    .tableThird td {
+        font-size: 0.875em;
+        padding: 1em 0;
+    }
+    .medicalReceipts .logItem-other .logItem-otherInfo {
+        font-size: 1em;
+        margin: 1em 0;
+    }
+    .independent {
+        box-sizing: border-box;
+        padding: 1em 0;
+        width: 100%;
+        font-size: .75em;
+    }
+    .independent .userInfo .col-main .hdImg {
+        display: none;
+    }
+    .independent .userInfo .col-sub {
+        margin-top: 0;
+        width:100%;
+    }
+    .independent .userInfo .col-main .medicalLog {
+        border-radius: 0;
+        margin-left:0;
+    }
+    .menu_list{
+        width: 100%;
+    }
+    /*.subscribeDoctor .doctoritem{*/
+        /*width: 100%;*/
+    /*}*/
+
+    .scheduleForms .main-wrap{
+        /*max-width: 320px;*/
+    }
+    .scheduleTable a{
+        display: block;
+    }
+    .subscribeDoctor {
+        display: block;
+    }
+    /*#endregion*/
+}
+@media (max-width: 320px){
+    #header.navbar-inverse .btn-navbar {
+        margin-top: -3.5em;
+    }
+    .hospitalInfo{
+        font-size: .875em;
+    }
+    .doc .scheduleForms td {
+        font-size: .875em;
+    }
+}

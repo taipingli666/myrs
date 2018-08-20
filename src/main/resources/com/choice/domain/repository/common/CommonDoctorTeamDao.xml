@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.choice.domain.repository.common.CommonDoctorTeamDao" >
+  
+	<resultMap id="BaseResultMap" type="com.choice.domain.entity.common.CommonDoctorTeam" >
+	  <id column="team_id" property="teamId" jdbcType="INTEGER" />
+	  <result column="team_leader" property="teamLeader" jdbcType="INTEGER" />
+	  <result column="name" property="name" jdbcType="VARCHAR" />
+	  <result column="hos_id" property="hosId" jdbcType="VARCHAR" />
+	  <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+	  <result column="add_person" property="addPerson" jdbcType="VARCHAR" />
+	  <result column="edit_time" property="editTime" jdbcType="TIMESTAMP" />
+	  <result column="edit_person" property="editPerson" jdbcType="INTEGER" />
+	  <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<sql id="Base_Column_List" >
+	  team_id, team_leader, name, hos_id, add_time, add_person, edit_time, edit_person, is_delete
+	</sql>
+	
+  	<!-- 查询所有团队 -->
+  	<select id="getListByPage" resultMap="BaseResultMap">
+  		select
+  		<include refid="Base_Column_List" />
+  		from common_doctor_team
+  		<where>
+	    	is_delete = 0
+	    	<if test="team.name != null and team.name != ''">
+	    		AND name like CONCAT(CONCAT('%',#{team.name}),'%')
+	    	</if>
+	    	<if test="subString != null and subString != ''">
+	    		and hos_id in
+			  	<foreach collection="subString" index="index" item="item"
+			            open="(" separator="," close=")">
+			            #{item}
+			    </foreach>
+	    	</if>
+	    </where>
+  	</select>
+  	
+  	<select id="getById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from common_doctor_team
+	    where team_id = #{teamId,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteTeams" >
+	  	update	common_doctor_team SET  is_delete = 1 where team_id in
+	  	<foreach collection="array" index="index" item="item"
+	            open="(" separator="," close=")">
+	            #{item}
+	    </foreach>
+	 </delete>
+	 
+	 <!-- 得到最大id+1 -->
+	 <select id="getMaxId" resultType="java.lang.Integer">
+	 	select count(team_id)+1 as team_id from common_doctor_team
+	 </select>
+	 
+	 <!-- 插入 -->
+	 <insert id="addTeam" parameterType="com.choice.domain.entity.common.CommonDoctorTeam">
+	 	insert into common_doctor_team(team_id, team_leader, name, hos_id, add_time,
+	 	 add_person, edit_time, edit_person, is_delete)
+	 	 values(#{teamId,jdbcType=INTEGER},#{teamLeader,jdbcType=INTEGER},
+	 	 #{name,jdbcType=VARCHAR},#{hosId,jdbcType=VARCHAR},#{addTime,jdbcType=TIMESTAMP},
+	 	 #{addPerson,jdbcType=VARCHAR},#{editTime,jdbcType=TIMESTAMP},#{editPerson,jdbcType=INTEGER},#{isDelete,jdbcType=INTEGER})
+	 </insert>
+	 
+	 <!-- 更新 -->
+	 <update id="updateTeam" parameterType="com.choice.domain.entity.common.CommonDoctorTeam" >
+	    update common_doctor_team
+	    set team_leader = #{teamLeader,jdbcType=INTEGER},
+	      name =  #{name,jdbcType=VARCHAR},
+	      hos_id = #{hosId,jdbcType=VARCHAR},
+	      edit_time = #{editTime,jdbcType=TIMESTAMP},
+	      edit_person = #{editPerson,jdbcType=INTEGER}
+	      where team_id = #{teamId,jdbcType=INTEGER}
+	  </update>
+  	
+</mapper>

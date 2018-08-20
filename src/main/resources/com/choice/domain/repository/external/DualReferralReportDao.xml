@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choice.domain.repository.external.DualReferralReportDao">
+  <resultMap id="BaseResultMap" type="com.choice.domain.entity.external.DualReferralReport">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="area_code" jdbcType="VARCHAR" property="areaCode" />
+    <result column="area_name" jdbcType="VARCHAR" property="areaName" />
+    <result column="parent_code" jdbcType="VARCHAR" property="parentCode" />
+    <result column="count_date" jdbcType="TIMESTAMP" property="countDate" />
+    <result column="referral_out_quantity" jdbcType="BIGINT" property="referralOutQuantity" />
+    <result column="referral_in_quantity" jdbcType="BIGINT" property="referralInQuantity" />
+    <result column="year" jdbcType="VARCHAR" property="year" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, area_code, area_name, parent_code, count_date, referral_out_quantity , referral_in_quantity,year
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dual_referral_report
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dual_referral_report
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insert" parameterType="com.choice.domain.entity.external.DualReferralReport">
+    insert into dual_referral_report (area_code, area_name, parent_code, 
+      count_date, referral_out_quantity,referral_in_quantity,year)
+    values (#{areaCode,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, #{parentCode,jdbcType=VARCHAR}, 
+      #{countDate,jdbcType=TIMESTAMP}, #{referralOutQuantity,jdbcType=BIGINT}, #{referralInQuantity,jdbcType=BIGINT}, #{year,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.choice.domain.entity.external.DualReferralReport">
+    insert into dual_referral_report
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="areaCode != null">
+        area_code,
+      </if>
+      <if test="areaName != null">
+        area_name,
+      </if>
+      <if test="parentCode != null">
+        parent_code,
+      </if>
+      <if test="countDate != null">
+        count_date,
+      </if>
+      <if test="referralOutQuantity != null">
+        referral_out_quantity,
+      </if>
+      <if test="referralInQuantity != null">
+        referral_in_quantity,
+      </if>
+      <if test="year != null">
+        year,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="areaCode != null">
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null">
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countDate != null">
+        #{countDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="referralOutQuantity != null">
+        #{referralOutQuantity,jdbcType=BIGINT},
+      </if>
+      <if test="referralInQuantity != null">
+        #{referralInQuantity,jdbcType=BIGINT},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.choice.domain.entity.external.DualReferralReport">
+    update dual_referral_report
+    <set>
+      <if test="areaCode != null">
+        area_code = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null">
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        parent_code = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countDate != null">
+        count_date = #{countDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="referralOutQuantity != null">
+        referral_out_quantity = #{referralOutQuantity,jdbcType=BIGINT},
+      </if>
+      <if test="referralInQuantity != null">
+        referral_in_quantity = #{referralInQuantity,jdbcType=BIGINT},
+      </if>
+      <if test="year != null">
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.choice.domain.entity.external.DualReferralReport">
+    update dual_referral_report
+    set area_code = #{areaCode,jdbcType=VARCHAR},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      parent_code = #{parentCode,jdbcType=VARCHAR},
+      count_date = #{countDate,jdbcType=TIMESTAMP},
+      referral_out_quantity = #{referralOutQuantity,jdbcType=BIGINT},
+      referral_in_quantity = #{referralInQuantity,jdbcType=BIGINT},
+      year = #{year,jdbcType=VARCHAR},
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getNowDateData" parameterType="com.choice.domain.entity.external.DualReferralReport" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dual_referral_report
+    where area_code = #{areaCode,jdbcType=VARCHAR}
+    and count_date = DATE_FORMAT(#{countDate,jdbcType=TIMESTAMP},'%Y-%m-%d')
+  </select>
+
+  <update id="updateReferralOut" parameterType="com.choice.domain.entity.external.DualReferralReport">
+    update dual_referral_report
+    set
+    referral_out_quantity = referral_out_quantity + + #{referralOutQuantity,jdbcType=BIGINT}
+    where area_code = #{areaCode,jdbcType=VARCHAR}
+    and count_date = DATE_FORMAT(#{countDate,jdbcType=TIMESTAMP},'%Y-%m-%d')
+  </update>
+
+  <update id="updateReferralIn" parameterType="com.choice.domain.entity.external.DualReferralReport">
+    update dual_referral_report
+    set
+    referral_in_quantity = referral_in_quantity + #{referralInQuantity,jdbcType=BIGINT}
+    where area_code = #{areaCode,jdbcType=VARCHAR}
+    and count_date = DATE_FORMAT(#{countDate,jdbcType=TIMESTAMP},'%Y-%m-%d')
+  </update>
+
+  <select id="getParentListString" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT getAreaParentList(#{areaCode,jdbcType=VARCHAR})
+  </select>
+
+  <select id="selectYearReportData" parameterType="com.choice.domain.entity.external.DualReferralReport" resultMap="BaseResultMap">
+    SELECT area_code,area_name,
+    SUM(referral_out_quantity) referral_out_quantity ,
+    SUM(referral_in_quantity) referral_in_quantity
+     FROM dual_referral_report
+     WHERE parent_code =#{parentCode,jdbcType=VARCHAR}
+     AND year = #{year,jdbcType=VARCHAR}
+    <if test="areaName != null and areaName != '' ">
+      AND area_name like CONCAT(CONCAT('%',#{areaName,jdbcType=VARCHAR}),'%')
+    </if>
+    GROUP BY area_code,area_name
+  </select>
+
+  <delete id="deleteByDate" parameterType="java.util.Date">
+    delete from dual_referral_report
+    where count_date = DATE_FORMAT(#{referralDate,jdbcType=TIMESTAMP},'%Y-%m-%d')
+  </delete>
+</mapper>

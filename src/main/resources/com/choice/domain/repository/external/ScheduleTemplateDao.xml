@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choice.domain.repository.external.ScheduleTemplateDao">
+  <resultMap id="BaseResultMap" type="com.choice.domain.entity.external.ScheduleTemplate">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="schedule_type" jdbcType="CHAR" property="scheduleType" />
+    <result column="hos_code" jdbcType="VARCHAR" property="hosCode" />
+    <result column="hos_name" jdbcType="VARCHAR" property="hosName" />
+    <result column="dept_code" jdbcType="VARCHAR" property="deptCode" />
+    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+    <result column="doctor_code" jdbcType="VARCHAR" property="doctorCode" />
+    <result column="doctor_name" jdbcType="VARCHAR" property="doctorName" />
+    <result column="week_day" jdbcType="VARCHAR" property="weekDay" />
+    <result column="work_period" jdbcType="VARCHAR" property="workPeriod" />
+    <result column="work_time_start" jdbcType="VARCHAR" property="workTimeStart" />
+    <result column="work_time_end" jdbcType="VARCHAR" property="workTimeEnd" />
+    <result column="register_type" jdbcType="VARCHAR" property="registerType" />
+    <result column="register_cost" jdbcType="DECIMAL" property="registerCost" />
+    <result column="register_quantity" jdbcType="INTEGER" property="registerQuantity" />
+    <result column="create_oper" jdbcType="VARCHAR" property="createOper" />
+    <result column="create_time" jdbcType="TIME" property="createTime" />
+    <result column="change_oper" jdbcType="VARCHAR" property="changeOper" />
+    <result column="change_time" jdbcType="TIME" property="changeTime" />
+    <result column="delete_flag" jdbcType="VARCHAR" property="deleteFlag" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, schedule_type, hos_code, hos_name, dept_code, dept_name, doctor_code, doctor_name, 
+    week_day, work_period, work_time_start, work_time_end, register_type, register_cost, 
+    register_quantity, create_oper, create_time, change_oper, change_time, delete_flag
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from schedule_template
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from schedule_template
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.choice.domain.entity.external.ScheduleTemplate">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into schedule_template (schedule_type, hos_code, hos_name, 
+      dept_code, dept_name, doctor_code, 
+      doctor_name, week_day, work_period, 
+      work_time_start, work_time_end, register_type, 
+      register_cost, register_quantity, create_oper, 
+      create_time, change_oper, change_time, 
+      delete_flag)
+    values (#{scheduleType,jdbcType=CHAR}, #{hosCode,jdbcType=VARCHAR}, #{hosName,jdbcType=VARCHAR}, 
+      #{deptCode,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, #{doctorCode,jdbcType=VARCHAR}, 
+      #{doctorName,jdbcType=VARCHAR}, #{weekDay,jdbcType=VARCHAR}, #{workPeriod,jdbcType=VARCHAR}, 
+      #{workTimeStart,jdbcType=VARCHAR}, #{workTimeEnd,jdbcType=VARCHAR}, #{registerType,jdbcType=VARCHAR}, 
+      #{registerCost,jdbcType=DECIMAL}, #{registerQuantity,jdbcType=INTEGER}, #{createOper,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIME}, #{changeOper,jdbcType=VARCHAR}, #{changeTime,jdbcType=TIME}, 
+      #{deleteFlag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.choice.domain.entity.external.ScheduleTemplate">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into schedule_template
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="scheduleType != null">
+        schedule_type,
+      </if>
+      <if test="hosCode != null">
+        hos_code,
+      </if>
+      <if test="hosName != null">
+        hos_name,
+      </if>
+      <if test="deptCode != null">
+        dept_code,
+      </if>
+      <if test="deptName != null">
+        dept_name,
+      </if>
+      <if test="doctorCode != null">
+        doctor_code,
+      </if>
+      <if test="doctorName != null">
+        doctor_name,
+      </if>
+      <if test="weekDay != null">
+        week_day,
+      </if>
+      <if test="workPeriod != null">
+        work_period,
+      </if>
+      <if test="workTimeStart != null">
+        work_time_start,
+      </if>
+      <if test="workTimeEnd != null">
+        work_time_end,
+      </if>
+      <if test="registerType != null">
+        register_type,
+      </if>
+      <if test="registerCost != null">
+        register_cost,
+      </if>
+      <if test="registerQuantity != null">
+        register_quantity,
+      </if>
+      <if test="createOper != null">
+        create_oper,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="changeOper != null">
+        change_oper,
+      </if>
+      <if test="changeTime != null">
+        change_time,
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="scheduleType != null">
+        #{scheduleType,jdbcType=CHAR},
+      </if>
+      <if test="hosCode != null">
+        #{hosCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hosName != null">
+        #{hosName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null">
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null">
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorCode != null">
+        #{doctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null">
+        #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="weekDay != null">
+        #{weekDay,jdbcType=VARCHAR},
+      </if>
+      <if test="workPeriod != null">
+        #{workPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="workTimeStart != null">
+        #{workTimeStart,jdbcType=VARCHAR},
+      </if>
+      <if test="workTimeEnd != null">
+        #{workTimeEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="registerType != null">
+        #{registerType,jdbcType=VARCHAR},
+      </if>
+      <if test="registerCost != null">
+        #{registerCost,jdbcType=DECIMAL},
+      </if>
+      <if test="registerQuantity != null">
+        #{registerQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="createOper != null">
+        #{createOper,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIME},
+      </if>
+      <if test="changeOper != null">
+        #{changeOper,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null">
+        #{changeTime,jdbcType=TIME},
+      </if>
+      <if test="deleteFlag != null">
+        #{deleteFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.choice.domain.entity.external.ScheduleTemplate">
+    update schedule_template
+    <set>
+      <if test="scheduleType != null">
+        schedule_type = #{scheduleType,jdbcType=CHAR},
+      </if>
+      <if test="hosCode != null">
+        hos_code = #{hosCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hosName != null">
+        hos_name = #{hosName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null">
+        dept_code = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null">
+        dept_name = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorCode != null">
+        doctor_code = #{doctorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="doctorName != null">
+        doctor_name = #{doctorName,jdbcType=VARCHAR},
+      </if>
+      <if test="weekDay != null">
+        week_day = #{weekDay,jdbcType=VARCHAR},
+      </if>
+      <if test="workPeriod != null">
+        work_period = #{workPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="workTimeStart != null">
+        work_time_start = #{workTimeStart,jdbcType=VARCHAR},
+      </if>
+      <if test="workTimeEnd != null">
+        work_time_end = #{workTimeEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="registerType != null">
+        register_type = #{registerType,jdbcType=VARCHAR},
+      </if>
+      <if test="registerCost != null">
+        register_cost = #{registerCost,jdbcType=DECIMAL},
+      </if>
+
+        register_quantity = #{registerQuantity,jdbcType=INTEGER},
+
+      <if test="createOper != null">
+        create_oper = #{createOper,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIME},
+      </if>
+      <if test="changeOper != null">
+        change_oper = #{changeOper,jdbcType=VARCHAR},
+      </if>
+      <if test="changeTime != null">
+        change_time = #{changeTime,jdbcType=TIME},
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag = #{deleteFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.choice.domain.entity.external.ScheduleTemplate">
+    update schedule_template
+    set schedule_type = #{scheduleType,jdbcType=CHAR},
+      hos_code = #{hosCode,jdbcType=VARCHAR},
+      hos_name = #{hosName,jdbcType=VARCHAR},
+      dept_code = #{deptCode,jdbcType=VARCHAR},
+      dept_name = #{deptName,jdbcType=VARCHAR},
+      doctor_code = #{doctorCode,jdbcType=VARCHAR},
+      doctor_name = #{doctorName,jdbcType=VARCHAR},
+      week_day = #{weekDay,jdbcType=VARCHAR},
+      work_period = #{workPeriod,jdbcType=VARCHAR},
+      work_time_start = #{workTimeStart,jdbcType=VARCHAR},
+      work_time_end = #{workTimeEnd,jdbcType=VARCHAR},
+      register_type = #{registerType,jdbcType=VARCHAR},
+      register_cost = #{registerCost,jdbcType=DECIMAL},
+      register_quantity = #{registerQuantity,jdbcType=INTEGER},
+      create_oper = #{createOper,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIME},
+      change_oper = #{changeOper,jdbcType=VARCHAR},
+      change_time = #{changeTime,jdbcType=TIME},
+      delete_flag = #{deleteFlag,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectSetList" parameterType="com.choice.domain.entity.external.ScheduleTemplate" resultMap="BaseResultMap">
+    SELECT st.id, st.schedule_type, cu.hos_id, st.hos_name, cu.dept_code,
+    (select department_name from common_department where department_id = cu.dept_code) AS dept_name,
+    cu.user_id AS doctor_code, cu.true_name AS doctor_name,#{weekDay,jdbcType=VARCHAR} week_day,
+    #{workPeriod,jdbcType=VARCHAR} AS work_period, st.work_time_start, st.work_time_end,
+    st.register_type, st.register_cost,
+    st.register_quantity, st.create_oper, st.create_time, st.change_oper, st.change_time, st.delete_flag
+    FROM channel_user cu
+    LEFT JOIN (SELECT * FROM schedule_template WHERE week_day=#{weekDay,jdbcType=VARCHAR} AND schedule_type = #{scheduleType,jdbcType=CHAR}
+    AND work_period=#{workPeriod,jdbcType=VARCHAR}AND delete_flag='0') st
+    ON cu.user_id=st.doctor_code
+    ,common_department cd
+    WHERE cu.hos_id= #{hosCode,jdbcType=VARCHAR}
+    AND (cu.dept_code &lt;&gt; '' AND cu.dept_code IS NOT NULL)
+    AND cu.is_delete = '0'and cd.department_id=cu.dept_code
+    <if test="scheduleType == '1'.toString()">
+      AND cd.distance_flag='1'
+    </if>
+    <if test="deptCode != null">
+    AND cu.dept_code=#{deptCode,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <select id="selectByParameter" parameterType="com.choice.domain.entity.external.ScheduleTemplate" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from schedule_template
+    where delete_flag='0'
+    <if test="id != null">
+      AND id = #{id,jdbcType=BIGINT}
+    </if>
+    <if test="weekDay != null">
+      AND week_day = #{weekDay,jdbcType=VARCHAR}
+    </if>
+    <if test="workPeriod != null">
+      AND work_period = #{workPeriod,jdbcType=VARCHAR}
+    </if>
+    <if test="hosCode != null">
+      AND hos_code = #{hosCode,jdbcType=VARCHAR}
+    </if>
+
+  </select>
+</mapper>

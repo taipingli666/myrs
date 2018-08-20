@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choice.domain.repository.common.CommonPackageDao">
+	<resultMap id="BaseResultMap" type="com.choice.domain.entity.common.CommonPackage" >
+    <id column="PACKAGE_ID" property="packageId" jdbcType="DECIMAL" />
+    <result column="CLASS_NAME" property="className" jdbcType="VARCHAR" />
+    <result column="CLASS_ID" property="classID" jdbcType="DECIMAL" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />    
+    <result column="ADD_TIME" property="addTime" jdbcType="VARCHAR" />
+    <result column="ADD_PERSON" property="addPerson" jdbcType="DECIMAL" />
+    <result column="EDIT_TIME" property="editTime" jdbcType="DATE" />
+    <result column="EDIT_PERSON" property="editPerson" jdbcType="DECIMAL" />
+    <result column="IS_DELETE" property="isDelete" jdbcType="DECIMAL" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+     PACKAGE_ID,CLASS_NAME,CLASS_ID,REMARK,ADD_TIME,ADD_PERSON,EDIT_TIME,EDIT_PERSON,IS_DELETE
+  </sql>
+  
+  <!-- 根据主键获取数据 add by shf 2017.11.09 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from common_package
+    where package_id = #{packageId,jdbcType=DECIMAL}
+  </select>
+  
+  <!-- 根据条件获取数据 add by shf 2017.11.09-->
+  <select id="selectByQuery" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" />
+		from common_package
+		 where is_delete = '0'
+		<if test="className!=null and className!=''">
+			and  CLASS_NAME like CONCAT(CONCAT('%',#{className}),'%')
+		</if>
+		LIMIT #{StartIndex},#{endIndex}
+	</select>
+	
+	<!-- 获取全部套餐信息 add by zdd 2017.11.16-->
+  <select id="selectByAll" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" />
+		from common_package
+		 where is_delete = '0'
+	</select>
+	
+	<!-- 获取总记录数 add by shf 2017.11.09 -->
+	<select id="getTotalNumber" resultType="integer">
+		select count(1)
+		from common_package where is_delete = '0'
+		<if test="className!=null and className!=''">
+			and CLASS_NAME like CONCAT(CONCAT('%',#{className}),'%')
+		</if>
+	</select>
+  
+  <!-- 新增 -->
+	<insert id="insertCommonPackage" parameterType="com.choice.domain.entity.common.CommonPackage">
+		insert into common_package(CLASS_NAME,CLASS_ID,REMARK,ADD_TIME,ADD_PERSON,IS_DELETE) 
+				values (#{className,jdbcType=VARCHAR},#{classID,jdbcType=DECIMAL},#{remark,jdbcType=VARCHAR},
+				#{addTime,jdbcType=DATE},#{addPerson,jdbcType=DECIMAL},#{isDelete,jdbcType=DECIMAL})
+	</insert>
+  
+  
+  <!-- 修改 -->
+	<update id="updateCommonPackage" parameterType="com.choice.domain.entity.common.CommonPackage" >
+		update	common_package SET CLASS_NAME=#{className,jdbcType=VARCHAR},CLASS_ID=#{classID,jdbcType=VARCHAR},
+			REMARK=#{remark,jdbcType=VARCHAR},edit_person=#{editPerson,jdbcType=VARCHAR},edit_time=#{editTime,jdbcType=VARCHAR}
+		WHERE package_id=#{packageId,jdbcType=DECIMAL}
+	</update>
+	
+	
+	<!-- 伪删除 -->	
+	<delete id="deleteCommonPackage" >
+	  	update	common_package SET  is_delete = 1 where package_id in
+	  	<foreach collection="array" index="index" item="item"
+	            open="(" separator="," close=")">
+	            #{item}
+	    </foreach>
+	  </delete>
+</mapper>

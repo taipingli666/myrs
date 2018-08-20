@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choice.domain.repository.contract.BusinessContractDao">
+  <resultMap id="BaseResultMap" type="com.choice.domain.entity.contract.BusinessContract" >
+  	<id column="contract_id" property="contractId" jdbcType="VARCHAR" />
+	<result column="insurance_type" property="insuranceType" jdbcType="VARCHAR" />
+	<result column="insurance_id" property="insuranceId" jdbcType="VARCHAR" />
+	<result column="true_name" property="trueName" jdbcType="VARCHAR" />
+	<result column="sex" property="sex" jdbcType="VARCHAR" />
+	<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+	<result column="card" property="card" jdbcType="VARCHAR" />
+	<result column="person_type" property="personType" jdbcType="VARCHAR" />
+	<result column="source" property="source" jdbcType="VARCHAR" />
+	<result column="sign_year" property="signYear" jdbcType="VARCHAR" />
+	<result column="start_time" property="startTime" jdbcType="VARCHAR" />
+	<result column="end_time" property="endTime" jdbcType="VARCHAR" />
+	<result column="town" property="town" jdbcType="VARCHAR" />
+	<result column="village" property="village" jdbcType="VARCHAR" />
+	<result column="address" property="address" jdbcType="VARCHAR" />
+	<result column="b_class" property="bClass" jdbcType="VARCHAR" />
+	<result column="s_class" property="sClass" jdbcType="VARCHAR" />
+	<result column="expert_id" property="expertId" jdbcType="VARCHAR" />
+	<result column="have_paper" property="havePaper" jdbcType="VARCHAR" />
+	<result column="sign_type" property="signType" jdbcType="VARCHAR" />
+	<result column="crowd_type" property="crowdType" jdbcType="VARCHAR" />
+	<result column="disease_type" property="diseaseType" jdbcType="VARCHAR" />
+	<result column="remark" property="remark" jdbcType="VARCHAR" />
+	<result column="status" property="status" jdbcType="VARCHAR" />
+	<result column="add_time" property="addTime" jdbcType="VARCHAR" />
+	<result column="add_person" property="addPerson" jdbcType="VARCHAR" />
+	<result column="edit_time" property="editTime" jdbcType="VARCHAR" />
+	<result column="edit_person" property="editPerson" jdbcType="VARCHAR" />
+	<result column="is_delete" property="isDelete" jdbcType="VARCHAR" />		
+	<result column="hos_id" property="hosId" jdbcType="VARCHAR" />
+	<result column="is_renew" property="isRenew" jdbcType="VARCHAR" />
+	<result column="is_key" property="isKey" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    contract_id,insurance_type,insurance_id,true_name,sex,mobile,card,person_type,source,sign_year,
+    start_time,end_time,county,town,village,address,b_class,s_class,expert_id,have_paper,sign_type,crowd_type,
+    disease_type,remark,status,add_time,add_person,edit_time,edit_person,is_delete,hos_id,is_renew,is_key
+  </sql>
+  
+	<!-- 分页展示合同详细信息 -->			
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap">
+		select 
+		 <include refid="Base_Column_List" />
+		from business_contract
+		where contract_id = #{contractId}
+	</select>
+	
+	<select id="selectByAddTime"  resultMap="BaseResultMap">
+		select 
+		 <include refid="Base_Column_List" />
+		from business_contract
+		where 
+		<choose>  
+			<when test="contract.addTime!=null and contract.addTime.indexOf('-') != -1">  
+				 date_format(add_time,'%Y-%m') = #{contract.addTime,jdbcType=VARCHAR}
+			</when>  
+			<otherwise>   
+		         date_format(add_time,'%Y') = #{contract.addTime,jdbcType=VARCHAR}
+			</otherwise>  
+		</choose>
+		<choose>  
+			<when test="contract.expertId != null and contract.expertId != ''">  
+				 and expert_id = #{contract.expertId}
+			</when> 
+			<when test="contract.hosId != null and contract.hosId != ''">  
+				 and hos_id = #{contract.hosId}
+			</when>  
+			<otherwise>   
+		         and hos_id in
+				<foreach collection="hosIds" index="index" item="hosId" open="("
+					separator="," close=")">
+					#{hosId}
+				</foreach>
+			</otherwise>  
+		</choose> 
+	 	 
+	</select>
+	
+	<!-- 分页展示合同list信息 -->
+	<select id="getPageInfo" resultType="map">
+		select c.contract_id as 'contractId',c.true_name as 'trueName',c.card as 'card',c.mobile as 'mobile',
+			c.add_time as 'addTime',c.expert_id as 'expertId',c.sign_year as 'signYear',c.start_time as 'startTime',
+			c.end_time  as 'endTime',c.is_renew as 'isRenew',
+			v1.word as 'crowdType',v2.word as 'insuranceType',c.status,v4.word as 'signType',
+			u1.true_name as 'doctName',u1.mobile as 'doctMobile',u2.true_name as 'addPerson'
+		from business_contract c 
+			 left join channel_user u1 on c.expert_id = u1.user_id  
+			 left join channel_user u2 on c.add_person = u2.user_id  
+			 left join common_dictionary_value v1 on c.crowd_type = v1.code
+			 left join common_dictionary_value v2 on c.insurance_type = v2.code
+			 left join common_dictionary_value v4 on c.sign_type = v4.code
+		where 1 = 1
+		<if test="contract.startTime!=null and contract.startTime!=''">
+			and c.start_time >= #{contract.startTime}
+		</if>
+		<if test="contract.endTime!=null and contract.endTime!=''">
+			and c.end_time &lt;= #{contract.endTime}
+		</if>
+		<if test="contract.signYear!=null and contract.signYear!=''">
+			and c.sign_year = #{contract.signYear}
+		</if>
+		<if test="contract.insuranceType!=null and contract.insuranceType!=''">
+			and c.insurance_type = #{contract.insuranceType}
+		</if>
+		<if test="contract.trueName!=null and contract.trueName!=''">
+			and c.true_name = #{contract.trueName}
+		</if>
+		<if test="contract.card!=null and contract.card!=''">
+			and c.card = #{contract.card}
+		</if>
+		<if test="contract.expertId!=null and contract.expertId!=''">
+			and c.expert_id = #{contract.expertId}
+		</if>
+		<if test="contract.status!=null and contract.status!=''">
+			and c.status = #{contract.status}
+		</if>
+		<if test="contract.isRenew!=null and contract.isRenew!=''">
+			and c.is_renew = #{contract.isRenew}
+		</if>
+		LIMIT #{StartIndex},#{endIndex}
+	</select>
+	
+	<!-- 获取总信息条数 -->
+	<select id="getTotalNumber" resultType="int">
+		select count(1)
+		from business_contract c 
+		where 1 = 1
+		<if test="contract.startTime!=null and contract.startTime!=''">
+			and c.start_time &gt;= #{contract.startTime}
+		</if>
+		<if test="contract.endTime!=null and contract.endTime!=''">
+			and c.end_time &lt;= #{contract.endTime}
+		</if>
+		<if test="contract.signYear!=null and contract.signYear!=''">
+			and c.sign_year = #{contract.signYear}
+		</if>
+		<if test="contract.insuranceType!=null and contract.insuranceType!=''">
+			and c.insurance_type = #{contract.insuranceType}
+		</if>
+		<if test="contract.trueName!=null and contract.trueName!=''">
+			and c.true_name = #{contract.trueName}
+		</if>
+		<if test="contract.card!=null and contract.card!=''">
+			and c.card = #{contract.card}
+		</if>
+		<if test="contract.expertId!=null and contract.expertId!=''">
+			and c.expert_id = #{contract.expertId}
+		</if>
+		<if test="contract.status!=null and contract.status!=''">
+			and c.status = #{contract.status}
+		</if>
+		<if test="contract.isRenew!=null and contract.isRenew!=''">
+			and c.is_renew = #{contract.isRenew}
+		</if>
+	</select>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.choice.domain.entity.contract.BusinessContract" >
+	   update business_contract
+	   <set >
+			<if test="insuranceType  != null and insuranceType  != ''" >  insurance_type = #{insuranceType ,jdbcType=INTEGER}, </if>
+			<if test="insuranceId  != null and insuranceId  != ''" >  insurance_id = #{insuranceId ,jdbcType=INTEGER}, </if>
+			<if test="trueName  != null and trueName  != ''" >  true_name = #{trueName ,jdbcType=VARCHAR}, </if>
+			<if test="sex != null and sex != ''" >  sex = #{sex,jdbcType=INTEGER}, </if>
+			<if test="mobile != null and mobile != ''" >  mobile = #{mobile,jdbcType=VARCHAR}, </if>
+			<if test="card != null and card != ''" >  card = #{card,jdbcType=VARCHAR}, </if>
+			<if test="personType  != null and personType  != ''" >  person_type = #{personType ,jdbcType=INTEGER}, </if>
+			<if test="source != null and source != ''" >  source = #{source,jdbcType=INTEGER}, </if>
+			<if test="signYear  != null and signYear  != ''" >  sign_year = #{signYear ,jdbcType=INTEGER}, </if>
+			<if test="startTime  != null and startTime  != ''" >  start_time = #{startTime ,jdbcType=VARCHAR}, </if>
+			<if test="endTime  != null and endTime  != ''" >  end_time = #{endTime ,jdbcType=VARCHAR}, </if>
+			<if test="town != null and town != ''" >  town = #{town,jdbcType=VARCHAR}, </if>
+			<if test="village != null and village != ''" >  village = #{village,jdbcType=VARCHAR}, </if>
+			<if test="address != null and address != ''" >  address = #{address,jdbcType=VARCHAR}, </if>
+			<if test="bClass  != null and bClass  != ''" >  b_class = #{bClass ,jdbcType=INTEGER}, </if>
+			<if test="sClass  != null and sClass  != ''" >  s_class = #{sClass ,jdbcType=INTEGER}, </if>
+			<if test="expertId  != null and expertId  != ''" >  expert_id = #{expertId ,jdbcType=INTEGER}, </if>
+			<if test="havePaper  != null and havePaper  != ''" >  have_paper = #{havePaper ,jdbcType=INTEGER}, </if>
+			<if test="signType  != null and signType  != ''" >  sign_type = #{signType ,jdbcType=INTEGER}, </if>
+			<if test="crowdType  != null and crowdType  != ''" >  crowd_type = #{crowdType ,jdbcType=VARCHAR}, </if>
+			<if test="diseaseType  != null and diseaseType  != ''" >  disease_type = #{diseaseType ,jdbcType=VARCHAR}, </if>
+			<if test="remark != null and remark != ''" >  remark = #{remark,jdbcType=VARCHAR}, </if>
+			<if test="status != null and status != ''" >  status = #{status,jdbcType=INTEGER}, </if>
+			<if test="addPerson  != null and addPerson  != ''" >  add_person = #{addPerson ,jdbcType=INTEGER}, </if>
+			<if test="editPerson  != null and editPerson  != ''" >  edit_person = #{editPerson ,jdbcType=INTEGER}, </if>
+			<if test="isDelete  != null and isDelete  != ''" >  is_delete = #{isDelete ,jdbcType=INTEGER}, </if>
+			<if test="hosId  != null and hosId  != ''" >  hos_id = #{hosId ,jdbcType=INTEGER}, </if>
+			<if test="isRenew  != null and isRenew  != ''" >  is_renew = #{isRenew ,jdbcType=INTEGER}, </if>
+			<if test="isKey  != null and isKey  != ''" >  is_key = #{isKey ,jdbcType=INTEGER}, </if>
+	   </set>		
+	  where contract_id = #{contractId,jdbcType=INTEGER}
+	 </update>
+	 
+	<!-- 获取所有的签约年度 -->			
+	<select id="getAllSignyear" resultType="java.lang.String">
+		select distinct(sign_year)
+		from business_contract
+		order by sign_year desc
+	</select>
+	
+	 <!-- 根据唯一信息查询是否已存在记录 -->			
+	<select id="getContractByUK" resultMap="BaseResultMap">
+		select 
+		 <include refid="Base_Column_List" />
+		from business_contract
+		where card = #{contract.card}
+		and sign_year = #{contract.signYear}
+	</select>
+	
+	<!-- 插入签约信息 -->
+	<insert id="InsertBusinessContract" parameterType="com.choice.domain.entity.contract.BusinessContract" >
+    insert into business_contract (contract_id, insurance_type, insurance_id, true_name, sex, 
+      mobile, card, person_type,source,sign_year,
+      start_time, end_time, town, village,address,
+      b_class, s_class, expert_id,have_paper,sign_type,
+      crowd_type, disease_type, remark,add_time,add_person,
+      hos_id,is_key,county,is_renew
+      )
+    values (#{contractId,jdbcType=VARCHAR}, #{insuranceType,jdbcType=VARCHAR}, #{insuranceId,jdbcType=VARCHAR}, #{trueName,jdbcType=VARCHAR},#{sex,jdbcType=VARCHAR},
+      #{mobile,jdbcType=VARCHAR}, #{card,jdbcType=VARCHAR}, #{personType,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{signYear,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, #{town,jdbcType=VARCHAR}, #{village,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{bClass,jdbcType=VARCHAR}, #{sClass,jdbcType=VARCHAR}, #{expertId,jdbcType=VARCHAR}, #{havePaper,jdbcType=VARCHAR}, #{signType,jdbcType=VARCHAR}, 
+      #{crowdType,jdbcType=VARCHAR}, #{diseaseType,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{addPerson,jdbcType=VARCHAR}, 
+      #{hosId,jdbcType=VARCHAR},#{isKey,jdbcType=VARCHAR},#{county,jdbcType=VARCHAR},#{isRenew,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <!-- 下面是根据当前登录人所属团队id查询签约病人列表的方法 -->
+  
+  <!-- 根据当前登录人所属团队id分页展示合同list信息 -->
+	<select id="getPageInfoByTeamId" resultType="map">
+		select c.contract_id as 'contractId',c.true_name as 'trueName',c.card as 'card',c.mobile as 'mobile',
+			c.add_time as 'addTime',c.expert_id as 'expertId',c.sign_year as 'signYear',c.start_time as 'startTime',
+			c.end_time  as 'endTime',c.is_renew as 'isRenew',
+			v1.word as 'crowdType',v2.word as 'insuranceType',c.status,v4.word as 'signType',
+			u1.true_name as 'doctName',u1.mobile as 'doctMobile',u2.true_name as 'addPerson'
+		from business_contract c 
+			 left join channel_user u1 on c.expert_id = u1.user_id  
+			 left join channel_user u2 on c.add_person = u2.user_id  
+			 left join common_dictionary_value v1 on c.crowd_type = v1.code
+			 left join common_dictionary_value v2 on c.insurance_type = v2.code
+			 left join common_dictionary_value v4 on c.sign_type = v4.code
+		where 1 = 1
+		and c.is_delete = 0
+		and c.expert_id = (
+			select team_leader from common_doctor_team where team_id = #{teamId,jdbcType=INTEGER}
+		)
+		<if test="contract.startTime!=null and contract.startTime!=''">
+			and c.start_time >= #{contract.startTime}
+		</if>
+		<if test="contract.endTime!=null and contract.endTime!=''">
+			and c.end_time &lt;= #{contract.endTime}
+		</if>
+		<if test="contract.signYear!=null and contract.signYear!=''">
+				and c.sign_year = #{contract.signYear}
+		</if>
+		<if test="contract.signYear!=null and contract.signYear!=''">
+			and c.sign_year = #{contract.signYear}
+		</if>
+		<if test="contract.insuranceType!=null and contract.insuranceType!=''">
+			and c.insurance_type = #{contract.insuranceType}
+		</if>
+		<if test="contract.trueName!=null and contract.trueName!=''">
+			and c.true_name = #{contract.trueName}
+		</if>
+		<if test="contract.card!=null and contract.card!=''">
+			and c.card = #{contract.card}
+		</if>
+		<if test="contract.expertId!=null and contract.expertId!=''">
+			and c.expert_id = #{contract.expertId}
+		</if>
+		<if test="contract.status!=null and contract.status!=''">
+			and c.status = #{contract.status}
+		</if>
+		<if test="contract.isRenew!=null and contract.isRenew!=''">
+			and c.is_renew = #{contract.isRenew}
+		</if>
+		ORDER BY c.add_time DESC
+		
+		LIMIT #{StartIndex},#{endIndex}
+	</select>
+	
+	<!-- 根据当前登录人所属团队id获取总信息条数 -->
+	<select id="getTotalNumberByTeamId" resultType="int">
+		select count(1)
+		from business_contract c 
+		where 1 = 1
+		and c.is_delete = 0
+		and c.expert_id = (
+			select team_leader from common_doctor_team where team_id = #{teamId,jdbcType=INTEGER}
+		)
+		<if test="contract.startTime!=null and contract.startTime!=''">
+			and c.start_time &gt;= #{contract.startTime}
+		</if>
+		<if test="contract.endTime!=null and contract.endTime!=''">
+			and c.end_time &lt;= #{contract.endTime}
+		</if>
+		<if test="contract.signYear!=null and contract.signYear!=''">
+			and c.sign_year = #{contract.signYear}
+		</if>
+		<if test="contract.insuranceType!=null and contract.insuranceType!=''">
+			and c.insurance_type = #{contract.insuranceType}
+		</if>
+		<if test="contract.trueName!=null and contract.trueName!=''">
+			and c.true_name = #{contract.trueName}
+		</if>
+		<if test="contract.card!=null and contract.card!=''">
+			and c.card = #{contract.card}
+		</if>
+		<if test="contract.expertId!=null and contract.expertId!=''">
+			and c.expert_id = #{contract.expertId}
+		</if>
+		<if test="contract.status!=null and contract.status!=''">
+			and c.status = #{contract.status}
+		</if>
+		<if test="contract.isRenew!=null and contract.isRenew!=''">
+			and c.is_renew = #{contract.isRenew}
+		</if>
+	</select>
+	
+	<!-- 查询病人是否有下一年的续约记录(根据身份证号和签约年份) -->
+	<select id="getRenewRecordCount" resultType="int">
+		select count(1) from business_contract where card = #{card} and sign_year = #{signYear}
+	</select>
+</mapper>

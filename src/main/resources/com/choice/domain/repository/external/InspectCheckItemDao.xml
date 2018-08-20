@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choice.domain.repository.external.InspectCheckItemDao">
+	<resultMap id="BaseResultMap" type="com.choice.domain.entity.external.InspectCheckItem" >
+	  	<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="inspect_info_id" property="inspectInfoId" jdbcType="VARCHAR" />
+		<result column="item_code" property="itemCode" jdbcType="VARCHAR" />
+		<result column="item_name" property="itemName" jdbcType="VARCHAR" />
+		<result column="start_time" property="startTime" jdbcType="VARCHAR" />
+		<result column="end_time" property="endTime" jdbcType="VARCHAR" />
+		<result column="price" property="price" jdbcType="DOUBLE" />
+		<result column="add_time" property="addTime" jdbcType="VARCHAR" />
+  </resultMap>
+  
+	<sql id="Base_Column_List" >
+		id,inspect_info_id,item_code,item_name,start_time,end_time,price,add_time
+	</sql>
+	
+	<select id="getCheckItemByInfoId" resultMap="BaseResultMap">
+		select item_code,item_name,start_time,end_time,price from inspect_check_item
+		where inspect_info_id = #{uuid}
+	</select>
+	
+	<insert id="insertInspectCheckItem">
+		insert into inspect_check_item
+		(inspect_info_id,item_code,item_name,start_time,end_time,price,add_time)
+		values
+		 <foreach item="item" collection="inspectCheckItems" separator=","> 
+			(#{item.inspectInfoId},#{item.itemCode},#{item.itemName},
+			#{item.startTime},#{item.endTime},#{item.price},#{item.addTime})
+        </foreach>
+	</insert>
+	
+	<!-- 预约化验检查列表 -->
+	<select id="itemList"  resultType="map">
+		SELECT i.name,(CASE WHEN i.sex = 1 THEN '男' WHEN i.sex = 0 THEN '女' ELSE '其他' END) sex,
+		i.age,i.id_card,i.phone_number,i.card_id,i.diagnose,c.item_name,c.price,c.start_time,c.end_time,i.appointment_time
+		FROM inspect_info i INNER JOIN inspect_check_item c 
+		ON i.id = c.inspect_info_id  
+		INNER JOIN dual_referral_info b
+		ON b.ref_type_id = i.id
+		<where> 
+			i.type = #{itemListParam.type}
+			<if test="itemListParam.refType == null or itemListParam.refType == ''"> 
+			AND (b.org_id_from=#{itemListParam.hosId} OR b.org_id_to=#{itemListParam.hosId})
+			</if>
+			<if test='itemListParam.refType == "1"'>
+			and b.org_id_from=#{itemListParam.hosId}
+			</if>
+			<if test='itemListParam.refType == "2"'>
+			and b.org_id_to=#{itemListParam.hosId}
+			</if>
+			<if test="itemListParam.tel != null and itemListParam.tel != ''">
+			and i.phone_number=#{itemListParam.tel}
+			</if>
+			<if test="itemListParam.name != null and itemListParam.name != ''">
+			and i.name=#{itemListParam.name}
+			</if>
+			<if test="itemListParam.idCard != null and itemListParam.idCard != ''">
+			and i.id_card=#{itemListParam.idCard}
+			</if>
+			<if test="itemListParam.startTime != null and itemListParam.startTime != ''">
+			and c.start_time >= #{itemListParam.startTime}
+			</if>
+			<if test="itemListParam.endTime !=null and itemListParam.endTime!=''">
+		 	<![CDATA[  and c.end_time <= #{itemListParam.endTime}  ]]>  
+			</if>
+			<if test="itemListParam.appointmentTime != null and itemListParam.appointmentTime != ''">
+			and i.appointment_time >= #{itemListParam.appointmentTime}
+			</if>
+		</where>
+		ORDER BY c.add_time DESC
+		LIMIT #{startIndex},#{pageSize}
+	</select>
+	
+	<!-- 列表总条数 -->
+	<select id="totalCount" resultType="int">
+		SELECT count(1)
+		FROM inspect_info i INNER JOIN inspect_check_item c 
+		ON i.id = c.inspect_info_id  
+		INNER JOIN dual_referral_info b
+		ON b.ref_type_id = i.id
+		<where> 
+			i.type = #{itemListParam.type}
+			<if test="itemListParam.refType == null or itemListParam.refType == ''"> 
+			AND (b.org_id_from=#{itemListParam.hosId} OR b.org_id_to=#{itemListParam.hosId})
+			</if>
+			<if test='itemListParam.refType == "1"'>
+			and b.org_id_from=#{itemListParam.hosId}
+			</if>
+			<if test='itemListParam.refType == "2"'>
+			and b.org_id_to=#{itemListParam.hosId}
+			</if>
+			<if test="itemListParam.tel != null and itemListParam.tel != ''">
+			and i.phone_number=#{itemListParam.tel}
+			</if>
+			<if test="itemListParam.name != null and itemListParam.name != ''">
+			and i.name=#{itemListParam.name}
+			</if>
+			<if test="itemListParam.idCard != null and itemListParam.idCard != ''">
+			and i.id_card=#{itemListParam.idCard}
+			</if>
+			<if test="itemListParam.startTime != null and itemListParam.startTime != ''">
+			and c.start_time >= #{itemListParam.startTime}
+			</if>
+			<if test="itemListParam.endTime !=null and itemListParam.endTime!=''">
+		 	<![CDATA[  and c.end_time <= #{itemListParam.endTime}  ]]>  
+			</if>
+			<if test="itemListParam.appointmentTime != null and itemListParam.appointmentTime != ''">
+			and i.appointment_time >= #{itemListParam.appointmentTime}
+			</if>
+		</where>
+	</select>
+</mapper>  

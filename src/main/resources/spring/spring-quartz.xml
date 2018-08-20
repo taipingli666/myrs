@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+        xmlns:p="http://www.springframework.org/schema/p"
+
+        xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 要调用的工作类 -->
+    <bean id="quartzJob" class="com.choice.sign.quartz.ReportFormsQuartz"></bean>
+    <!-- 定义调用对象和调用对象的方法 -->
+    <bean id="jobtaskForToken"  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <ref bean="quartzJob" />
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>doctWorkStatistics</value>
+        </property>
+    </bean>
+    <!-- 定义触发时间 -->
+    <bean id="doTimeForToken" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="jobtaskForToken" />
+        </property>
+        <!-- cron表达式每分钟执行 day:0 0 0 1/1 * ? min:0 0/1 * * * ?-->
+        <property name="cronExpression">
+            <value>0 0 0 1/1 * ?</value>
+        </property>
+    </bean>
+
+    <!-- 排班定义调用对象和调用对象的方法 -->
+    <bean id="buildScheduleInfoForToken"  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <ref bean="quartzJob" />
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>buildScheduleInfo</value>
+        </property>
+    </bean>
+    <!-- 定义触发时间 -->
+    <bean id="buildScheduleInfoDoTimeForToken" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="buildScheduleInfoForToken" />
+        </property>
+        <!-- cron表达式每分钟执行 day:0 0 0 1/1 * ? min:0 0/1 * * * ?-->
+        <property name="cronExpression">
+            <value>0 0 1 * * ?</value>
+        </property>
+    </bean>
+
+    <!-- 转诊报表定义调用对象和调用对象的方法 -->
+    <bean id="dualReferralReportForToken"  class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <ref bean="quartzJob" />
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>dualReferralReport</value>
+        </property>
+    </bean>
+    <!-- 定义触发时间 -->
+    <bean id="dualReferralReportDoTimeForToken" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail">
+            <ref bean="dualReferralReportForToken" />
+        </property>
+        <!-- cron表达式每分钟执行 day:0 0 0 1/1 * ? min:0 0/1 * * * ?-->
+        <property name="cronExpression">
+            <value>0 0 3 * * ?</value>
+        </property>
+    </bean>
+
+
+
+    <!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序 -->
+    <bean id="startQuertz" lazy-init="false" autowire="no"
+        class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="doTimeForToken" />
+                <ref bean="dualReferralReportDoTimeForToken" />
+                <ref bean="buildScheduleInfoDoTimeForToken" />
+            </list>
+        </property>
+    </bean>
+
+</beans>

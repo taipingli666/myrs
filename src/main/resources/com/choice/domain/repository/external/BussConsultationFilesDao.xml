@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.choice.domain.repository.external.BussConsultationFilesDao" >
+  <resultMap id="BaseResultMap" type="com.choice.domain.entity.external.BussConsultationFiles" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="single_liushuihao" property="singleLiushuihao" jdbcType="BIGINT" />
+    <result column="file_path" property="filePath" jdbcType="VARCHAR" />
+    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, single_liushuihao, file_path, file_name, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from buss_consultation_files
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from buss_consultation_files
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.choice.domain.entity.external.BussConsultationFiles" >
+    insert into buss_consultation_files (id, single_liushuihao, file_path, 
+      file_name, create_time)
+    values (#{id,jdbcType=BIGINT}, #{singleLiushuihao,jdbcType=BIGINT}, #{filePath,jdbcType=VARCHAR}, 
+      #{fileName,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.choice.domain.entity.external.BussConsultationFiles" >
+    insert into buss_consultation_files
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="singleLiushuihao != null" >
+        single_liushuihao,
+      </if>
+      <if test="filePath != null" >
+        file_path,
+      </if>
+      <if test="fileName != null" >
+        file_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="singleLiushuihao != null" >
+        #{singleLiushuihao,jdbcType=BIGINT},
+      </if>
+      <if test="filePath != null" >
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.choice.domain.entity.external.BussConsultationFiles" >
+    update buss_consultation_files
+    <set >
+      <if test="singleLiushuihao != null" >
+        single_liushuihao = #{singleLiushuihao,jdbcType=BIGINT},
+      </if>
+      <if test="filePath != null" >
+        file_path = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null" >
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.choice.domain.entity.external.BussConsultationFiles" >
+    update buss_consultation_files
+    set single_liushuihao = #{singleLiushuihao,jdbcType=BIGINT},
+      file_path = #{filePath,jdbcType=VARCHAR},
+      file_name = #{fileName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="getConsultationImgById" parameterType="com.choice.domain.entity.external.BussConsultationFiles" resultMap="BaseResultMap">
+    SELECT
+      <include refid="Base_Column_List"></include>
+      FROM buss_consultation_files
+      WHERE single_liushuihao = #{singleLiushuihao}
+      <if test="fileName != null and fileName != ''">
+        AND id NOT IN (${fileName})
+      </if>
+  </select>
+</mapper>

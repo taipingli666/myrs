@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choice.domain.repository.common.CommonAreaDao">
+  <resultMap id="BaseResultMap" type="com.choice.domain.entity.common.CommonArea">
+    <id column="area_id" jdbcType="INTEGER" property="areaId" />
+    <result column="area_name" jdbcType="VARCHAR" property="areaName" />
+    <result column="parent_code" jdbcType="VARCHAR" property="parentCode" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="add_person" jdbcType="INTEGER" property="addPerson" />
+    <result column="edit_time" jdbcType="TIMESTAMP" property="editTime" />
+    <result column="edit_person" jdbcType="INTEGER" property="editPerson" />
+    <result column="is_delete" jdbcType="INTEGER" property="isDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    area_id, area_name, parent_code, code, level, add_time, add_person, edit_time, edit_person, 
+    is_delete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  select
+  <include refid="Base_Column_List" />
+  from common_area
+  where area_id = #{areaId,jdbcType=INTEGER}
+</select>
+
+  <select id="selectByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from common_area
+    where code = #{code,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from common_area
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.choice.domain.entity.common.CommonArea">
+    insert into common_area (area_id, area_name, parent_code, 
+      code, level, add_time, 
+      add_person, edit_time, edit_person, 
+      is_delete)
+    values (#{areaId,jdbcType=INTEGER}, #{areaName,jdbcType=VARCHAR}, #{parentCode,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{addPerson,jdbcType=INTEGER}, #{editTime,jdbcType=TIMESTAMP}, #{editPerson,jdbcType=INTEGER}, 
+      #{isDelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.choice.domain.entity.common.CommonArea">
+    insert into common_area
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="areaName != null">
+        area_name,
+      </if>
+      <if test="parentCode != null">
+        parent_code,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="addPerson != null">
+        add_person,
+      </if>
+      <if test="editTime != null">
+        edit_time,
+      </if>
+      <if test="editPerson != null">
+        edit_person,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="areaId != null">
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="areaName != null">
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addPerson != null">
+        #{addPerson,jdbcType=INTEGER},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPerson != null">
+        #{editPerson,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.choice.domain.entity.common.CommonArea">
+    update common_area
+    <set>
+      <if test="areaName != null">
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentCode != null">
+        parent_code = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addPerson != null">
+        add_person = #{addPerson,jdbcType=INTEGER},
+      </if>
+      <if test="editTime != null">
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editPerson != null">
+        edit_person = #{editPerson,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.choice.domain.entity.common.CommonArea">
+    update common_area
+    set area_name = #{areaName,jdbcType=VARCHAR},
+      parent_code = #{parentCode,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      level = #{level,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      add_person = #{addPerson,jdbcType=INTEGER},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      edit_person = #{editPerson,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=INTEGER}
+    where area_id = #{areaId,jdbcType=INTEGER}
+  </update>
+  
+   <select id="getListByPage" resultMap="BaseResultMap" parameterType="com.choice.domain.entity.common.CommonArea" >
+	    select 
+        <include refid="Base_Column_List" />
+		from common_area t 
+	    <where>
+	        t.is_delete = '0'
+	    	<if test="areaName != null and areaName != ''">
+	    		AND t.area_name like CONCAT(CONCAT('%',#{areaName}),'%')
+	    	</if>
+	    	<if test="parentCode!=null and parentCode !='' ">
+	    	    AND t.parent_code = #{parentCode,jdbcType=VARCHAR}
+	    	</if>
+	    </where>
+     </select>
+     <select id="getListByLevel"  resultMap="BaseResultMap" >
+	    select 
+        <include refid="Base_Column_List" />
+		from common_area t 
+	    <where>
+	        t.is_delete = 0 and level = #{level}
+	    	
+	    </where>
+     </select>
+	
+	<!-- 获取总信息条数 -->
+	<select id="getTotalNumber" resultType="int">
+		select count(1)
+		from common_area t  where t.is_delete = '0'
+		<if test="contents!=null and contents!=''">
+			and t.area_name like CONCAT(CONCAT('%',#{contents}),'%')
+		</if>
+		<if test="parentCode !=null and parentCode !=''">
+	    	    AND t.parent_code = #{parentCode,jdbcType=VARCHAR}
+	    </if>
+	</select>
+	
+	<!-- 删除行政区域 -->
+	<delete id="deleteCommonArea" parameterType="java.lang.Integer">
+	   update common_area set is_delete = 1 where is_delete = 0
+	   <if test="areaId != null">
+	   and area_id = #{area_id,jdbcType=DECIMAL}
+	   </if>
+	</delete>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteCommonAreas" >
+  	update	common_area SET  is_delete = 1 where is_delete = 0 and area_id in
+  	<foreach collection="array" index="index" item="item"
+            open="(" separator="," close=")">
+            #{item}
+    </foreach>
+  </delete>
+  
+  <!-- 根据code获取下级区域信息 -->
+  <select id="getCommonAreaAll" resultType="Map">
+  select t.code as 'id',t.parent_code as 'pId',t.area_name as 'name' ,t.level as 'level' from common_area t
+  <where>
+    t.is_delete = 0  
+  <if test="parentCode !=null and parentCode != '' ">
+    and t.parent_code =#{parentCode,jdbcType=DECIMAL}
+  </if>
+  </where>
+  </select>
+  
+  <!-- 根据父节点获取子节点信息 -->
+  <select id="getCommonAreaByParentCode" resultMap="BaseResultMap">
+   select 
+    <include refid="Base_Column_List" />
+    from common_area
+    <where>
+    common_area.is_delete = 0
+    <if test="parentCode!=null and parentCode !='' ">
+    and common_area.parent_code = #{parentCode,jdbcType=VARCHAR}
+    </if>
+    </where>
+  </select>
+  
+  <!-- 根据行政区划代码获取行政区划信息 -->
+  <select id="getCommonAreaByAreaCode" resultType="Map">
+    select t.code as 'id',t.parent_code as 'pId',t.area_name as 'name' ,t.level as 'level' from common_area t
+    where
+    t.is_delete = 0
+    <if test="areaCode!=null and areaCode !='' ">
+    and t.code = #{areaCode,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <select id="allAreaCode" resultType="string">
+  	 SELECT code FROM common_area WHERE is_delete = 0
+  </select>
+</mapper>

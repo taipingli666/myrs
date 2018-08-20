@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choice.domain.repository.external.InspectInfoDao">
+  <resultMap id="BaseResultMap" type="com.choice.domain.entity.external.InspectInfo" >
+  	<id column="id" property="id" jdbcType="VARCHAR" />
+  	<result column="id_card" property="idCard" jdbcType="VARCHAR" />
+  	<result column="name" property="name" jdbcType="VARCHAR" />
+  	<result column="sex" property="sex" jdbcType="INTEGER" />
+  	<result column="age" property="age" jdbcType="INTEGER" />
+  	<result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
+  	<result column="appoientment_time" property="appoientmentTime" jdbcType="VARCHAR" />
+  	<result column="card_id" property="cardId" jdbcType="VARCHAR" />
+  	<result column="type" property="type" jdbcType="VARCHAR" />
+	<result column="hos_code" property="hosCode" jdbcType="VARCHAR" />
+	<result column="class_code" property="classCode" jdbcType="VARCHAR" />
+	<result column="class_name" property="className" jdbcType="VARCHAR" />
+	<result column="mini_class_code" property="miniClassCode" jdbcType="VARCHAR" />
+	<result column="mini_class_name" property="miniClassName" jdbcType="VARCHAR" />
+	<result column="sample_code" property="sampleCode" jdbcType="VARCHAR" />
+	<result column="sample_name" property="sampleName" jdbcType="VARCHAR" />
+	<result column="cost" property="cost" jdbcType="DOUBLE" />
+	<result column="icd0" property="icd10" jdbcType="VARCHAR" />
+	<result column="diagnose" property="diagnose" jdbcType="VARCHAR" />
+	<result column="add_time" property="addTime" jdbcType="VARCHAR" />
+	<result column="add_oper" property="addOper" jdbcType="VARCHAR" />
+	<result column="oder_id" property="orderId" jdbcType="VARCHAR" />
+	<result column="pay_order_status" property="payOrderStatus" jdbcType="CHAR" />
+	<result column="payer_device_ip" property="payerDeviceIp" jdbcType="VARCHAR" />
+	<result column="pay_order_no" property="payOrderNo" jdbcType="VARCHAR" />
+	<result column="pay_time" property="payTime" jdbcType="VARCHAR" />
+	<result column="complete_state" property="completeState" jdbcType="CHAR" />
+	<result column="patient_record" property="patientRecord" jdbcType="VARCHAR" />
+	<result column="prescription_number" property="prescriptionNumber" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id,id_card,name,sex,age,phone_number,appointment_time,card_id,type,hos_code,class_code,class_name,
+    mini_class_code,mini_class_name,sample_code,
+    sample_name,cost,icd10,diagnose,add_time,add_oper,order_id,pay_order_status,
+    payer_device_ip,pay_order_no,pay_time,complete_state,patient_record,prescription_number
+  </sql>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap">
+		select 
+		 <include refid="Base_Column_List" />
+		from register_info
+		where id = #{id}
+	</select>
+	
+	<insert id="insertInspectInfo" parameterType="com.choice.domain.entity.external.InspectInfo" >
+		insert into inspect_info
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="id != null and id !=''" >
+				id,
+			</if>
+			<if test="idCard != null and idCard !=''" >
+				id_card,
+			</if>
+			<if test="name != null and name !=''" >
+				name,
+			</if>
+			<if test="sex != null" >
+				sex,
+			</if>
+			<if test="age != null and age !=''" >
+				age,
+			</if>
+			<if test="phoneNumber != null and phoneNumber !=''" >
+				phone_number,
+			</if>
+			<if test="appointmentTime != null and appointmentTime != ''">
+				appointment_time,
+			</if>
+			<if test="cardId != null and cardId != ''" >
+				card_id,
+			</if>
+			<if test="type != null and type != ''" >
+				type,
+			</if>
+			<if test="hosCode != null and hosCode != ''" >
+				hos_code,
+			</if>
+			<if test="classCode != null and classCode != ''" >
+				class_code,
+			</if>
+			<if test="className != null and className != ''" >
+				class_name,
+			</if>
+			<if test="miniClassCode != null and miniClassCode != ''" >
+				mini_class_code,
+			</if>
+			<if test="miniClassName != null and miniClassName != ''" >
+				mini_class_name,
+			</if>
+			<if test="sampleCode != null and sampleCode != ''" >
+				sample_code,
+			</if>
+			<if test="sampleName != null and sampleName != ''" >
+				sample_name,
+			</if>
+			<if test="cost != null and cost != ''" >
+				cost,
+			</if>
+			<if test="icd10 != null and icd10 != ''" >
+				icd10,
+			</if>
+			<if test="diagnose != null and diagnose != ''" >
+				diagnose,
+			</if>
+			<if test="addTime != null and addTime != ''" >
+				add_time,
+			</if>
+			<if test="addOper != null and addOper != ''" >
+				add_oper,
+			</if>
+			<if test="orderId != null and orderId != ''" >
+				order_id,
+			</if>
+			<if test="payOrderStatus != null and payOrderStatus != ''" >
+				pay_order_status,
+			</if>
+			<if test="payerDeviceIp != null and payerDeviceIp != ''" >
+				payer_device_ip,
+			</if>
+			<if test="payOrderNo != null and payOrderNo != ''" >
+				pay_order_no,
+			</if>
+			<if test="payTime != null and payTime != ''" >
+				pay_time,
+			</if>
+			<if test="completeState != null and completeState != ''" >
+				complete_state,
+			</if>
+			<if test="patientRecord != null and patientRecord != ''" >
+				patient_record,
+			</if>
+			<if test="prescriptionNumber != null and prescriptionNumber != ''" >
+				prescription_number,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="id != null and id !=''" >
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="idCard != null and idCard !=''" >
+				#{idCard,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null and name !=''" >
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null" >
+				#{sex,jdbcType=INTEGER},
+			</if>
+			<if test="age != null and age !=''" >
+				#{age,jdbcType=INTEGER},
+			</if>
+			<if test="phoneNumber != null and phoneNumber !=''" >
+				#{phoneNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="appointmentTime != null and appointmentTime != ''">
+				#{appointmentTime,jdbcType=VARCHAR},
+			</if>
+			<if test="cardId != null and cardId != ''" >
+				#{cardId,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null and type != ''" >
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="hosCode != null and hosCode != ''" >
+				#{hosCode,jdbcType=VARCHAR},
+			</if>
+			<if test="classCode != null and classCode != ''" >
+				#{classCode,jdbcType=VARCHAR},
+			</if>
+			<if test="className != null and className != ''" >
+				#{className,jdbcType=VARCHAR},
+			</if>
+			<if test="miniClassCode != null and miniClassCode != ''" >
+				#{miniClassCode,jdbcType=VARCHAR},
+			</if>
+			<if test="miniClassName != null and miniClassName != ''" >
+				#{miniClassName,jdbcType=VARCHAR},
+			</if>
+			<if test="sampleCode != null and sampleCode != ''" >
+				#{sampleCode,jdbcType=VARCHAR},
+			</if>
+			<if test="sampleName != null and sampleName != ''" >
+				#{sampleName,jdbcType=VARCHAR},
+			</if>
+			<if test="cost != null and cost != ''" >
+				#{cost,jdbcType=DOUBLE},
+			</if>
+			<if test="icd10 != null and icd10 != ''" >
+				#{icd10,jdbcType=VARCHAR},
+			</if>
+			<if test="diagnose != null and diagnose != ''" >
+				#{diagnose,jdbcType=VARCHAR},
+			</if>
+			<if test="addTime != null and addTime != ''" >
+				#{addTime,jdbcType=VARCHAR},
+			</if>
+			<if test="addOper != null and addOper != ''" >
+				#{addOper,jdbcType=VARCHAR},
+			</if>
+			<if test="orderId != null and orderId != ''" >
+				#{orderId,jdbcType=VARCHAR},
+			</if>
+			<if test="payOrderStatus != null and payOrderStatus != ''" >
+				#{payOrderStatus,jdbcType=CHAR},
+			</if>
+			<if test="payerDeviceIp != null and payerDeviceIp != ''" >
+				#{payerDeviceIp,jdbcType=VARCHAR},
+			</if>
+			<if test="payOrderNo != null and payOrderNo != ''" >
+				#{payOrderNo,jdbcType=VARCHAR},
+			</if>
+			<if test="payTime != null and payTime != ''" >
+				#{payTime,jdbcType=VARCHAR},
+			</if>
+			<if test="completeState != null and completeState != ''" >
+				#{completeState,jdbcType=CHAR},
+			</if>
+			<if test="patientRecord != null and patientRecord != ''" >
+				#{patientRecord,jdbcType=VARCHAR},
+			</if>
+			<if test="prescriptionNumber != null and prescriptionNumber != ''" >
+				#{prescriptionNumber,jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+</mapper>

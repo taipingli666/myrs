@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choice.domain.repository.external.DualReferralInfoDao">
+  <resultMap id="BaseResultMap" type="com.choice.domain.entity.external.DualReferralInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="cmmit_date" jdbcType="TIMESTAMP" property="cmmitDate" />
+    <result column="pat_name" jdbcType="VARCHAR" property="patName" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="age" jdbcType="VARCHAR" property="age" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="card_type" jdbcType="VARCHAR" property="cardType" />
+    <result column="card_id" jdbcType="VARCHAR" property="cardId" />
+    <result column="org_id_from" jdbcType="VARCHAR" property="orgIdFrom" />
+    <result column="org_name_from" jdbcType="VARCHAR" property="orgNameFrom" />
+    <result column="dept_id_from" jdbcType="VARCHAR" property="deptIdFrom" />
+    <result column="dept_name_from" jdbcType="VARCHAR" property="deptNameFrom" />
+    <result column="dr_id_from" jdbcType="VARCHAR" property="drIdFrom" />
+    <result column="dr_name_from" jdbcType="VARCHAR" property="drNameFrom" />
+    <result column="dr_tel" jdbcType="VARCHAR" property="drTel" />
+    <result column="dr_tel_cornet" jdbcType="VARCHAR" property="drTelCornet" />
+    <result column="org_id_to" jdbcType="VARCHAR" property="orgIdTo" />
+    <result column="org_name_to" jdbcType="VARCHAR" property="orgNameTo" />
+    <result column="dr_id_to" jdbcType="VARCHAR" property="drIdTo" />
+    <result column="dr_name_to" jdbcType="VARCHAR" property="drNameTo" />
+    <result column="dr_mobile_to" jdbcType="VARCHAR" property="drMobileTo" />
+    <result column="dr_mobile_cornet_to" jdbcType="VARCHAR" property="drMobileCornetTo" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="purpose" jdbcType="VARCHAR" property="purpose" />
+    <result column="ref_type" jdbcType="VARCHAR" property="refType" />
+    <result column="ref_status" jdbcType="VARCHAR" property="refStatus" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="file_full_name" jdbcType="VARCHAR" property="fileFullName" />
+    <result column="health_id" jdbcType="VARCHAR" property="healthId" />
+    <result column="icd10" jdbcType="VARCHAR" property="icd10" />
+    <result column="diag" jdbcType="VARCHAR" property="diag" />
+    <result column="dept_id_to" jdbcType="VARCHAR" property="deptIdTo" />
+    <result column="dept_name_to" jdbcType="VARCHAR" property="deptNameTo" />
+    <result column="order_date" jdbcType="TIMESTAMP" property="orderDate" />
+    <result column="clinic_lsh" jdbcType="VARCHAR" property="clinicLsh" />
+    <result column="shijianchuo" jdbcType="TIMESTAMP" property="shijianchuo" />
+    <result column="illness_description" jdbcType="VARCHAR" property="illnessDescription" />
+    <result column="in_url_img" jdbcType="VARCHAR" property="inUrlImg" />
+    <result column="out_url_img" jdbcType="VARCHAR" property="outUrlImg" />
+    <result column="intention_depart" jdbcType="VARCHAR" property="intentionDepart" />
+    <result column="ref_type_id" jdbcType="VARCHAR" property="refTypeId" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, cmmit_date, pat_name, sex, age, tel, card_type, card_id, org_id_from, org_name_from,
+    dept_id_from, dept_name_from, dr_id_from, dr_name_from, dr_tel, dr_tel_cornet, org_id_to,
+    org_name_to, dr_id_to, dr_name_to, dr_mobile_to, dr_mobile_cornet_to, reason, purpose,
+    ref_type, ref_status, file_name, file_full_name, health_id, icd10, diag, dept_id_to,
+    dept_name_to, order_date, clinic_lsh, shijianchuo, illness_description, in_url_img,
+    out_url_img, intention_depart, ref_type_id
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dual_referral_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from dual_referral_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insert" parameterType="com.choice.domain.entity.external.DualReferralInfo">
+    insert into dual_referral_info (cmmit_date, pat_name, sex,
+    age, tel, card_type,
+    card_id, org_id_from, org_name_from,
+    dept_id_from, dept_name_from, dr_id_from,
+    dr_name_from, dr_tel, dr_tel_cornet,
+    org_id_to, org_name_to, dr_id_to,
+    dr_name_to, dr_mobile_to, dr_mobile_cornet_to,
+    reason, purpose, ref_type,
+    ref_status, file_name, file_full_name,
+    health_id, icd10, diag,
+    dept_id_to, dept_name_to, order_date,
+    clinic_lsh, shijianchuo, illness_description,
+    in_url_img, out_url_img, intention_depart,
+    ref_type_id)
+    values (#{cmmitDate,jdbcType=TIMESTAMP}, #{patName,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR},
+    #{age,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{cardType,jdbcType=VARCHAR},
+    #{cardId,jdbcType=VARCHAR}, #{orgIdFrom,jdbcType=VARCHAR}, #{orgNameFrom,jdbcType=VARCHAR},
+    #{deptIdFrom,jdbcType=VARCHAR}, #{deptNameFrom,jdbcType=VARCHAR}, #{drIdFrom,jdbcType=VARCHAR},
+    #{drNameFrom,jdbcType=VARCHAR}, #{drTel,jdbcType=VARCHAR}, #{drTelCornet,jdbcType=VARCHAR},
+    #{orgIdTo,jdbcType=VARCHAR}, #{orgNameTo,jdbcType=VARCHAR}, #{drIdTo,jdbcType=VARCHAR},
+    #{drNameTo,jdbcType=VARCHAR}, #{drMobileTo,jdbcType=VARCHAR}, #{drMobileCornetTo,jdbcType=VARCHAR},
+    #{reason,jdbcType=VARCHAR}, #{purpose,jdbcType=VARCHAR}, #{refType,jdbcType=VARCHAR},
+    #{refStatus,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, #{fileFullName,jdbcType=VARCHAR},
+    #{healthId,jdbcType=VARCHAR}, #{icd10,jdbcType=VARCHAR}, #{diag,jdbcType=VARCHAR},
+    #{deptIdTo,jdbcType=VARCHAR}, #{deptNameTo,jdbcType=VARCHAR}, #{orderDate,jdbcType=TIMESTAMP},
+    #{clinicLsh,jdbcType=VARCHAR}, #{shijianchuo,jdbcType=TIMESTAMP}, #{illnessDescription,jdbcType=VARCHAR},
+    #{inUrlImg,jdbcType=VARCHAR}, #{outUrlImg,jdbcType=VARCHAR}, #{intentionDepart,jdbcType=VARCHAR},
+    #{refTypeId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.choice.domain.entity.external.DualReferralInfo">
+    insert into dual_referral_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cmmitDate != null">
+        cmmit_date,
+      </if>
+      <if test="patName != null">
+        pat_name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="cardType != null">
+        card_type,
+      </if>
+      <if test="cardId != null">
+        card_id,
+      </if>
+      <if test="orgIdFrom != null">
+        org_id_from,
+      </if>
+      <if test="orgNameFrom != null">
+        org_name_from,
+      </if>
+      <if test="deptIdFrom != null">
+        dept_id_from,
+      </if>
+      <if test="deptNameFrom != null">
+        dept_name_from,
+      </if>
+      <if test="drIdFrom != null">
+        dr_id_from,
+      </if>
+      <if test="drNameFrom != null">
+        dr_name_from,
+      </if>
+      <if test="drTel != null">
+        dr_tel,
+      </if>
+      <if test="drTelCornet != null">
+        dr_tel_cornet,
+      </if>
+      <if test="orgIdTo != null">
+        org_id_to,
+      </if>
+      <if test="orgNameTo != null">
+        org_name_to,
+      </if>
+      <if test="drIdTo != null">
+        dr_id_to,
+      </if>
+      <if test="drNameTo != null">
+        dr_name_to,
+      </if>
+      <if test="drMobileTo != null">
+        dr_mobile_to,
+      </if>
+      <if test="drMobileCornetTo != null">
+        dr_mobile_cornet_to,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="purpose != null">
+        purpose,
+      </if>
+      <if test="refType != null">
+        ref_type,
+      </if>
+      <if test="refStatus != null">
+        ref_status,
+      </if>
+      <if test="fileName != null">
+        file_name,
+      </if>
+      <if test="fileFullName != null">
+        file_full_name,
+      </if>
+      <if test="healthId != null">
+        health_id,
+      </if>
+      <if test="icd10 != null">
+        icd10,
+      </if>
+      <if test="diag != null">
+        diag,
+      </if>
+      <if test="deptIdTo != null">
+        dept_id_to,
+      </if>
+      <if test="deptNameTo != null">
+        dept_name_to,
+      </if>
+      <if test="orderDate != null">
+        order_date,
+      </if>
+      <if test="clinicLsh != null">
+        clinic_lsh,
+      </if>
+      <if test="shijianchuo != null">
+        shijianchuo,
+      </if>
+      <if test="illnessDescription != null">
+        illness_description,
+      </if>
+      <if test="inUrlImg != null">
+        in_url_img,
+      </if>
+      <if test="outUrlImg != null">
+        out_url_img,
+      </if>
+      <if test="intentionDepart != null">
+        intention_depart,
+      </if>
+      <if test="refTypeId != null">
+        ref_type_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cmmitDate != null">
+        #{cmmitDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="patName != null">
+        #{patName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null">
+        #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null">
+        #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgIdFrom != null">
+        #{orgIdFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNameFrom != null">
+        #{orgNameFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="deptIdFrom != null">
+        #{deptIdFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="deptNameFrom != null">
+        #{deptNameFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="drIdFrom != null">
+        #{drIdFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="drNameFrom != null">
+        #{drNameFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="drTel != null">
+        #{drTel,jdbcType=VARCHAR},
+      </if>
+      <if test="drTelCornet != null">
+        #{drTelCornet,jdbcType=VARCHAR},
+      </if>
+      <if test="orgIdTo != null">
+        #{orgIdTo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNameTo != null">
+        #{orgNameTo,jdbcType=VARCHAR},
+      </if>
+      <if test="drIdTo != null">
+        #{drIdTo,jdbcType=VARCHAR},
+      </if>
+      <if test="drNameTo != null">
+        #{drNameTo,jdbcType=VARCHAR},
+      </if>
+      <if test="drMobileTo != null">
+        #{drMobileTo,jdbcType=VARCHAR},
+      </if>
+      <if test="drMobileCornetTo != null">
+        #{drMobileCornetTo,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="purpose != null">
+        #{purpose,jdbcType=VARCHAR},
+      </if>
+      <if test="refType != null">
+        #{refType,jdbcType=VARCHAR},
+      </if>
+      <if test="refStatus != null">
+        #{refStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileFullName != null">
+        #{fileFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="healthId != null">
+        #{healthId,jdbcType=VARCHAR},
+      </if>
+      <if test="icd10 != null">
+        #{icd10,jdbcType=VARCHAR},
+      </if>
+      <if test="diag != null">
+        #{diag,jdbcType=VARCHAR},
+      </if>
+      <if test="deptIdTo != null">
+        #{deptIdTo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptNameTo != null">
+        #{deptNameTo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null">
+        #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clinicLsh != null">
+        #{clinicLsh,jdbcType=VARCHAR},
+      </if>
+      <if test="shijianchuo != null">
+        #{shijianchuo,jdbcType=TIMESTAMP},
+      </if>
+      <if test="illnessDescription != null">
+        #{illnessDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="inUrlImg != null">
+        #{inUrlImg,jdbcType=VARCHAR},
+      </if>
+      <if test="outUrlImg != null">
+        #{outUrlImg,jdbcType=VARCHAR},
+      </if>
+      <if test="intentionDepart != null">
+        #{intentionDepart,jdbcType=VARCHAR},
+      </if>
+      <if test="refTypeId != null">
+        #{refTypeId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.choice.domain.entity.external.DualReferralInfo">
+    update dual_referral_info
+    <set>
+      <if test="cmmitDate != null">
+        cmmit_date = #{cmmitDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="patName != null">
+        pat_name = #{patName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null">
+        card_type = #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null">
+        card_id = #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgIdFrom != null">
+        org_id_from = #{orgIdFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNameFrom != null">
+        org_name_from = #{orgNameFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="deptIdFrom != null">
+        dept_id_from = #{deptIdFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="deptNameFrom != null">
+        dept_name_from = #{deptNameFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="drIdFrom != null">
+        dr_id_from = #{drIdFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="drNameFrom != null">
+        dr_name_from = #{drNameFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="drTel != null">
+        dr_tel = #{drTel,jdbcType=VARCHAR},
+      </if>
+      <if test="drTelCornet != null">
+        dr_tel_cornet = #{drTelCornet,jdbcType=VARCHAR},
+      </if>
+      <if test="orgIdTo != null">
+        org_id_to = #{orgIdTo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgNameTo != null">
+        org_name_to = #{orgNameTo,jdbcType=VARCHAR},
+      </if>
+      <if test="drIdTo != null">
+        dr_id_to = #{drIdTo,jdbcType=VARCHAR},
+      </if>
+      <if test="drNameTo != null">
+        dr_name_to = #{drNameTo,jdbcType=VARCHAR},
+      </if>
+      <if test="drMobileTo != null">
+        dr_mobile_to = #{drMobileTo,jdbcType=VARCHAR},
+      </if>
+      <if test="drMobileCornetTo != null">
+        dr_mobile_cornet_to = #{drMobileCornetTo,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="purpose != null">
+        purpose = #{purpose,jdbcType=VARCHAR},
+      </if>
+      <if test="refType != null">
+        ref_type = #{refType,jdbcType=VARCHAR},
+      </if>
+      <if test="refStatus != null">
+        ref_status = #{refStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileFullName != null">
+        file_full_name = #{fileFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="healthId != null">
+        health_id = #{healthId,jdbcType=VARCHAR},
+      </if>
+      <if test="icd10 != null">
+        icd10 = #{icd10,jdbcType=VARCHAR},
+      </if>
+      <if test="diag != null">
+        diag = #{diag,jdbcType=VARCHAR},
+      </if>
+      <if test="deptIdTo != null">
+        dept_id_to = #{deptIdTo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptNameTo != null">
+        dept_name_to = #{deptNameTo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDate != null">
+        order_date = #{orderDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clinicLsh != null">
+        clinic_lsh = #{clinicLsh,jdbcType=VARCHAR},
+      </if>
+      <if test="shijianchuo != null">
+        shijianchuo = #{shijianchuo,jdbcType=TIMESTAMP},
+      </if>
+      <if test="illnessDescription != null">
+        illness_description = #{illnessDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="inUrlImg != null">
+        in_url_img = #{inUrlImg,jdbcType=VARCHAR},
+      </if>
+      <if test="outUrlImg != null">
+        out_url_img = #{outUrlImg,jdbcType=VARCHAR},
+      </if>
+      <if test="intentionDepart != null">
+        intention_depart = #{intentionDepart,jdbcType=VARCHAR},
+      </if>
+      <if test="refTypeId != null">
+        ref_type_id = #{refTypeId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.choice.domain.entity.external.DualReferralInfo">
+    update dual_referral_info
+    set cmmit_date = #{cmmitDate,jdbcType=TIMESTAMP},
+    pat_name = #{patName,jdbcType=VARCHAR},
+    sex = #{sex,jdbcType=VARCHAR},
+    age = #{age,jdbcType=VARCHAR},
+    tel = #{tel,jdbcType=VARCHAR},
+    card_type = #{cardType,jdbcType=VARCHAR},
+    card_id = #{cardId,jdbcType=VARCHAR},
+    org_id_from = #{orgIdFrom,jdbcType=VARCHAR},
+    org_name_from = #{orgNameFrom,jdbcType=VARCHAR},
+    dept_id_from = #{deptIdFrom,jdbcType=VARCHAR},
+    dept_name_from = #{deptNameFrom,jdbcType=VARCHAR},
+    dr_id_from = #{drIdFrom,jdbcType=VARCHAR},
+    dr_name_from = #{drNameFrom,jdbcType=VARCHAR},
+    dr_tel = #{drTel,jdbcType=VARCHAR},
+    dr_tel_cornet = #{drTelCornet,jdbcType=VARCHAR},
+    org_id_to = #{orgIdTo,jdbcType=VARCHAR},
+    org_name_to = #{orgNameTo,jdbcType=VARCHAR},
+    dr_id_to = #{drIdTo,jdbcType=VARCHAR},
+    dr_name_to = #{drNameTo,jdbcType=VARCHAR},
+    dr_mobile_to = #{drMobileTo,jdbcType=VARCHAR},
+    dr_mobile_cornet_to = #{drMobileCornetTo,jdbcType=VARCHAR},
+    reason = #{reason,jdbcType=VARCHAR},
+    purpose = #{purpose,jdbcType=VARCHAR},
+    ref_type = #{refType,jdbcType=VARCHAR},
+    ref_status = #{refStatus,jdbcType=VARCHAR},
+    file_name = #{fileName,jdbcType=VARCHAR},
+    file_full_name = #{fileFullName,jdbcType=VARCHAR},
+    health_id = #{healthId,jdbcType=VARCHAR},
+    icd10 = #{icd10,jdbcType=VARCHAR},
+    diag = #{diag,jdbcType=VARCHAR},
+    dept_id_to = #{deptIdTo,jdbcType=VARCHAR},
+    dept_name_to = #{deptNameTo,jdbcType=VARCHAR},
+    order_date = #{orderDate,jdbcType=TIMESTAMP},
+    clinic_lsh = #{clinicLsh,jdbcType=VARCHAR},
+    shijianchuo = #{shijianchuo,jdbcType=TIMESTAMP},
+    illness_description = #{illnessDescription,jdbcType=VARCHAR},
+    in_url_img = #{inUrlImg,jdbcType=VARCHAR},
+    out_url_img = #{outUrlImg,jdbcType=VARCHAR},
+    intention_depart = #{intentionDepart,jdbcType=VARCHAR},
+    ref_type_id = #{refTypeId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <select id="selectFromCountByDate" parameterType="java.util.Date" resultType="java.util.Map">
+    select org_id_from,org_name_from,count(1) referraCount
+    from dual_referral_info
+    where DATE_FORMAT(cmmit_date,'%Y-%m-%d') = DATE_FORMAT(#{referralDate,jdbcType=TIMESTAMP},'%Y-%m-%d')
+    group by org_id_from,org_name_from
+  </select>
+
+  <select id="selectToCountByDate" parameterType="java.util.Date" resultType="java.util.Map">
+    select org_id_to,org_name_to,count(1) referraCount
+    from dual_referral_info
+    where DATE_FORMAT(cmmit_date,'%Y-%m-%d') = DATE_FORMAT(#{referralDate,jdbcType=TIMESTAMP},'%Y-%m-%d')
+    group by org_id_to,org_name_to
+  </select>
+
+  <!--转出-->
+  <select id="dualOut" resultType="java.util.Map">
+    SELECT  a.org_id_to,a.org_name_to  AS hosName,COUNT(1) 'xj',bb.b AS 'mz',cc.c AS 'zy' FROM dual_referral_info a
+    LEFT JOIN (SELECT  org_id_to,COUNT(1) b FROM dual_referral_info WHERE ref_type = '1' AND org_id_from = #{2}
+    <if test="param2 != null and param2 != ''">
+      AND DATE_FORMAT(cmmit_date,'%Y-%m-%d') >= DATE_FORMAT(#{1},'%Y-%m-%d')
+    </if>
+    <if test="param1 != null and param1 != ''">
+      AND DATE_FORMAT(cmmit_date,'%Y-%m-%d') &lt;= DATE_FORMAT(#{0},'%Y-%m-%d')
+    </if>
+    GROUP BY org_id_to) bb ON a.org_id_to = bb.org_id_to
+    LEFT JOIN (SELECT  org_id_to,COUNT(1) c FROM dual_referral_info WHERE ref_type = '2' AND org_id_from = #{2}
+    <if test="param2 != null and param2 != ''">
+      AND DATE_FORMAT(cmmit_date,'%Y-%m-%d') >= DATE_FORMAT(#{1},'%Y-%m-%d')
+    </if>
+    <if test="param1 != null and param1 != ''">
+      AND DATE_FORMAT(cmmit_date,'%Y-%m-%d') &lt;= DATE_FORMAT(#{0},'%Y-%m-%d')
+    </if>
+    GROUP BY org_id_to) cc ON a.org_id_to = cc.org_id_to
+    WHERE a.org_id_from = #{2}
+    <if test="param2 != null and param2 != ''">
+      AND DATE_FORMAT(a.cmmit_date,'%Y-%m-%d') >= DATE_FORMAT(#{1},'%Y-%m-%d')
+    </if>
+    <if test="param1 != null and param1 != ''">
+      AND DATE_FORMAT(a.cmmit_date,'%Y-%m-%d') &lt;= DATE_FORMAT(#{0},'%Y-%m-%d')
+    </if>
+    GROUP BY a.org_id_to
+  </select>
+
+  <!--转入-->
+  <select id="dualIn" resultType="java.util.Map">
+    SELECT  a.org_name_from AS hosName,COUNT(1) 'xj',bb.b AS 'mz',cc.c 'zy' FROM dual_referral_info a
+    LEFT JOIN (SELECT  org_id_to,COUNT(1) b FROM dual_referral_info WHERE ref_type = '1' AND org_id_to = #{2}
+    <if test="param2 != null and param2 != ''">
+      AND DATE_FORMAT(cmmit_date,'%Y-%m-%d') >= DATE_FORMAT(#{1},'%Y-%m-%d')
+    </if>
+    <if test="param1 != null and param1 != ''">
+      AND DATE_FORMAT(cmmit_date,'%Y-%m-%d') &lt;= DATE_FORMAT(#{0},'%Y-%m-%d')
+    </if>
+    GROUP BY org_id_to) bb ON a.org_id_to = bb.org_id_to
+    LEFT JOIN (SELECT  org_id_to,COUNT(1) c FROM dual_referral_info WHERE ref_type = '2' AND org_id_to = #{2}
+    <if test="param2 != null and param2 != ''">
+      AND DATE_FORMAT(cmmit_date,'%Y-%m-%d') >= DATE_FORMAT(#{1},'%Y-%m-%d')
+    </if>
+    <if test="param1 != null and param1 != ''">
+      AND DATE_FORMAT(cmmit_date,'%Y-%m-%d') &lt;= DATE_FORMAT(#{0},'%Y-%m-%d')
+    </if>
+    GROUP BY org_id_to) cc ON a.org_id_to = cc.org_id_to
+    WHERE a.org_id_to = #{2}
+    <if test="param2 != null and param2 != ''">
+      AND DATE_FORMAT(a.cmmit_date,'%Y-%m-%d') >= DATE_FORMAT(#{1},'%Y-%m-%d')
+    </if>
+    <if test="param1 != null and param1 != ''">
+      AND DATE_FORMAT(a.cmmit_date,'%Y-%m-%d') &lt;= DATE_FORMAT(#{0},'%Y-%m-%d')
+    </if>
+    GROUP BY a.org_id_to
+  </select>
+</mapper>

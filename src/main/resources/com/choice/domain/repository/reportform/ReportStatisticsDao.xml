@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.choice.domain.repository.reportform.ReportStatisticsDao" >
+  <resultMap id="BaseResultMap" type="com.choice.domain.entity.reportform.ReportStatistics" >
+   	<id column="report_id" property="reportId" jdbcType="INTEGER" />
+	<result column="subordinate_id" property="subordinateId" jdbcType="INTEGER" />
+	<result column="signing_time" property="signingTime" jdbcType="DATE" />
+	<result column="signing_num" property="signingNum" jdbcType="INTEGER" />
+	<result column="signature_rate" property="signatureRate" jdbcType="FLOAT" />
+	<result column="renew_num" property="renewNum" jdbcType="INTEGER" />
+	<result column="renew_rate" property="renewRate" jdbcType="FLOAT" />
+	<result column="signingnum_of_key" property="signingNumOfKey" jdbcType="INTEGER" />
+	<result column="signaturerate_of_key" property="signatureRateOfKey" jdbcType="FLOAT" />
+	<result column="level" property="level" jdbcType="INTEGER" />
+  </resultMap>		
+  <sql id="Base_Column_List" >
+     report_id,subordinate_id,signing_time,signing_num,signature_rate,renew_num,renew_rate,signingnum_of_key,signaturerate_of_key,level
+  </sql>
+  
+	<!--展示list信息 -->
+  <select id="displayReportOfYear" parameterType="com.choice.domain.entity.reportform.ReportStatistics" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from report_statistics
+    where  subordinate_id = #{subordinateId,jdbcType=INTEGER}
+    	and level = #{level,jdbcType=INTEGER}
+		<if test="signingTime!=null and signingTime!=''">
+			and date_format(signing_time,'%Y')  <![CDATA[ >= ]]>  DATE_FORMAT(#{signingTime}, '%Y')  
+		</if>
+  </select>
+  
+  <select id="getTotalYearsDistinct" parameterType="com.choice.domain.entity.reportform.ReportStatistics" resultType="int">
+  	SELECT DISTINCT(date_format(signing_time,'%Y')) 
+	FROM report_statistics
+	where  subordinate_id = #{subordinateId,jdbcType=INTEGER}
+    	and level = #{level,jdbcType=INTEGER}
+    order by signing_time desc
+  </select>
+  
+  <!--	 LIMIT #{startIndex},#{endIndex}
+  <select id="getTotalNumber" resultType="int">
+	  	select count(1)
+	    from report_statistics
+	   	where subordinate_id = #{reportStatistics.subordinateId,jdbcType=INTEGER}
+    	and level = #{reportStatistics.level,jdbcType=INTEGER}
+		<if test="startTime!=null and startTime!=''">
+			and date_format(signing_time,'%Y-%m') >= #{startTime}
+		</if>
+		<if test="endTime!=null and endTime!=''">
+			and  #{endTime} >= date_format(signing_time,'%Y-%m') 
+		</if>
+  </select>
+   获取总信息条数 -->
+ 
+  <insert id="insertReportStatistics" parameterType="com.choice.domain.entity.reportform.ReportStatistics" >
+   insert into report_statistics (subordinate_id,signing_time,signing_num,signature_rate,
+		renew_num,renew_rate,signingnum_of_key,signaturerate_of_key,level)
+   values (#{subordinateId,jdbcType=INTEGER},#{signingTime,jdbcType=VARCHAR},#{signingNum,jdbcType=INTEGER},#{signatureRate,jdbcType=FLOAT},
+   	 #{renewNum,jdbcType=INTEGER},#{renewRate,jdbcType=FLOAT},#{signingNumOfKey,jdbcType=INTEGER},#{signatureRateOfKey,jdbcType=FLOAT}
+   	,#{level,jdbcType=INTEGER})	
+  </insert>	
+  
+  <update id="updateReportStatisticsSelective" parameterType="com.choice.domain.entity.reportform.ReportStatistics" >
+    update report_statistics  
+    <set>	
+    	<if test="signingTime != null and signingTime != ''" >  signing_time = #{signingTime,jdbcType=VARCHAR}, </if>
+		<if test="signingNum != null" >  signing_num = #{signingNum,jdbcType=INTEGER}, </if>
+		<if test="signatureRate != null" >  signature_rate = #{signatureRate,jdbcType=FLOAT}, </if>
+		<if test="signingNumOfKey != null" >  signingnum_of_key = #{signingNumOfKey,jdbcType=INTEGER}, </if>
+		<if test="signatureRateOfKey != null" >  signaturerate_of_key = #{signatureRateOfKey,jdbcType=FLOAT}, </if>
+		<if test="renewNum != null" >  renew_num = #{renewNum,jdbcType=INTEGER}, </if>
+		<if test="renewRate != null" >  renew_rate = #{renewRate,jdbcType=FLOAT}, </if>
+    </set>
+    where  date_format(signing_time,'%Y-%m') = date_format(#{signingTime},'%Y-%m')
+    	and subordinate_id = #{subordinateId,jdbcType=INTEGER}
+    	and level = #{level,jdbcType=INTEGER}
+  </update>
+ 
+</mapper>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"   
+
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+     http://www.springframework.org/schema/mvc   
+     http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd   
+     http://www.springframework.org/schema/aop   
+     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd   
+     http://www.springframework.org/schema/context   
+     http://www.springframework.org/schema/context/spring-context.xsd
+     http://www.springframework.org/schema/task
+     http://www.springframework.org/schema/task/spring-task-3.0.xsd ">
+     
+    <task:annotation-driven scheduler="myScheduler"/>
+    <task:scheduler id="myScheduler" pool-size="5"/> 
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <mvc:annotation-driven />
+	<mvc:resources mapping="/static/**" location="/static/" />
+    <mvc:default-servlet-handler/>
+    <context:component-scan base-package="com.choice"/>
+    
+    <mvc:interceptors>  
+	    <!-- 国际化操作拦截器 如果采用基于（请求/Session/Cookie）则必需配置 --> 
+	    <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />  
+	    <!-- 如果不定义 mvc:mapping path 将拦截所有的URL请求 -->
+	    <bean class="com.choice.sign.web.controller.user.AuthInterceptor"></bean>
+	</mvc:interceptors>
+	
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />  
+    
+    <bean class ="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" >  
+        <property name="messageConverters">  
+            <list>  
+                <ref bean="mappingJacksonHttpMessageConverter" /><!-- json转换器 -->  
+                
+            </list>  
+        </property>  
+    </bean>      
+    <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+	<bean id="stringConverter"  
+        class="org.springframework.http.converter.StringHttpMessageConverter">  
+        <property name="supportedMediaTypes">  
+            <list>  
+                <value>text/plain;charset=UTF-8</value>  
+            </list>
+        </property>
+    </bean>  
+    <bean id="jsonConverter"  
+        class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>  
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">  
+        <property name="messageConverters">  
+            <list>  
+                <ref bean="stringConverter" />
+                <ref bean="jsonConverter" />  
+            </list>  
+        </property>  
+    </bean>  		
+ <bean id="viewResolver"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="prefix" value="" />
+		<property name="suffix" value=".ftl" />
+		<property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+		<property name="exposeSpringMacroHelpers" value="true" />
+		<property name="exposeRequestAttributes" value="true" />
+		<property name="exposeSessionAttributes" value="true" />
+		<property name="requestContextAttribute" value="rc" />
+		<property name="contentType" value="text/html; charset=UTF-8" />
+		<property name="cache" value="false"/>
+		
+	</bean>
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/templates/"/>
+        
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="template_update_delay">3600</prop>
+                <prop key="locale">zh_CN</prop>
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+                <prop key="date_format">yyyy-MM-dd</prop>
+                <prop key="number_format">#.##</prop>
+                <prop key="template_update_delay">0</prop>
+                <prop key="auto_import">/macros/choice-sign_macros.ftl as choiceSign</prop>
+              
+            </props>
+        </property>
+    </bean>
+	<!-- 上传文件拦截，设置最大上传文件大小 10M=10*1024*1024(B)=10485760 bytes -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10485760" />
+	</bean>
+</beans> 

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choice.domain.repository.dictionary.DictMangerDao">
+<resultMap id="BaseResultMap" type="com.choice.domain.entity.dictionary.CommonDictionary" >
+	 <id column="dictionary_id" property="dictionaryId" jdbcType="VARCHAR" />
+	 <result column="name" property="name" jdbcType="VARCHAR" />
+	 <result column="value_string" property="valueString" jdbcType="VARCHAR" />
+	 <result column="remark" property="remark" jdbcType="VARCHAR" />
+	 <result column="add_time" property="addTime" jdbcType="VARCHAR" />
+	 <result column="add_person" property="addPerson" jdbcType="VARCHAR" />
+	 <result column="edit_time" property="editTime" jdbcType="VARCHAR" />
+	 <result column="edit_person" property="editPerson" jdbcType="VARCHAR" />
+	 <result column="is_delete" property="isDelete" jdbcType="VARCHAR" />
+	 <result column="code" property="code" jdbcType="VARCHAR" />
+</resultMap>
+<sql id="Base_Column_List" >
+	dictionary_id,name,value_string,remark,add_time,add_person,edit_time,edit_person,is_delete,code
+</sql>
+	
+	<!-- 分页展示工作组信息 -->
+	<select id="getPageInfo"  resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" />
+		from common_dictionary t where is_delete = '0'
+		<if test="contents!=null and contents!=''">
+			and t.name like CONCAT(CONCAT('%',#{contents}),'%')
+		</if>
+		LIMIT #{StartIndex},#{endIndex}
+	</select>
+	
+	<!-- 获取总信息条数 -->
+	<select id="getTotalNumber" resultType="int">
+		select count(1)
+		from common_dictionary t  where is_delete = '0'
+		<if test="contents!=null and contents!=''">
+			and t.name like CONCAT(CONCAT('%',#{contents}),'%')
+		</if>
+	</select>
+	
+	<!-- 检验code重复 -->
+	<select id="checkCode" resultType="int">
+		select count(*)
+		from common_dictionary  
+		where is_delete = 0 and code = #{code,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 通过id列表获取对象的list -->
+	<select id="getListByPrimaryKey" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" />
+		from common_dictionary t  
+		where is_delete = '0' and
+		 dictionary_id in
+			  <foreach item="id" index="index" collection="ids" open="(" separator="," close=")"> 
+		              #{id} 
+		      </foreach>
+	</select>
+	
+	<!-- 分页展示工作组信息  -->
+	<select id="getInfo" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" />
+		from common_dictionary 
+		where dictionary_id = #{id}
+	</select>
+	
+	<!-- 新增 -->
+	<insert id="insertDict" parameterType="com.choice.domain.entity.dictionary.CommonDictionary">
+		insert into common_dictionary(name,value_string,remark,add_time,add_person,is_delete,code) 
+				values(#{name,jdbcType=VARCHAR},#{valueString,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR},
+				#{addTime,jdbcType=VARCHAR},#{addPerson,jdbcType=VARCHAR},#{isDelete,jdbcType=VARCHAR},#{code,jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- 伪删除 -->
+	<update id="deleteDicts" >
+		update	common_dictionary SET  is_delete = 1 
+			where dictionary_id in
+			  <foreach item="id" index="index" collection="ids" open="(" separator="," close=")"> 
+		              #{id} 
+		      </foreach> 
+	</update>
+	
+	<!-- 修改 -->
+	<update id="updateDict" parameterType="com.choice.domain.entity.dictionary.CommonDictionary" >
+		update	common_dictionary SET 
+			name=#{name,jdbcType=VARCHAR},value_string=#{valueString,jdbcType=VARCHAR},remark=#{remark,jdbcType=VARCHAR},
+			edit_time=#{editTime,jdbcType=VARCHAR},edit_person=#{editPerson,jdbcType=VARCHAR},code=#{code,jdbcType=VARCHAR}
+		WHERE dictionary_id=#{dictionaryId}
+	</update>
+	
+</mapper>

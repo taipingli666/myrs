@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choice.domain.repository.common.CommonMenuDao">
+
+	
+	
+	<insert id="insertMenu" parameterType="com.choice.domain.entity.common.CommonMenu">
+		<![CDATA[insert into common_menu(menu_name,url,display,parent_id,add_time,is_leaf) values
+        (#{commonMenu.menuName,jdbcType=VARCHAR},#{commonMenu.url,jdbcType=VARCHAR},#{commonMenu.display,jdbcType=INTEGER},#{commonMenu.parentId,jdbcType=INTEGER},#{commonMenu.addTime},#{commonMenu.isLeaf,jdbcType=INTEGER})]]>
+	</insert>
+	<update id="updateMenu" parameterType="com.choice.domain.entity.common.CommonMenu">  
+        update common_menu 
+        set menu_name=#{commonMenu.menuName}
+        ,url=#{commonMenu.url}
+        ,display=#{commonMenu.display}
+        ,edit_person=#{commonMenu.editPerson} 
+        ,edit_time = #{commonMenu.editTime} 
+        where menu_id=#{commonMenu.menuId}
+    </update>
+    <!-- 获取体检项目类型 -->
+	<select id="getMenus" resultType="com.choice.domain.entity.common.CommonMenu">
+		select menu_id as menuId,menu_name as menuName,url as url,display as display 
+		from common_menu where is_delete = 0
+		<if test="contents != null and contents != ''">
+    		AND menu_name like CONCAT(CONCAT('%',#{contents}),'%')
+    	</if>
+	</select>
+	<select id="getFristMenus" resultType="com.choice.domain.entity.common.CommonMenu">
+		select menu_id as menuId,menu_name as menuName,url as url,display as display from common_menu where is_delete = 0 and parent_id = 0
+	</select>
+	<select id="getDisplayMenus" resultType="com.choice.domain.entity.common.CommonMenu">
+		select menu_id as menuId,menu_name as menuName,url as url,display as display,parent_id as parentId from common_menu where is_delete = 0 and display = 0
+	</select>
+	<select id="getMenuById" resultType="com.choice.domain.entity.common.CommonMenu">
+		select menu_id as menuId,menu_name as menuName,url as url,display as display,parent_id as parentId from common_menu where menu_id = #{menuId}
+	</select>
+	<select id="getMenusByRoleId" resultType="Map">
+		SELECT a.menu_id as menuId,
+	     a.menu_name as name,a.parent_id as parentId,a.is_leaf as isLeaf,
+		(  CASE WHEN b.menu_id IS NULL THEN
+                  0
+              ELSE
+                  1
+              END
+          ) AS checked
+      FROM
+		common_menu a
+      LEFT JOIN channel_power b ON a.menu_id = b.menu_id
+      AND role_id = #{roleId} WHERE a.is_delete = 0
+	</select>
+	<delete id="delMenu" >
+  	update	common_menu SET  is_delete = 1 where menu_id in
+  	<foreach collection="array" index="index" item="item"
+            open="(" separator="," close=")">
+            #{item}
+    </foreach>
+  	</delete>
+  	
+  	<select id="getMenuForLogin" resultType="java.util.Map" >
+  	  SELECT distinct a.menu_id as menuId,a.menu_name as menuName,a.url as url,a.display as display,a.parent_id as parentId
+      FROM common_menu a
+      LEFT JOIN channel_power b ON a.menu_id = b.menu_id
+      AND (role_id =#{roleId,jdbcType=INTEGER} 
+      <if test="roleString != null and roleString != ''">
+      	 or role_id in 
+   		 <foreach collection="roleString" index="index" item="item"
+	            open="(" separator="," close=")">
+	            #{item}
+	     </foreach>
+      </if>
+      ) WHERE a.is_delete = 0 and b.menu_id IS NOT NULL and a.display = 0
+		ORDER BY SERIAL
+  	</select>
+  	
+  	<!-- 通过url找到menuId -->
+  	<select id="getMenuIdFromURL" resultType="java.lang.Integer" parameterType="java.lang.String">
+  		select a.menu_id from common_menu a where a.url =#{url}
+  	</select>
+	
+    
+</mapper>

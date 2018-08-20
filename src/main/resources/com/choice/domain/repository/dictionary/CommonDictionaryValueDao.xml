@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choice.domain.repository.dictionary.CommonDictionaryValueDao">
+  <resultMap id="BaseResultMap" type="com.choice.domain.entity.dictionary.CommonDictionaryValue" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="word" property="word" jdbcType="VARCHAR" />
+    <result column="parent_code" property="parentCode" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, word, parent_code,code
+  </sql>
+	<select id="countByPcodeAndcode" resultType="int" >
+		select count(1)
+		from common_dictionary_value 
+		where parent_code = #{parentCode,jdbcType=INTEGER}
+			and code = #{code,jdbcType=INTEGER}
+	</select>
+	
+	 <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+	    delete from common_dictionary_value
+	    where id = #{id,jdbcType=INTEGER}
+  	</delete>
+	
+	<select id="getInfoByParentCode" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+		select 
+		<include refid="Base_Column_List" />
+		from common_dictionary_value 
+		where parent_code = #{parentCode,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 新增 -->
+	<insert id="insertValue" parameterType="com.choice.domain.entity.dictionary.CommonDictionaryValue">
+		insert into common_dictionary_value(parent_code,word,code) 
+				values (#{parentCode,jdbcType=INTEGER},#{word,jdbcType=VARCHAR},#{code,jdbcType=INTEGER})
+	</insert>
+	
+	<!-- 修改 -->
+	<update id="updateValue" parameterType="com.choice.domain.entity.dictionary.CommonDictionaryValue" >
+		update	common_dictionary_value SET  word = #{word,jdbcType=VARCHAR} 
+			where parent_code = #{parentCode,jdbcType=INTEGER}
+				and code = #{code,jdbcType=INTEGER}
+	</update>
+	
+   <delete id="deleteByParentCode" parameterType="java.lang.Integer" >
+	    delete from common_dictionary_value
+	    where parent_code = #{parentCode,jdbcType=INTEGER}
+  </delete>
+  
+</mapper>

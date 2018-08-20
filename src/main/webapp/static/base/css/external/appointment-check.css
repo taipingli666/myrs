@@ -1,0 +1,141 @@
+.navBox{
+	width:100%;
+	height:112px;
+	border-bottom:5px solid #f2f2f2;
+	padding:12px 20px 0 20px;
+	box-sizing:border-box;
+}
+
+.appointment{
+	padding-top:26px;
+	padding-left:70px;
+}
+.appointment dl{
+	height:26px;
+	line-height:26px;
+}
+.appointment dl dt{
+	color:#4d4c4c;
+	float:left;
+}
+.appointment dl dd{
+	float:left;
+}
+.appointment_select{
+	margin-top:10px;
+	width:100%;
+	height:205px;
+}
+.appointment_office,.appointment_kinds,.appointment_item,.appointment_sample{
+	 float:left;
+	 width:300px;
+	 height:205px;
+	 overflow-y:scroll;
+	 border-top:1px solid #D9D9D9;
+	 border-bottom:1px solid #D9D9D9;
+}
+.office{
+	 width:100%;
+	 border:1px solid #D9D9D9;
+	 font-size:16px; 
+	 text-align:center;
+	 border-top:0;
+}
+.office tr{
+   height:34px;
+}
+.office tr td{
+	 font-size:16px;
+	 line-height:34px;
+	 border:1px solid #D9D9D9;
+	 color:#8f8f8f;
+}
+.td_first{
+	width:40px;
+}
+.sel_title{
+	background:#57B6FA;
+	color:#fff;
+	font-size:16px;
+	padding-left:10px; 
+}
+.item{
+	width:400px;
+}
+/*所选项目统计*/
+.selected_items{
+	margin-top:15px;
+}
+.selected_title{
+	color:#4d4c4c;
+}
+.selected_detail{
+	width:1000px;
+	border:1px solid #E7E7E7;
+	margin-top:5px;
+}
+.selected_detail tr{
+	height:40px;
+}
+.selected_detail tr:nth-of-type(even){
+	background:#F4F4F4;
+}
+.selected_detail tr td,.selected_detail tr th{
+	border-right:1px solid #E7E7E7;
+	text-align:center;
+	font-size:16px;
+	color:#8f8f8f;
+}
+.selected_detail tr th{
+	font-weight:bold;
+}
+.all_num{
+	margin-top:10px;
+}
+.all_num span{
+	color:#d53f3f;
+	margin-left:10px;
+}
+.selected_detail tr td.money{
+	color:#D53F3F;
+}
+/*所选项目统计*/
+.submit{
+	width:180px;
+	height:36px;
+	background:#38AAFB;
+	line-height:36px;
+	text-align:center;
+	color:#fff;
+	margin:40px auto 0;
+}
+.submit a{
+	display:block;
+	color:#fff;
+	text-decoration:none;
+	
+}
+
+ 
+    html,body{
+        height: 100% !important;
+        overflow: hidden !important;
+        padding:0 !important;
+    }
+    .main2{
+        height: 100%;
+        overflow: auto;
+        overflow-y: auto;-webkit-overflow-scrolling: touch;
+    }
+    .panel-default {
+        margin: 20px;
+    }
+    .sheetInfo-main .panel-default {
+        margin:0 0 20px;
+    }
+  .main2 .sheetInfo-hd{
+     font-size:2em;
+     text-align:center;
+     line-height:3em;
+     color:#ee9822;
+    }

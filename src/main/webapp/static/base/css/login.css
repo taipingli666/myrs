@@ -1,0 +1,123 @@
+body {
+    color: #333;
+}
+.loginheard{
+    height: 83px;
+    background: #483b89;
+    position: relative;
+}
+.loginheard img{
+    position: absolute;
+    left: 20px;
+    top: 45%;
+    margin-top: -23px;
+}
+.loginMain{
+    background: url("../images/loginBGbig.jpg") no-repeat center center;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 83px;
+    bottom: 0;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/loginBGbig.jpg',  sizingMethod='scale');
+}
+.whiteBG{
+    background: #f1f3f5;
+}
+img{
+    max-width:100%;
+}
+.btn-blue{
+    display:block;
+    border:none;
+    background-color:#483b89;
+    color:#fff;
+    font-size:14px;
+    font-family:"\5FAE\8F6F\96C5\9ED1";
+    text-align:center;
+    width:100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    padding:12px  16px;
+    cursor:pointer;
+    line-height:1.125em;
+}
+a.btn-blue:hover{
+    color:#fff;
+}
+.loginMain .loginFormBox{
+    width:320px;
+    height: 250px;
+    padding:22px 30px;
+    background:#fff;
+    position:absolute;
+    top: 100px;
+    right: 11%;
+    -webkit-box-shadow:0 0 2px #e5e5e5;
+    -moz-box-shadow:0 0 2px #e5e5e5;
+    -ms-box-shadow:0 0 2px #e5e5e5;
+    -o-box-shadow:0 0 2px #e5e5e5;
+    box-shadow:0 0 2px #e5e5e5;
+}
+.loginMain .loginFormBox .loginFormBox-hd{
+    font-size: 32px;
+    text-align: center;
+    color:#483b89;
+}
+.input-text, .input-text-hastitle {
+    position: relative;
+    z-index: 1;
+}
+.loginFormBox-bd {
+    padding: 20px 0;
+}
+.loginFormBox-bd .input-text:first-child {
+    margin-bottom: 20px;
+}
+.input-text input,
+.input-text-hastitle input{
+    border:1px solid #ccc;
+    background-color:#fff;
+    line-height:20px;
+    padding:8px 10px 8px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-appearance: none;
+    width:100%;
+    position:relative;
+    z-index:1;
+    font-size:14px;
+    outline:hidden;
+}
+.loginFormBox-bd .input-text-hasicon input {
+    padding: .625em 3.125em;
+    border: 1px solid #ddd;
+}
+.login-icon{
+    color: #ccc;
+    display: block;
+    height: 22px;
+    left: 8px;
+    line-height: 20px;
+    position: absolute;
+    top: 50%;
+    margin-top: -8px;
+    width: 22px;
+    z-index: 2;
+    font-size: 19px;
+    text-align: center;
+    border-right: 1px solid #ccc;
+    padding-right: 5px;
+}
+.resetpassword{
+    margin-top: 12px;
+    display: block;
+    color: #483b89;
+}
